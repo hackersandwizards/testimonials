@@ -8,7 +8,7 @@ one place.
 ## Use it
 
 ```sh
-bun add github:hackersandwizards/testimonials#v1.0.0
+bun add github:hackersandwizards/testimonials#v1.0.1
 ```
 
 ```ts
