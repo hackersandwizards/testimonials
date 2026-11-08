@@ -1,6 +1,3 @@
-import marksData from "../data/marks.json" with { type: "json" };
-import testimonialsData from "../data/testimonials.json" with { type: "json" };
-
 /**
  * Whether a rendered surface may show the entry: `allowed` it may, `unreleased` it may not until
  * the company releases it, `never` it may not at all. The data itself is public either way.
@@ -17,7 +14,9 @@ export interface Mark {
   file: string;
   surface: Surface;
   /** Share of a logo row's height at which the mark reads as heavy as the others. */
-  height: number;
+  scale: number;
+  /** The file's own size in pixels, as sharp reads it: for `<img width height>`. */
+  size: { width: number; height: number };
   /** `false` keeps the mark off generated onepagers. */
   onepager?: boolean;
   /** Where the file came from. */
@@ -44,8 +43,7 @@ export interface Testimonial {
   date?: string;
 }
 
-export const marks = marksData as Mark[];
-export const testimonials = testimonialsData as Testimonial[];
-
+export declare const marks: Mark[];
+export declare const testimonials: Testimonial[];
 /** The marks a rendered surface may show. */
-export const shownMarks = marks.filter((mark) => mark.surface === "allowed");
+export declare const shownMarks: Mark[];

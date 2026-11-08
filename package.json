@@ -1,6 +1,6 @@
 {
   "name": "@hackersandwizards/testimonials",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Client quotes, portraits and company marks of hackers&wizards: the one source every surface takes them from.",
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",
@@ -9,14 +9,18 @@
     "url": "git+https://github.com/hackersandwizards/testimonials.git"
   },
   "exports": {
-    ".": "./src/index.ts",
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
     "./testimonials.json": "./data/testimonials.json",
     "./marks.json": "./data/marks.json",
     "./marks/*": "./marks/*",
     "./portraits/*": "./portraits/*"
   },
   "files": [
-    "src/index.ts",
+    "src/index.js",
+    "src/index.d.ts",
     "data",
     "marks",
     "portraits"
@@ -54,13 +58,11 @@
           "conceptboard",
           "continentale",
           "destination solutions",
-          "dmtech",
           "e motion experts",
           "edataconsulting",
           "finnofleet",
           "fiskaly",
           "giga green",
-          "haufe lexware",
           "heise conferences",
           "impower",
           "kleinanzeigen",

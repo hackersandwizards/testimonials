@@ -8,7 +8,7 @@ one place.
 ## Use it
 
 ```sh
-bun add github:hackersandwizards/testimonials#v1.0.1
+bun add github:hackersandwizards/testimonials#v2.0.0
 ```
 
 ```ts
@@ -17,9 +17,13 @@ import { shownMarks, testimonials } from "@hackersandwizards/testimonials";
 const file = import.meta.resolve(`@hackersandwizards/testimonials/marks/${shownMarks[0].file}`);
 ```
 
-Plain JSON for code that cannot import TypeScript: `@hackersandwizards/testimonials/marks.json` and
+The entry is plain JavaScript with types beside it, so Bun, Vite and plain Node import it alike.
+The data as JSON, for other languages: `@hackersandwizards/testimonials/marks.json` and
 `@hackersandwizards/testimonials/testimonials.json`. Images: `/marks/<file>` and
 `/portraits/<file>`.
+
+Each mark carries `scale`, the share of a logo row's height at which it reads as heavy as the
+others, and `size`, the file's own width and height in pixels for `<img width height>`.
 
 ## What a surface may show
 
@@ -33,18 +37,20 @@ carries `surface`:
 | `never`      | No surface shows it, whatever else changes.                              |
 
 A mark with `onepager: false` stays off generated onepagers. A testimonial names its company by
-`slug`: show a logo beside it only where `shownMarks` holds that slug. Quotes are published as they stand:
-quote them whole, in the locale you render, and never add figures they do not carry.
+`slug`: show a logo beside it only where `shownMarks` holds that slug. Quote in the locale you
+render, whole or cut to its first sentences where the space holds no more: split with
+`Intl.Segmenter` in that locale, never inside a sentence, never skipping one, and never where a
+dropped sentence qualifies a kept one. Never add figures a quote does not carry.
 
 ## Layout
 
 ```
-data/marks.json          one entry per company mark: slug, name, file, surface, height, source
+data/marks.json          one entry per company mark: slug, name, file, surface, scale, size, source
 data/testimonials.json   one entry per quote: person, role, portrait, company, quote EN and DE
 marks/                   the mark files
 portraits/               one portrait per quoted person
 scripts/retouch-portrait.ts  the retouch every portrait goes through: bun run retouch:portrait
-src/index.ts             the types, the data and shownMarks
+src/index.js             the data and shownMarks; src/index.d.ts holds the types
 ```
 
 `bun install`, then `bun run check` runs the full gate. A release is a version bump and a tag.
