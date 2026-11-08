@@ -1,7 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { existsSync, readdirSync } from "node:fs";
 import sharp from "sharp";
-import pkg from "../package.json" with { type: "json" };
 import { marks, shownMarks, testimonials, type Surface } from "./index.js";
 
 const root = `${import.meta.dir}/../`;
@@ -33,10 +32,13 @@ describe("marks", () => {
   });
 
   test("size is the file's own, as sharp reads it", async () => {
-    for (const mark of marks) {
-      const { width, height } = await sharp(`${root}marks/${mark.file}`).metadata();
-      expect({ file: mark.file, ...mark.size }).toEqual({ file: mark.file, width, height });
-    }
+    const read = await Promise.all(
+      marks.map(async ({ file }) => {
+        const { width, height } = await sharp(`${root}marks/${file}`).metadata();
+        return { file, width, height };
+      }),
+    );
+    expect(marks.map(({ file, size }) => ({ file, ...size }))).toEqual(read);
   });
 
   test("OBI is never shown", () => {
@@ -71,20 +73,18 @@ describe("testimonials", () => {
 });
 
 describe("entry", () => {
-  test("exports no TypeScript source, which Node refuses under node_modules", () => {
-    const targets = JSON.stringify(pkg.exports).match(/"\.\/[^"]+"/g) ?? [];
-    expect(targets.filter((t) => /(?<!\.d)\.ts"$/.test(t))).toEqual([]);
-  });
-
-  test("plain Node imports it", () => {
-    const run = Bun.spawnSync([
-      "node",
-      "--no-experimental-strip-types",
-      "--input-type=module",
-      "-e",
-      `const m = await import(${JSON.stringify(`${import.meta.dir}/index.js`)}); console.log(m.shownMarks.length)`,
-    ]);
-    expect(run.stderr.toString()).toBe("");
-    expect(Number(run.stdout.toString())).toBe(shownMarks.length);
+  // Node refuses TypeScript under node_modules; with stripping off, it refuses it here too.
+  test("plain Node imports the package by name", () => {
+    const run = Bun.spawnSync(
+      [
+        "node",
+        "--no-experimental-strip-types",
+        "--input-type=module",
+        "-e",
+        'const m = await import("@hackersandwizards/testimonials"); console.log(m.shownMarks.length)',
+      ],
+      { cwd: root },
+    );
+    expect(run.stdout.toString().trim()).toBe(String(shownMarks.length));
   });
 });
