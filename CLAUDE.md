@@ -12,10 +12,10 @@ founders' choice. The approval behind each entry lives in Company OS, never here
 - `data/testimonials.json`: every quote as published, both locales. Change a quote only from its
   author's own words, and keep Moonfare's figures to the ones in the quote.
 - `portraits/`: one square WebP per quoted person, cut from the largest real photo of them that
-  matches the face. A new or replaced portrait goes through `bun run retouch:portrait <source>
-portraits/<id>.webp [--crop left,top,size] [--sharpen]` from that source at full resolution.
-  Add `--sharpen` only where a blind review in page context scores it ahead outside the noise; no
-  AI-restored or AI-upscaled file enters here.
+  matches the face. A new or replaced portrait goes through `bun run retouch:portrait` (usage in
+  `scripts/retouch-portrait.ts`) from that source at full resolution; a noisy source needs `ffmpeg`
+  on the PATH. Add `--sharpen` only where a blind review in page context scores it ahead outside
+  the noise. No AI-restored or AI-upscaled file enters here.
 - The package depends on no other h&w package at runtime, and on brand not even for its gate:
   brand takes its marks from here.
 

@@ -23,7 +23,7 @@ describe("retouch-portrait", () => {
 
   test("noise reads near zero on a flat image and high on random pixels", () => {
     expect(noiseSigma(solid([128, 128, 128], 64 * 64), 64, 64)).toBe(0);
-    const noisy = Uint8Array.from({ length: 64 * 64 * 3 }, () => Math.floor(Math.random() * 256));
+    const noisy = Uint8Array.from({ length: 64 * 64 * 3 }, (_, i) => (i * 7919) % 256);
     expect(noiseSigma(noisy, 64, 64)).toBeGreaterThan(20);
   });
 
@@ -36,5 +36,17 @@ describe("retouch-portrait", () => {
     const { webp, size } = await retouchPortrait(source, { sharpen: true });
     const meta = await sharp(webp).metadata();
     expect([size, meta.width, meta.height, meta.format]).toEqual([1760, 1760, 1760, "webp"]);
+  });
+
+  test("crops a photo stored with an EXIF rotation from its upright size", async () => {
+    const source = await sharp({
+      create: { width: 400, height: 300, channels: 3, background: "#888" },
+    })
+      .withMetadata({ orientation: 6 })
+      .jpeg()
+      .toBuffer();
+    expect((await retouchPortrait(source, { crop: { left: 0, top: 100, size: 300 } })).size).toBe(
+      300,
+    );
   });
 });
