@@ -225,7 +225,7 @@
   },
   "prettier": "@hackersandwizards/scaffolding/prettier",
   "devDependencies": {
-    "@hackersandwizards/scaffolding": "github:hackersandwizards/scaffolding#v4.1.0",
+    "@hackersandwizards/scaffolding": "github:hackersandwizards/scaffolding#v5.0.0",
     "@types/bun": "1.4.4",
     "@typescript/native": "npm:typescript@7.0.2",
     "eslint": "10.14.0",
