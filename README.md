@@ -32,7 +32,8 @@ carries `surface`:
 | `unreleased` | Held as company data. No surface shows it until the company releases it. |
 | `never`      | No surface shows it, whatever else changes.                              |
 
-A mark with `onepager: false` stays off generated onepagers. Quotes are published as they stand:
+A mark with `onepager: false` stays off generated onepagers. A testimonial names its company by
+`slug`: show a logo beside it only where `shownMarks` holds that slug. Quotes are published as they stand:
 quote them whole, in the locale you render, and never add figures they do not carry.
 
 ## Layout

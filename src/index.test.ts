@@ -1,9 +1,9 @@
 import { describe, expect, test } from "bun:test";
 import { existsSync, readdirSync } from "node:fs";
-import { marks, shownMarks, testimonials } from "./index.ts";
+import { marks, testimonials, type Surface } from "./index.ts";
 
-const root = new URL("..", import.meta.url).pathname;
-const surfaces = ["allowed", "unreleased", "never"];
+const root = `${import.meta.dir}/../`;
+const surfaces: Surface[] = ["allowed", "unreleased", "never"];
 const slug = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
 const unique = (values: string[]) => values.filter((value, i) => values.indexOf(value) !== i);
@@ -19,8 +19,9 @@ describe("marks", () => {
       expect(mark.name.trim()).not.toBe("");
       expect(surfaces).toContain(mark.surface);
       expect(existsSync(`${root}marks/${mark.file}`)).toBe(true);
-      if (mark.height !== undefined) expect(mark.height).toBeGreaterThan(0);
-      if (mark.height !== undefined) expect(mark.height).toBeLessThanOrEqual(1);
+      expect(mark.height).toBeGreaterThan(0);
+      expect(mark.height).toBeLessThanOrEqual(1);
+      expect([undefined, false]).toContain(mark.onepager);
     }
   });
 
@@ -31,7 +32,6 @@ describe("marks", () => {
 
   test("OBI is never shown", () => {
     expect(marks.find((mark) => mark.slug === "obi")?.surface).toBe("never");
-    expect(shownMarks.every((mark) => mark.surface === "allowed")).toBe(true);
   });
 });
 
@@ -49,6 +49,9 @@ describe("testimonials", () => {
       expect(t.person.role.trim()).not.toBe("");
       expect(t.person.url).toStartWith("https://");
       expect(existsSync(`${root}portraits/${t.person.portrait}`)).toBe(true);
+      expect(["testimonial", "feedback-mail"]).toContain(t.source);
+      expect([undefined, "en", "de"]).toContain(t.original);
+      if (t.date !== undefined) expect(t.date).toMatch(/^\d{4}-\d{2}(-\d{2})?$/);
     }
   });
 

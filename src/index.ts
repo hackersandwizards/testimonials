@@ -12,11 +12,12 @@ export interface Mark {
   slug: string;
   /** The name a logo wall shows. */
   name: string;
-  /** File name in `marks/`, reached as `@hackersandwizards/testimonials/marks/<file>`. */
+  /** File name in `marks/`, reached as `@hackersandwizards/testimonials/marks/<file>`; two
+   * companies of one group may share a file, so key by `slug`. */
   file: string;
   surface: Surface;
-  /** Drawn height relative to the tallest mark, for logo walls of even visual weight. */
-  height?: number;
+  /** Share of a logo row's height at which the mark reads as heavy as the others. */
+  height: number;
   /** `false` keeps the mark off generated onepagers. */
   onepager?: boolean;
   /** Where the file came from. */

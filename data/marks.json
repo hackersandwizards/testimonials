@@ -18,68 +18,79 @@
     "slug": "adference",
     "name": "ADFERENCE",
     "file": "adference.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.414
   },
   {
     "slug": "ai-nights",
     "name": "AI Nights",
     "file": "ai-nights.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.475
   },
   {
     "slug": "aktion-mensch",
     "name": "Aktion Mensch",
     "file": "aktion-mensch.png",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.635
   },
   {
     "slug": "alphalist",
     "name": "Alphalist",
     "file": "alphalist.png",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.938
   },
   {
     "slug": "atmina-solutions",
     "name": "ATMINA Solutions",
     "file": "atmina-solutions.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.752
   },
   {
     "slug": "axdn",
     "name": "AXDN",
     "file": "axdn.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.839
   },
   {
     "slug": "b-braun",
     "name": "B. Braun",
     "file": "b-braun.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.651
   },
   {
     "slug": "bauhaus",
     "name": "Bauhaus",
     "file": "bauhaus.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.456
   },
   {
     "slug": "beta-systems",
     "name": "Beta Systems",
     "file": "beta-systems.svg",
     "surface": "allowed",
+    "height": 0.664,
     "source": "Header mark #betasystems-logo-lok in https://www.betasystems.com/_nuxt/icons.CdPxOgge.svg, in the site's primary colour"
   },
   {
     "slug": "betterhomes",
     "name": "BETTERHOMES",
     "file": "betterhomes.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.415
   },
   {
     "slug": "beurer",
     "name": "Beurer",
     "file": "beurer.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.557
   },
   {
     "slug": "blau-direkt",
@@ -100,7 +111,8 @@
     "slug": "breuninger",
     "name": "Breuninger",
     "file": "breuninger.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.566
   },
   {
     "slug": "bunting",
@@ -113,37 +125,43 @@
     "slug": "candylabs",
     "name": "candylabs",
     "file": "candylabs.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.611
   },
   {
     "slug": "certificates-dev",
     "name": "certificates.dev",
     "file": "certificates-dev.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.504
   },
   {
     "slug": "conceptboard",
     "name": "Conceptboard",
     "file": "conceptboard.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.709
   },
   {
     "slug": "continentale",
     "name": "Continentale",
     "file": "continentale.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.812
   },
   {
     "slug": "destination-solutions",
     "name": "Destination Solutions",
     "file": "destination-solutions.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.539
   },
   {
     "slug": "digitale-leute",
     "name": "Digitale Leute",
     "file": "digitale-leute.png",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 1
   },
   {
     "slug": "dm",
@@ -157,19 +175,22 @@
     "slug": "dmtech",
     "name": "dmTECH",
     "file": "dmtech.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.931
   },
   {
     "slug": "e-motion-experts",
     "name": "e-motion experts",
     "file": "e-motion-experts.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.674
   },
   {
     "slug": "edataconsulting",
     "name": "edataconsulting",
     "file": "edataconsulting.png",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.669
   },
   {
     "slug": "egym",
@@ -182,13 +203,15 @@
     "slug": "eppendorf",
     "name": "Eppendorf",
     "file": "eppendorf.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.493
   },
   {
     "slug": "etribes",
     "name": "Etribes",
     "file": "etribes.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.528
   },
   {
     "slug": "eurogate",
@@ -209,19 +232,22 @@
     "slug": "exxeta",
     "name": "Exxeta",
     "file": "exxeta.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.455
   },
   {
     "slug": "finnofleet",
     "name": "FINNOFLEET",
     "file": "finnofleet.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.64
   },
   {
     "slug": "fiskaly",
     "name": "fiskaly",
     "file": "fiskaly.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.581
   },
   {
     "slug": "fricke-gruppe",
@@ -235,7 +261,8 @@
     "slug": "giga-green",
     "name": "GIGA.GREEN",
     "file": "giga-green.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.754
   },
   {
     "slug": "haufe-group",
@@ -248,31 +275,36 @@
     "slug": "haufe-lexware",
     "name": "Haufe-Lexware",
     "file": "haufe-lexware.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.599
   },
   {
     "slug": "heise-conferences",
     "name": "heise conferences",
     "file": "heise-conferences.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.459
   },
   {
     "slug": "hsh",
     "name": "HSH",
     "file": "hsh.png",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.679
   },
   {
     "slug": "hws",
     "name": "HWS",
     "file": "hws.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.887
   },
   {
     "slug": "impower",
     "name": "Impower",
     "file": "impower.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 1
   },
   {
     "slug": "ionos",
@@ -285,7 +317,8 @@
     "slug": "kleinanzeigen",
     "name": "Kleinanzeigen",
     "file": "kleinanzeigen.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.522
   },
   {
     "slug": "krombacher",
@@ -299,19 +332,22 @@
     "slug": "langchain",
     "name": "LangChain",
     "file": "langchain.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.479
   },
   {
     "slug": "launch-lab",
     "name": "Launch Lab",
     "file": "launch-lab.png",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.414
   },
   {
     "slug": "leaders-of-ai",
     "name": "Leaders of AI",
     "file": "leaders-of-ai.png",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.663
   },
   {
     "slug": "lichtblick",
@@ -325,25 +361,29 @@
     "slug": "lotto24",
     "name": "LOTTO24",
     "file": "lotto24.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 1
   },
   {
     "slug": "mach",
     "name": "MACH",
     "file": "mach.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.468
   },
   {
     "slug": "make-ai-work",
     "name": "Make AI Work",
     "file": "make-ai-work.png",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.575
   },
   {
     "slug": "mediamarkt-saturn",
     "name": "MediaMarktSaturn",
     "file": "mediamarkt-saturn.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.448
   },
   {
     "slug": "mercedes-benz",
@@ -356,7 +396,8 @@
     "slug": "mobil-isc",
     "name": "Mobil ISC",
     "file": "mobil-isc.png",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.917
   },
   {
     "slug": "moia",
@@ -371,6 +412,7 @@
     "name": "momox",
     "file": "momox.svg",
     "surface": "allowed",
+    "height": 0.423,
     "source": "https://www.momox.biz/images/marken/momox_black.svg"
   },
   {
@@ -392,13 +434,15 @@
     "slug": "neuland",
     "name": "neuland",
     "file": "neuland.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.699
   },
   {
     "slug": "obi",
     "name": "OBI",
     "file": "obi.svg",
-    "surface": "never"
+    "surface": "never",
+    "height": 0.504
   },
   {
     "slug": "omr",
@@ -412,7 +456,8 @@
     "slug": "phantomrausch",
     "name": "phantomRausch",
     "file": "phantomrausch.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.48
   },
   {
     "slug": "picnic",
@@ -426,13 +471,15 @@
     "slug": "re-cinq",
     "name": "re:cinq",
     "file": "re-cinq.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.663
   },
   {
     "slug": "rheinwerk-verlag",
     "name": "Rheinwerk Verlag",
     "file": "rheinwerk-verlag.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.463
   },
   {
     "slug": "saas-group",
@@ -447,7 +494,8 @@
     "slug": "sda",
     "name": "SDA",
     "file": "sda.png",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.837
   },
   {
     "slug": "sdk",
@@ -469,19 +517,22 @@
     "slug": "silverspin",
     "name": "Silverspin",
     "file": "silverspin.png",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.456
   },
   {
     "slug": "sopra-steria",
     "name": "Sopra Steria",
     "file": "sopra-steria.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.44
   },
   {
     "slug": "startplatz",
     "name": "STARTPLATZ",
     "file": "startplatz.png",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.849
   },
   {
     "slug": "stashaway",
@@ -511,7 +562,8 @@
     "slug": "tac",
     "name": "TAC",
     "file": "tac.png",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.549
   },
   {
     "slug": "tchibo",
@@ -525,7 +577,8 @@
     "slug": "techniker-krankenkasse",
     "name": "Techniker Krankenkasse",
     "file": "techniker-krankenkasse.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.943
   },
   {
     "slug": "tegtmeier",
@@ -541,37 +594,43 @@
     "name": "Temedica",
     "file": "temedica.svg",
     "surface": "allowed",
+    "height": 0.552,
     "source": "https://temedica.com/hubfs/Logo.svg"
   },
   {
     "slug": "tessl",
     "name": "Tessl",
     "file": "tessl.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.641
   },
   {
     "slug": "thuega-smartservice",
     "name": "Thüga SmartService",
     "file": "thuega-smartservice.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.685
   },
   {
     "slug": "tk-elevator",
     "name": "TK Elevator",
     "file": "tk-elevator.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.659
   },
   {
     "slug": "toshift",
     "name": "ToShift",
     "file": "toshift.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.798
   },
   {
     "slug": "tudock",
     "name": "Tudock",
     "file": "tudock.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.435
   },
   {
     "slug": "unzer",
@@ -585,7 +644,8 @@
     "slug": "vodafone",
     "name": "Vodafone",
     "file": "vodafone.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 1
   },
   {
     "slug": "vorwerk-elektrowerke",
@@ -599,30 +659,35 @@
     "slug": "vorwerk-patron",
     "name": "Vorwerk Patron",
     "file": "vorwerk-patron.png",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.909
   },
   {
     "slug": "vorwerk-services",
     "name": "Vorwerk Services",
     "file": "vorwerk.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.854
   },
   {
     "slug": "westwerk-events",
     "name": "Westwerk Events",
     "file": "westwerk-events.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.392
   },
   {
     "slug": "wonderful",
     "name": "Wonderful",
     "file": "wonderful.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.552
   },
   {
     "slug": "wps",
     "name": "WPS",
     "file": "wps.svg",
-    "surface": "unreleased"
+    "surface": "unreleased",
+    "height": 0.626
   }
 ]
