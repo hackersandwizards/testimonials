@@ -43,6 +43,7 @@ data/marks.json          one entry per company mark: slug, name, file, surface, 
 data/testimonials.json   one entry per quote: person, role, portrait, company, quote EN and DE
 marks/                   the mark files
 portraits/               one portrait per quoted person
+scripts/retouch-portrait.ts  the retouch every portrait goes through: bun run retouch:portrait
 src/index.ts             the types, the data and shownMarks
 ```
 
