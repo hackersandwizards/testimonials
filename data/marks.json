@@ -1,0 +1,628 @@
+[
+  {
+    "slug": "1global",
+    "name": "1GLOBAL",
+    "file": "1global.svg",
+    "surface": "allowed",
+    "height": 0.433,
+    "source": "https://docs.things.1global.com/img/logo.svg on 1GLOBAL's partner logo guidelines; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "adesso-insurance-solutions",
+    "name": "adesso insurance solutions",
+    "file": "adesso-insurance-solutions.webp",
+    "surface": "allowed",
+    "height": 0.773
+  },
+  {
+    "slug": "adference",
+    "name": "ADFERENCE",
+    "file": "adference.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "ai-nights",
+    "name": "AI Nights",
+    "file": "ai-nights.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "aktion-mensch",
+    "name": "Aktion Mensch",
+    "file": "aktion-mensch.png",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "alphalist",
+    "name": "Alphalist",
+    "file": "alphalist.png",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "atmina-solutions",
+    "name": "ATMINA Solutions",
+    "file": "atmina-solutions.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "axdn",
+    "name": "AXDN",
+    "file": "axdn.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "b-braun",
+    "name": "B. Braun",
+    "file": "b-braun.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "bauhaus",
+    "name": "Bauhaus",
+    "file": "bauhaus.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "beta-systems",
+    "name": "Beta Systems",
+    "file": "beta-systems.svg",
+    "surface": "allowed",
+    "source": "Header mark #betasystems-logo-lok in https://www.betasystems.com/_nuxt/icons.CdPxOgge.svg, in the site's primary colour"
+  },
+  {
+    "slug": "betterhomes",
+    "name": "BETTERHOMES",
+    "file": "betterhomes.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "beurer",
+    "name": "Beurer",
+    "file": "beurer.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "blau-direkt",
+    "name": "blau direkt",
+    "file": "blau-direkt.svg",
+    "surface": "allowed",
+    "height": 0.478,
+    "source": "https://www.blaudirekt.de/wp-content/uploads/2024/06/bd-logo.svg on https://www.blaudirekt.de/pressebereich/; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "bonprix",
+    "name": "bonprix",
+    "file": "bonprix.webp",
+    "surface": "allowed",
+    "height": 0.651
+  },
+  {
+    "slug": "breuninger",
+    "name": "Breuninger",
+    "file": "breuninger.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "bunting",
+    "name": "Bünting",
+    "file": "bunting.webp",
+    "surface": "allowed",
+    "height": 0.577
+  },
+  {
+    "slug": "candylabs",
+    "name": "candylabs",
+    "file": "candylabs.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "certificates-dev",
+    "name": "certificates.dev",
+    "file": "certificates-dev.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "conceptboard",
+    "name": "Conceptboard",
+    "file": "conceptboard.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "continentale",
+    "name": "Continentale",
+    "file": "continentale.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "destination-solutions",
+    "name": "Destination Solutions",
+    "file": "destination-solutions.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "digitale-leute",
+    "name": "Digitale Leute",
+    "file": "digitale-leute.png",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "dm",
+    "name": "dm",
+    "file": "dm.svg",
+    "surface": "allowed",
+    "height": 0.931,
+    "source": "First-paint logo, an SVG data URI, on https://www.dm.de/; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "dmtech",
+    "name": "dmTECH",
+    "file": "dmtech.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "e-motion-experts",
+    "name": "e-motion experts",
+    "file": "e-motion-experts.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "edataconsulting",
+    "name": "edataconsulting",
+    "file": "edataconsulting.png",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "egym",
+    "name": "EGYM",
+    "file": "egym.webp",
+    "surface": "allowed",
+    "height": 0.497
+  },
+  {
+    "slug": "eppendorf",
+    "name": "Eppendorf",
+    "file": "eppendorf.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "etribes",
+    "name": "Etribes",
+    "file": "etribes.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "eurogate",
+    "name": "EUROGATE",
+    "file": "eurogate.svg",
+    "surface": "allowed",
+    "height": 0.795,
+    "source": "https://www1.eurogate.de/wp-content/themes/eurogate/img/logo.svg; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "eventim",
+    "name": "eventim",
+    "file": "eventim.webp",
+    "surface": "allowed",
+    "height": 0.627
+  },
+  {
+    "slug": "exxeta",
+    "name": "Exxeta",
+    "file": "exxeta.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "finnofleet",
+    "name": "FINNOFLEET",
+    "file": "finnofleet.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "fiskaly",
+    "name": "fiskaly",
+    "file": "fiskaly.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "fricke-gruppe",
+    "name": "Fricke Gruppe",
+    "file": "fricke-gruppe.png",
+    "surface": "allowed",
+    "height": 0.436,
+    "source": "Company OS src/content/companies/logos/fricke-gruppe.png"
+  },
+  {
+    "slug": "giga-green",
+    "name": "GIGA.GREEN",
+    "file": "giga-green.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "haufe-group",
+    "name": "Haufe Group",
+    "file": "haufe-group.webp",
+    "surface": "allowed",
+    "height": 0.599
+  },
+  {
+    "slug": "haufe-lexware",
+    "name": "Haufe-Lexware",
+    "file": "haufe-lexware.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "heise-conferences",
+    "name": "heise conferences",
+    "file": "heise-conferences.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "hsh",
+    "name": "HSH",
+    "file": "hsh.png",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "hws",
+    "name": "HWS",
+    "file": "hws.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "impower",
+    "name": "Impower",
+    "file": "impower.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "ionos",
+    "name": "IONOS",
+    "file": "ionos.webp",
+    "surface": "allowed",
+    "height": 0.576
+  },
+  {
+    "slug": "kleinanzeigen",
+    "name": "Kleinanzeigen",
+    "file": "kleinanzeigen.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "krombacher",
+    "name": "Krombacher",
+    "file": "krombacher.svg",
+    "surface": "allowed",
+    "height": 0.52,
+    "source": "https://www.krombacher.de/static/img/whitelabel/krombacher-reloaded/logo.svg; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "langchain",
+    "name": "LangChain",
+    "file": "langchain.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "launch-lab",
+    "name": "Launch Lab",
+    "file": "launch-lab.png",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "leaders-of-ai",
+    "name": "Leaders of AI",
+    "file": "leaders-of-ai.png",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "lichtblick",
+    "name": "LichtBlick",
+    "file": "lichtblick.svg",
+    "surface": "allowed",
+    "height": 0.601,
+    "source": "Inline header SVG on https://www.lichtblick.de/; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "lotto24",
+    "name": "LOTTO24",
+    "file": "lotto24.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "mach",
+    "name": "MACH",
+    "file": "mach.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "make-ai-work",
+    "name": "Make AI Work",
+    "file": "make-ai-work.png",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "mediamarkt-saturn",
+    "name": "MediaMarktSaturn",
+    "file": "mediamarkt-saturn.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "mercedes-benz",
+    "name": "Mercedes-Benz",
+    "file": "mercedes-benz.webp",
+    "surface": "allowed",
+    "height": 1
+  },
+  {
+    "slug": "mobil-isc",
+    "name": "Mobil ISC",
+    "file": "mobil-isc.png",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "moia",
+    "name": "MOIA",
+    "file": "moia.svg",
+    "surface": "allowed",
+    "height": 0.534,
+    "source": "Inline SVG on https://www.moia.io/en; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "momox",
+    "name": "momox",
+    "file": "momox.svg",
+    "surface": "allowed",
+    "source": "https://www.momox.biz/images/marken/momox_black.svg"
+  },
+  {
+    "slug": "moonfare",
+    "name": "Moonfare",
+    "file": "moonfare.svg",
+    "surface": "allowed",
+    "height": 0.468
+  },
+  {
+    "slug": "neue-fische",
+    "name": "neue fische",
+    "file": "neue-fische.svg",
+    "surface": "allowed",
+    "height": 0.451,
+    "source": "Header wordmark, an inline SVG on neue fische's home page, in the colour the site's header sets; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "neuland",
+    "name": "neuland",
+    "file": "neuland.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "obi",
+    "name": "OBI",
+    "file": "obi.svg",
+    "surface": "never"
+  },
+  {
+    "slug": "omr",
+    "name": "OMR",
+    "file": "omr.svg",
+    "surface": "allowed",
+    "height": 0.562,
+    "source": "Company OS src/content/companies/logos/omr.svg; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "phantomrausch",
+    "name": "phantomRausch",
+    "file": "phantomrausch.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "picnic",
+    "name": "Picnic",
+    "file": "picnic.svg",
+    "surface": "allowed",
+    "height": 0.917,
+    "source": "Wikimedia Commons File:Picnic_logo.svg, letters only; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "re-cinq",
+    "name": "re:cinq",
+    "file": "re-cinq.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "rheinwerk-verlag",
+    "name": "Rheinwerk Verlag",
+    "file": "rheinwerk-verlag.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "saas-group",
+    "name": "saas.group",
+    "file": "saas-group.svg",
+    "surface": "allowed",
+    "height": 0.556,
+    "onepager": false,
+    "source": "website public/logos/client/saas-group.svg, the testimonial logo; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "sda",
+    "name": "SDA",
+    "file": "sda.png",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "sdk",
+    "name": "SDK",
+    "file": "sdk.svg",
+    "surface": "allowed",
+    "height": 0.873,
+    "source": "Company OS src/content/companies/logos/sdk.svg; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "signal-iduna",
+    "name": "SIGNAL IDUNA",
+    "file": "signal-iduna.svg",
+    "surface": "allowed",
+    "height": 0.525,
+    "source": "Header logo signal-iduna-logo.svg on https://www.signal-iduna.de/; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "silverspin",
+    "name": "Silverspin",
+    "file": "silverspin.png",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "sopra-steria",
+    "name": "Sopra Steria",
+    "file": "sopra-steria.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "startplatz",
+    "name": "STARTPLATZ",
+    "file": "startplatz.png",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "stashaway",
+    "name": "StashAway",
+    "file": "stashaway.svg",
+    "surface": "allowed",
+    "height": 0.511,
+    "onepager": false,
+    "source": "website public/logos/client/stashaway.svg, the testimonial logo; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "statista",
+    "name": "Statista",
+    "file": "statista.svg",
+    "surface": "allowed",
+    "height": 0.451,
+    "source": "Company OS src/content/companies/logos/statista.svg; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "suiteify",
+    "name": "Suiteify",
+    "file": "suiteify.webp",
+    "surface": "allowed",
+    "height": 0.519
+  },
+  {
+    "slug": "tac",
+    "name": "TAC",
+    "file": "tac.png",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "tchibo",
+    "name": "Tchibo",
+    "file": "tchibo.svg",
+    "surface": "allowed",
+    "height": 0.773,
+    "source": "Symbol svg of https://www.tchibo.de/static/svgs/tchibo.svg, the site's header logo; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "techniker-krankenkasse",
+    "name": "Techniker Krankenkasse",
+    "file": "techniker-krankenkasse.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "tegtmeier",
+    "name": "Tegtmeier Internet Solutions",
+    "file": "tegtmeier.svg",
+    "surface": "allowed",
+    "height": 0.563,
+    "onepager": false,
+    "source": "website assets/source-media/client-logos/tegtmeier.svg, the case logo; draws in currentColor; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "temedica",
+    "name": "Temedica",
+    "file": "temedica.svg",
+    "surface": "allowed",
+    "source": "https://temedica.com/hubfs/Logo.svg"
+  },
+  {
+    "slug": "tessl",
+    "name": "Tessl",
+    "file": "tessl.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "thuega-smartservice",
+    "name": "Thüga SmartService",
+    "file": "thuega-smartservice.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "tk-elevator",
+    "name": "TK Elevator",
+    "file": "tk-elevator.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "toshift",
+    "name": "ToShift",
+    "file": "toshift.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "tudock",
+    "name": "Tudock",
+    "file": "tudock.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "unzer",
+    "name": "Unzer",
+    "file": "unzer.png",
+    "surface": "allowed",
+    "height": 0.498,
+    "source": "Pink wordmark cut from https://a.storyblok.com/f/91629/3042x1393/f616cf145e/unzer__primarylogo_chalk_rgb.jpg on https://www.unzer.com/de/download"
+  },
+  {
+    "slug": "vodafone",
+    "name": "Vodafone",
+    "file": "vodafone.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "vorwerk-elektrowerke",
+    "name": "Vorwerk",
+    "file": "vorwerk.svg",
+    "surface": "allowed",
+    "height": 0.854,
+    "source": "https://www.vorwerk-group.com/shared/assets/logos/Vorwerk_Logo.svg; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "vorwerk-patron",
+    "name": "Vorwerk Patron",
+    "file": "vorwerk-patron.png",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "vorwerk-services",
+    "name": "Vorwerk Services",
+    "file": "vorwerk.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "westwerk-events",
+    "name": "Westwerk Events",
+    "file": "westwerk-events.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "wonderful",
+    "name": "Wonderful",
+    "file": "wonderful.svg",
+    "surface": "unreleased"
+  },
+  {
+    "slug": "wps",
+    "name": "WPS",
+    "file": "wps.svg",
+    "surface": "unreleased"
+  }
+]

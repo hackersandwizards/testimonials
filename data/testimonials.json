@@ -1,0 +1,261 @@
+[
+  {
+    "id": "tom-hibbert-pilot",
+    "person": {
+      "name": "Tom Hibbert",
+      "role": "Chief Technology Officer",
+      "portrait": "tom-hibbert.webp",
+      "url": "https://www.linkedin.com/in/tomhibbert"
+    },
+    "company": {
+      "slug": "moonfare",
+      "name": "Moonfare"
+    },
+    "quote": {
+      "en": "We went from 2 engineers playing with agentic coding to 20 using it daily. We created 17 skills and 9 agents available to every engineer. Skeptics now embrace it, with a Slack channel dedicated to sharing learnings and complaints when Claude goes down.",
+      "de": "Wir sind von 2 Engineers, die mit Agentic Coding gespielt haben, auf 20 gestiegen, die es täglich nutzen. Wir haben 17 Skills und 9 Agenten entwickelt, die allen Engineers zur Verfügung stehen. Selbst die Skeptiker sind inzwischen dabei. Es gibt sogar einen Slack-Channel, in dem Erkenntnisse und Beschwerden geteilt werden, wenn Claude ausfällt."
+    },
+    "source": "testimonial"
+  },
+  {
+    "id": "chris-dornhoff-practice",
+    "person": {
+      "name": "Chris Dornhoff",
+      "role": "CTO",
+      "portrait": "chris-dornhoff.webp",
+      "url": "https://www.linkedin.com/in/fachmann"
+    },
+    "company": {
+      "slug": "krombacher",
+      "name": "Krombacher"
+    },
+    "quote": {
+      "en": "We've streamlined our processes across the entire Scrum cycle, from cutting epics through sprint planning to deployment. What used to be manual and inconsistent now runs in a far more structured way. The team spends less time on alignment loops and more on creating real value. My advice to peers: just do it. You'll see the value quickly, and the earlier you start, the sooner you benefit.",
+      "de": "Wir haben unsere Prozesse über den gesamten Scrum-Zyklus gestrafft, vom Zuschnitt der Epics über die Sprint-Planung bis zum Deployment. Was früher manuell und uneinheitlich war, läuft heute deutlich strukturierter. Das Team steckt weniger Zeit in Abstimmungsschleifen und mehr in echte Wertschöpfung. Mein Rat an andere: Einfach machen. Der Nutzen zeigt sich schnell, und wer früher anfängt, profitiert früher."
+    },
+    "source": "testimonial"
+  },
+  {
+    "id": "jan-tegtmeier-pilot",
+    "person": {
+      "name": "Jan Tegtmeier",
+      "role": "Managing Director",
+      "portrait": "jan-tegtmeier.webp",
+      "url": "https://www.linkedin.com/in/jan-tegtmeier"
+    },
+    "company": {
+      "slug": "tegtmeier",
+      "name": "Tegtmeier Internet Solutions"
+    },
+    "quote": {
+      "en": "Since the workshop, everyone here develops agentically. Some still use agents as support, others haven't written a single line of code since. I'd recommend your workshop to any developer.",
+      "de": "Seit dem Workshop entwickeln hier alle agentisch. Manche lassen sich noch von Agenten unterstützen, andere haben seitdem keine einzige Zeile Code mehr selbst geschrieben. Jedem Developer würde ich einen Workshop mit euch empfehlen."
+    },
+    "source": "testimonial"
+  },
+  {
+    "id": "nino-ulsamer-training",
+    "person": {
+      "name": "Nino Ulsamer",
+      "role": "Co-Founder & CTO",
+      "portrait": "nino-ulsamer.webp",
+      "url": "https://www.linkedin.com/in/ninoulsamer"
+    },
+    "company": {
+      "slug": "stashaway",
+      "name": "StashAway"
+    },
+    "quote": {
+      "en": "The interactive session helped us plow through a mountain of questions and tactical decisions. Our product-engineering organization now fully embraces agentic engineering patterns.",
+      "de": "Die interaktive Session hat uns geholfen, einen Berg an Fragen und taktischen Entscheidungen abzuarbeiten. Unsere Product-Engineering-Organisation setzt Agentic-Engineering-Patterns inzwischen vollständig ein."
+    },
+    "source": "testimonial"
+  },
+  {
+    "id": "belma-ibrahimovic-adoption",
+    "person": {
+      "name": "Belma Ibrahimović",
+      "role": "Head of AI",
+      "portrait": "belma-ibrahimovic.webp",
+      "url": "https://www.linkedin.com/in/belma-ibrahimovic"
+    },
+    "company": {
+      "slug": "saas-group",
+      "name": "saas.group"
+    },
+    "quote": {
+      "en": "The sessions got our engineers genuinely excited to try things on their own. That's the hardest part. They kept experimenting, sharing what they built, and asking questions long after the workshop ended.",
+      "de": "Die Sessions haben bei unseren Engineers echte Lust geweckt, Dinge selbst auszuprobieren. Das ist der schwierigste Teil. Sie haben noch lange nach dem Workshop weiter experimentiert, ihre Ergebnisse geteilt und Fragen gestellt."
+    },
+    "source": "testimonial"
+  },
+  {
+    "id": "michael-mohring-rollout",
+    "person": {
+      "name": "Michael Mohring",
+      "role": "Head of CC Product Development, in|sure Workflow & Workplace",
+      "portrait": "michael-mohring.webp",
+      "url": "https://www.linkedin.com/in/michael-mohring-69a945127"
+    },
+    "company": {
+      "slug": "adesso-insurance-solutions",
+      "name": "adesso insurance solutions"
+    },
+    "quote": {
+      "en": "We work with AI much more deliberately now. 'Agent first' has become our reflex: do we need to do this ourselves, or can an AI agent handle it? The support can help take away some of the developers' fear of working with AI.",
+      "de": "Wir arbeiten heute viel bewusster mit KI. 'Agent first' ist zu unserem Reflex geworden: Müssen wir das selbst machen oder kann ein KI-Agent das übernehmen? Die Unterstützung kann dabei helfen, den Entwicklern etwas die Angst zu nehmen, mit KI zu arbeiten."
+    },
+    "source": "testimonial"
+  },
+  {
+    "id": "jan-ziegeldorf-training",
+    "person": {
+      "name": "Dr. Jan Henrik Ziegeldorf",
+      "role": "CTO & Co-Founder",
+      "portrait": "jan-henrik-ziegeldorf.webp",
+      "url": "https://www.linkedin.com/in/jhziegeldorf/"
+    },
+    "company": {
+      "slug": "aedifion",
+      "name": "aedifion"
+    },
+    "quote": {
+      "en": "The workshop was inspiring and pushed me to think big. The end-to-end migration pipeline example really stayed with me. We're using Claude Code far more aggressively now.",
+      "de": "Der Workshop war inspirierend und hat mich dazu gebracht, größer zu denken. Das Beispiel mit der End-to-End-Migrationspipeline ist mir besonders im Gedächtnis geblieben. Wir setzen Claude Code jetzt deutlich intensiver ein."
+    },
+    "source": "testimonial"
+  },
+  {
+    "id": "jim-holmes-training",
+    "person": {
+      "name": "Jim Holmes",
+      "role": "VP Technology",
+      "portrait": "jim-holmes.webp",
+      "url": "https://www.linkedin.com/in/jim-holmes-99475911"
+    },
+    "company": {
+      "slug": "skin-analytics",
+      "name": "Skin Analytics"
+    },
+    "quote": {
+      "en": "We brought in hackers&wizards to help our engineering team get under the hood of agentic tooling, and the session delivered real value. The content was technically deep without being abstract, and the team left with practical ideas they could immediately start exploring. For a regulated environment like ours, the balance of innovation and pragmatism was particularly welcome. A genuinely worthwhile investment of the team's time.",
+      "de": "Wir haben hackers&wizards geholt, damit unser Engineering-Team agentische Tools von innen kennenlernt, und die Session hat echten Mehrwert gebracht. Die Inhalte waren technisch tief, ohne abstrakt zu werden, und das Team ist mit praktischen Ideen rausgegangen, die es sofort ausprobieren konnte. Für ein reguliertes Umfeld wie unseres war die Balance aus Innovation und Pragmatismus besonders willkommen. Eine Investition der Zeit des Teams, die sich wirklich gelohnt hat."
+    },
+    "source": "testimonial",
+    "date": "2026-05"
+  },
+  {
+    "id": "florian-sauter-training",
+    "person": {
+      "name": "Florian Sauter",
+      "role": "CTO",
+      "portrait": "florian-sauter.webp",
+      "url": "https://www.linkedin.com/in/floriansauter/"
+    },
+    "company": {
+      "slug": "egym",
+      "name": "EGYM"
+    },
+    "quote": {
+      "en": "From my point of view, day 2 was a success. I think it was very inspiring for all participants. The spark definitely caught, and that was the goal.",
+      "de": "Tag 2 war aus meiner Sicht ein Erfolg. Ich glaube, das war sehr inspirierend für alle Teilnehmer. Der Funke ist auf jeden Fall übergesprungen, und das war ja das Ziel."
+    },
+    "source": "feedback-mail",
+    "date": "2026-05"
+  },
+  {
+    "id": "andre-kaeber-training",
+    "person": {
+      "name": "André Käber",
+      "role": "Managing Director",
+      "portrait": "andre-kaeber.webp",
+      "url": "https://www.linkedin.com/in/andre-kaeber"
+    },
+    "company": {
+      "slug": "toshift",
+      "name": "ToShift"
+    },
+    "quote": {
+      "en": "We were all absolutely thrilled. I think every single one of us took away an incredible amount and learned a great deal!",
+      "de": "Wir waren alle absolut begeistert. Ich denke, jede Einzelne konnte unheimlich viel mitnehmen und hat super viel gelernt!"
+    },
+    "original": "de",
+    "source": "feedback-mail"
+  },
+  {
+    "id": "daniel-gebler-training",
+    "person": {
+      "name": "Daniel Gebler",
+      "role": "CTO",
+      "portrait": "daniel-gebler.webp",
+      "url": "https://www.linkedin.com/in/danielgebler/"
+    },
+    "company": {
+      "slug": "picnic",
+      "name": "Picnic"
+    },
+    "quote": {
+      "en": "Thanks again for the great workshop. We enjoyed it very much and took a lot out of the in-depth discussion. The links and materials are very helpful.",
+      "de": "Nochmals danke für den tollen Workshop. Wir haben ihn sehr genossen und viel aus der intensiven Diskussion mitgenommen. Die Links und Materialien helfen uns sehr."
+    },
+    "source": "feedback-mail"
+  },
+  {
+    "id": "alexander-heusingfeld-training",
+    "person": {
+      "name": "Alexander Heusingfeld",
+      "role": "Head of Platforms & Lifecycle Management",
+      "portrait": "alexander-heusingfeld.webp",
+      "url": "https://www.linkedin.com/in/alexander-heusingfeld/"
+    },
+    "company": {
+      "slug": "vorwerk-elektrowerke",
+      "name": "Vorwerk"
+    },
+    "quote": {
+      "en": "I read the summary of the training and I'm really happy with the content. On top of that, the training and you as the trainer went down very well with the participants. That says a lot, because in my view this was our toughest group.",
+      "de": "Ich hab mir die Zusammenfassung des Trainings durchgelesen und bin super zufrieden mit dem Content. Zusätzlich sind das Training und du als Trainer sehr gut bei den Teilnehmern angekommen. Das heißt einiges, weil das aus meiner Sicht unsere härteste Gruppe war."
+    },
+    "source": "feedback-mail"
+  },
+  {
+    "id": "robin-funck-training",
+    "person": {
+      "name": "Robin Funck",
+      "role": "Chief Digital Officer (CDO)",
+      "portrait": "robin-funck.webp",
+      "url": "https://www.linkedin.com/in/robinfunck"
+    },
+    "company": {
+      "slug": "bunting",
+      "name": "Bünting"
+    },
+    "quote": {
+      "en": "The training helped us anchor Agentic Engineering more broadly across our development teams and bring different levels of experience together. We also took away new best practices and concrete ideas that we now apply directly in our daily work.",
+      "de": "Das Training hat uns geholfen, Agentic Engineering breiter in unseren Entwicklungsteams zu verankern und unterschiedliche Erfahrungslevel zusammenzubringen. Dazu haben wir neue Best Practices und konkrete Impulse mitgenommen, die wir direkt in unserer täglichen Arbeit anwenden."
+    },
+    "original": "de",
+    "source": "testimonial",
+    "date": "2026-10-30"
+  },
+  {
+    "id": "mirko-minnich-assessment",
+    "person": {
+      "name": "Mirko Minnich",
+      "role": "Chief Operating Officer / Co-CEO",
+      "portrait": "mirko-minnich.webp",
+      "url": "https://www.linkedin.com/in/mirkominnich"
+    },
+    "company": {
+      "slug": "beta-systems",
+      "name": "Beta Systems Software AG"
+    },
+    "quote": {
+      "en": "The assessment with hackers&wizards confirmed that our DevSecOps platform is the right technological foundation, and showed in a very practical way what the next step towards an Agentic Engineering Factory can look like, from requirements to deployment. Benedikt and Matthias gave important impetus, to our developers as much as at executive and supervisory board level. For us, it was the starting signal for our next strategic phase.",
+      "de": "Das Assessment mit hackers&wizards hat uns bestätigt, dass wir mit unserer DevSecOps-Plattform die richtige technologische Grundlage geschaffen haben, und sehr praxisnah gezeigt, wie der nächste Schritt hin zu einer Agentic Engineering Factory aussehen kann, vom Requirement bis zum Deployment. Benedikt und Matthias haben wichtige Impulse gesetzt, bei unseren Entwicklern ebenso wie auf Vorstands- und Aufsichtsratsebene. Für uns war das der Startschuss für unsere nächste strategische Entwicklungsphase."
+    },
+    "original": "de",
+    "source": "testimonial",
+    "date": "2026-10-30"
+  }
+]
