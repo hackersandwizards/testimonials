@@ -18,8 +18,8 @@ const [GAMMA, CONTRAST, ROLL] = [0.97, 1.04, 0.5];
 
 /**
  * Tone curve of the earlier hand runs: gamma, contrast around mid-grey, and above 0.75 a quadratic
- * segment that starts at slope 1.33 and flattens to 0.67 at white. It lifts those tones by up to 5
- * levels (input 203) and clips inputs from 250 up to white.
+ * segment that starts at slope 1.33 and flattens to 0.67 at white. Against the same curve without
+ * that segment it lifts tones by up to 5 levels, and it clips inputs from 250 up to white.
  */
 export function toneCurve(): number[] {
   return Array.from({ length: 256 }, (_, i) => {
@@ -75,7 +75,7 @@ export function noiseSigma(rgb: Uint8Array, width: number, height: number): numb
   return (Math.sqrt(Math.PI / 2) * sum) / (6 * (width - 2) * (height - 2));
 }
 
-/** ffmpeg's hqdn3d on raw RGB through stdin and stdout; ffmpeg must be on the PATH. */
+/** ffmpeg's hqdn3d, raw RGB through stdin and stdout, filtered as yuv444p; ffmpeg must be on the PATH. */
 export function denoise(rgb: Uint8Array, width: number, height: number): Buffer {
   const raw = ["-f", "rawvideo", "-pix_fmt", "rgb24"];
   const run = spawnSync(

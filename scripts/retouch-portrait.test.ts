@@ -34,11 +34,10 @@ describe("retouch-portrait", () => {
   });
 
   test.skipIf(!Bun.which("ffmpeg"))("the denoise filter lowers the noise of one frame", () => {
-    let seed = 42;
-    const random = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 2 ** 32;
     const side = 64;
-    const luma = Array.from({ length: side * side }, () => 128 + Math.round((random() - 0.5) * 10));
-    const noisy = Uint8Array.from({ length: side * side * 3 }, (_, i) => luma[Math.floor(i / 3)]);
+    const noisy = Uint8Array.from({ length: side * side * 3 }, (_, i) => {
+      return 123 + ((Math.floor(i / 3) * 7919) % 11);
+    });
     expect(noiseSigma(denoise(noisy, side, side), side, side)).toBeLessThan(
       noiseSigma(noisy, side, side) * 0.9,
     );

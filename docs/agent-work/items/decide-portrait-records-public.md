@@ -13,7 +13,7 @@ options:
     detail: "The reports and the open question leave this repository. A new report here keeps the method and the numbers without names. Git history keeps the old text, so anyone who digs through the commits can still read it."
   - key: move-purge
     label: Move them and rewrite the Git history
-    detail: "Also removes the old text from the commits. Every tag has to be recreated, so each consumer pinning a tag here has to update its lockfile, and copies already fetched stay out of reach."
+    detail: "Also removes the old text from the commits. Every tag from v1.0.1 on has to be recreated, so each consumer pinning one of them has to update its lockfile, and copies already fetched stay out of reach."
   - key: keep
     label: Keep them public
     detail: "Nothing moves. The founders' choice to publish quotes and portraits then also covers these records, and the local-documents rule needs an exception for this repository."
