@@ -48,6 +48,12 @@ describe("marks", () => {
     expect(rest.map((mark) => mark.slug)).toEqual(rest.map((mark) => mark.slug).sort());
   });
 
+  test("SDK, Beta Systems, momox, saas.group and Temedica keep the order of website fcbe40c1", () => {
+    const pinned = ["sdk", "beta-systems", "momox", "saas-group", "temedica"];
+    const shown = shownMarks.map((mark) => mark.slug).filter((slug) => pinned.includes(slug));
+    expect(shown).toEqual(pinned);
+  });
+
   test("OBI is never shown", () => {
     expect(marks.find((mark) => mark.slug === "obi")?.surface).toBe("never");
   });

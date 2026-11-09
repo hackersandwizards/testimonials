@@ -279,6 +279,55 @@
     "source": "Company OS src/content/companies/logos/sdk.svg; viewBox cropped to the drawn mark"
   },
   {
+    "slug": "beta-systems",
+    "name": "Beta Systems",
+    "file": "beta-systems.svg",
+    "surface": "allowed",
+    "scale": 0.664,
+    "size": {
+      "width": 324,
+      "height": 70
+    },
+    "source": "Header mark #betasystems-logo-lok in https://www.betasystems.com/_nuxt/icons.CdPxOgge.svg, in the site's primary colour"
+  },
+  {
+    "slug": "momox",
+    "name": "momox",
+    "file": "momox.svg",
+    "surface": "allowed",
+    "scale": 0.414,
+    "size": {
+      "width": 100,
+      "height": 16
+    },
+    "source": "https://www.momox.biz/images/marken/momox_black.svg; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "saas-group",
+    "name": "saas.group",
+    "file": "saas-group.svg",
+    "surface": "allowed",
+    "scale": 0.556,
+    "size": {
+      "width": 159,
+      "height": 32
+    },
+    "onepager": false,
+    "source": "website public/logos/client/saas-group.svg, the testimonial logo; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "temedica",
+    "name": "Temedica",
+    "file": "temedica.svg",
+    "surface": "allowed",
+    "scale": 0.509,
+    "size": {
+      "width": 105,
+      "height": 20
+    },
+    "source": "https://temedica.com/hubfs/Logo.svg; viewBox cropped to the drawn mark"
+  },
+  {
     "slug": "suiteify",
     "name": "Suiteify",
     "file": "suiteify.webp",
@@ -314,42 +363,6 @@
     "source": "Header wordmark, an inline SVG on neue fische's home page, in the colour the site's header sets; viewBox cropped to the drawn mark"
   },
   {
-    "slug": "beta-systems",
-    "name": "Beta Systems",
-    "file": "beta-systems.svg",
-    "surface": "allowed",
-    "scale": 0.664,
-    "size": {
-      "width": 324,
-      "height": 70
-    },
-    "source": "Header mark #betasystems-logo-lok in https://www.betasystems.com/_nuxt/icons.CdPxOgge.svg, in the site's primary colour"
-  },
-  {
-    "slug": "temedica",
-    "name": "Temedica",
-    "file": "temedica.svg",
-    "surface": "allowed",
-    "scale": 0.509,
-    "size": {
-      "width": 105,
-      "height": 20
-    },
-    "source": "https://temedica.com/hubfs/Logo.svg; viewBox cropped to the drawn mark"
-  },
-  {
-    "slug": "momox",
-    "name": "momox",
-    "file": "momox.svg",
-    "surface": "allowed",
-    "scale": 0.414,
-    "size": {
-      "width": 100,
-      "height": 16
-    },
-    "source": "https://www.momox.biz/images/marken/momox_black.svg; viewBox cropped to the drawn mark"
-  },
-  {
     "slug": "tegtmeier",
     "name": "Tegtmeier Internet Solutions",
     "file": "tegtmeier.svg",
@@ -374,19 +387,6 @@
     },
     "onepager": false,
     "source": "website public/logos/client/stashaway.svg, the testimonial logo; viewBox cropped to the drawn mark"
-  },
-  {
-    "slug": "saas-group",
-    "name": "saas.group",
-    "file": "saas-group.svg",
-    "surface": "allowed",
-    "scale": 0.556,
-    "size": {
-      "width": 159,
-      "height": 32
-    },
-    "onepager": false,
-    "source": "website public/logos/client/saas-group.svg, the testimonial logo; viewBox cropped to the drawn mark"
   },
   {
     "slug": "adference",
