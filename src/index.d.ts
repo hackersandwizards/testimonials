@@ -17,6 +17,8 @@ export interface Mark {
   scale: number;
   /** The file's own size in pixels, as sharp reads it: for `<img width height>`. */
   size: { width: number; height: number };
+  /** `true` where the mark draws its glyph on its own full-bleed tile, so its ground is opaque. */
+  ownTile?: boolean;
   /** `false` keeps the mark off generated onepagers. */
   onepager?: boolean;
   /** Where the file came from. */
@@ -45,5 +47,5 @@ export interface Testimonial {
 
 export declare const marks: Mark[];
 export declare const testimonials: Testimonial[];
-/** The marks a rendered surface may show. */
+/** The marks a rendered surface may show, in display order. */
 export declare const shownMarks: Mark[];

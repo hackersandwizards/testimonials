@@ -26,6 +26,7 @@ The data as JSON, for other languages: `@hackersandwizards/testimonials/marks.js
 
 Each mark carries `scale`, the share of a logo row's height at which it reads as heavy as the
 others, and `size`, the file's own width and height in pixels for `<img width height>`.
+`shownMarks` comes in display order, neighbours from different industries.
 
 ## What a surface may show
 
@@ -37,6 +38,9 @@ carries `surface`:
 | `allowed`    | A rendered surface may show it. `shownMarks` holds exactly these.        |
 | `unreleased` | Held as company data. No surface shows it until the company releases it. |
 | `never`      | No surface shows it, whatever else changes.                              |
+
+`surface` belongs to the entry, not its file. Where entries of one group share a file, a surface
+may show it once one of them is `allowed`, under that entry's `name` only: key by `slug`.
 
 A mark with `onepager: false` stays off generated onepagers. A testimonial names its company by
 `slug`: show a logo beside it only where `shownMarks` holds that slug. Quote in the locale you
@@ -52,6 +56,7 @@ data/testimonials.json   one entry per quote: person, role, portrait, company, q
 marks/                   the mark files
 portraits/               one portrait per quoted person
 scripts/retouch-portrait.ts  the retouch every portrait goes through: bun run retouch:portrait
+scripts/marks.ts         writes each mark's scale: bun run marks:scale
 src/index.js             the data and shownMarks; src/index.d.ts holds the types
 ```
 

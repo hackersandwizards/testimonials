@@ -36,6 +36,7 @@
     "check": "scaffolding check",
     "check:staged": "check-staged",
     "test": "bun test",
+    "marks:scale": "bun scripts/marks.ts",
     "retouch:portrait": "bun scripts/retouch-portrait.ts"
   },
   "scaffolding": {

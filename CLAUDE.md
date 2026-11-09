@@ -9,6 +9,12 @@ founders' choice. The approval behind each entry lives in Company OS, never here
 - `data/marks.json`: `slug` is the company's slug in Company OS. `surface` decides whether a
   rendered surface may show the mark (`README.md` states the values). A new mark enters as
   `unreleased`; it turns `allowed` once Company OS records the company's release. OBI stays `never`.
+  Array order is display order, so no consumer sorts: the `allowed` marks lead, neighbours from
+  different industries, and the rest follows by slug. A mark turning `allowed` moves into the lead
+  between neighbours of other industries.
+- `marks/`: each file cropped to its drawn edge on a transparent ground, which
+  `scripts/marks.test.ts` gates (`ownTile` entries excepted while `unreleased`). After adding or
+  replacing one, `bun run marks:scale` writes every `scale`; `size` is the file's own.
 - `data/testimonials.json`: every quote as published, both locales. Change a quote only from its
   author's own words, and keep Moonfare's figures to the ones in the quote.
 - `portraits/`: one square WebP per quoted person, cut from the largest real photo of them that

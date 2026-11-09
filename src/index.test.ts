@@ -23,6 +23,7 @@ describe("marks", () => {
       expect(mark.scale).toBeGreaterThan(0);
       expect(mark.scale).toBeLessThanOrEqual(1);
       expect([undefined, false]).toContain(mark.onepager);
+      expect([undefined, true]).toContain(mark.ownTile);
     }
   });
 
@@ -39,6 +40,12 @@ describe("marks", () => {
       }),
     );
     expect(marks.map(({ file, size }) => ({ file, ...size }))).toEqual(read);
+  });
+
+  test("the shown marks lead and the rest follows by slug", () => {
+    const rest = marks.slice(shownMarks.length);
+    expect(rest.filter((mark) => mark.surface === "allowed")).toEqual([]);
+    expect(rest.map((mark) => mark.slug)).toEqual(rest.map((mark) => mark.slug).sort());
   });
 
   test("OBI is never shown", () => {
