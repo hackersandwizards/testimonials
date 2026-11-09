@@ -7,8 +7,10 @@ one place.
 
 ## Use it
 
+Pin the newest tag:
+
 ```sh
-bun add github:hackersandwizards/testimonials#v2.0.0
+bun add github:hackersandwizards/testimonials#vX.Y.Z
 ```
 
 ```ts

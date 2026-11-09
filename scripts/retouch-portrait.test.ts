@@ -1,6 +1,12 @@
 import { describe, expect, test } from "bun:test";
 import sharp from "sharp";
-import { neutralGains, noiseSigma, retouchPortrait, toneCurve } from "./retouch-portrait.ts";
+import {
+  denoise,
+  neutralGains,
+  noiseSigma,
+  retouchPortrait,
+  toneCurve,
+} from "./retouch-portrait.ts";
 
 const solid = (rgb: [number, number, number], pixels: number) =>
   Uint8Array.from({ length: pixels * 3 }, (_, i) => rgb[i % 3]);
@@ -27,6 +33,17 @@ describe("retouch-portrait", () => {
     expect(noiseSigma(noisy, 64, 64)).toBeGreaterThan(20);
   });
 
+  test.skipIf(!Bun.which("ffmpeg"))("the denoise filter lowers the noise of one frame", () => {
+    let seed = 42;
+    const random = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 2 ** 32;
+    const side = 64;
+    const luma = Array.from({ length: side * side }, () => 128 + Math.round((random() - 0.5) * 10));
+    const noisy = Uint8Array.from({ length: side * side * 3 }, (_, i) => luma[Math.floor(i / 3)]);
+    expect(noiseSigma(denoise(noisy, side, side), side, side)).toBeLessThan(
+      noiseSigma(noisy, side, side) * 0.9,
+    );
+  });
+
   test("crops to a square master and caps it at 1760 px", async () => {
     const source = await sharp({
       create: { width: 2400, height: 1900, channels: 3, background: "#888" },
@@ -36,6 +53,7 @@ describe("retouch-portrait", () => {
     const { webp, size } = await retouchPortrait(source, { sharpen: true });
     const meta = await sharp(webp).metadata();
     expect([size, meta.width, meta.height, meta.format]).toEqual([1760, 1760, 1760, "webp"]);
+    await expect(retouchPortrait(source, { size: 1761 })).rejects.toThrow("limit");
   });
 
   test("crops a photo stored with an EXIF rotation from its upright size", async () => {

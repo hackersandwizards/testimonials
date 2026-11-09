@@ -66,6 +66,16 @@ describe("testimonials", () => {
     }
   });
 
+  test("each portrait is a square WebP", async () => {
+    const read = await Promise.all(
+      testimonials.map(async ({ person: { portrait } }) => {
+        const { format, width, height } = await sharp(`${root}portraits/${portrait}`).metadata();
+        return { portrait, format, square: width === height };
+      }),
+    );
+    expect(read.filter(({ format, square }) => format !== "webp" || !square)).toEqual([]);
+  });
+
   test("every file in portraits/ belongs to a testimonial", () => {
     const named = new Set(testimonials.map((t) => t.person.portrait));
     expect(readdirSync(`${root}portraits`).filter((file) => !named.has(file))).toEqual([]);

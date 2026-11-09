@@ -5,8 +5,7 @@
 // optimize-media.mjs.
 //
 // Without --crop it takes the centred square of the short side. The master is the crop's size,
-// capped at 1760 px, the website's largest portrait variant; --size may set it smaller, never
-// larger than the crop.
+// capped at 1760 px, the website's largest portrait variant; --size may set it smaller.
 import { spawnSync } from "node:child_process";
 import { parseArgs } from "node:util";
 import sharp from "sharp";
@@ -19,8 +18,8 @@ const [GAMMA, CONTRAST, ROLL] = [0.97, 1.04, 0.5];
 
 /**
  * Tone curve of the earlier hand runs: gamma, contrast around mid-grey, and above 0.75 a quadratic
- * segment that starts at slope 1.33 and flattens to 0.67 at white, which holds back skin shine in
- * the brightest tones.
+ * segment that starts at slope 1.33 and flattens to 0.67 at white. It lifts those tones by up to 5
+ * levels (input 203) and clips inputs from 250 up to white.
  */
 export function toneCurve(): number[] {
   return Array.from({ length: 256 }, (_, i) => {
@@ -77,13 +76,14 @@ export function noiseSigma(rgb: Uint8Array, width: number, height: number): numb
 }
 
 /** ffmpeg's hqdn3d on raw RGB through stdin and stdout; ffmpeg must be on the PATH. */
-function denoise(rgb: Uint8Array, width: number, height: number): Buffer {
+export function denoise(rgb: Uint8Array, width: number, height: number): Buffer {
   const raw = ["-f", "rawvideo", "-pix_fmt", "rgb24"];
   const run = spawnSync(
     "ffmpeg",
     ["-loglevel", "error", ...raw, "-s", `${width}x${height}`, "-i", "pipe:0"].concat([
       "-vf",
-      "hqdn3d=2:1.5:0:0",
+      // On a single frame a temporal strength keeps the input, and 0 selects the default strength.
+      "hqdn3d=2:1.5:0.0001:0.0001",
       ...raw,
       "pipe:1",
     ]),
@@ -111,8 +111,9 @@ export async function retouchPortrait(source: string | Buffer, options: RetouchO
     top: Math.floor((height - side) / 2),
     size: side,
   };
-  const size = options.size ?? Math.min(crop.size, MAX_SIZE);
-  if (size > crop.size) throw new Error(`--size ${size} would upscale the ${crop.size} px crop`);
+  const limit = Math.min(crop.size, MAX_SIZE);
+  const size = options.size ?? limit;
+  if (size > limit) throw new Error(`--size ${size} is above the ${limit} px limit of this crop`);
   const { data: pixels, info } = await image
     .extract({ left: crop.left, top: crop.top, width: crop.size, height: crop.size })
     .resize({ width: size, height: size, kernel: "lanczos3" })
