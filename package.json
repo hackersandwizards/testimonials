@@ -1,6 +1,6 @@
 {
   "name": "@hackersandwizards/testimonials",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Client quotes, portraits and company marks of hackers&wizards: the one source every surface takes them from.",
   "license": "SEE LICENSE IN LICENSE",
   "type": "module",
@@ -31,8 +31,7 @@
   },
   "packageManager": "bun@1.4.4",
   "scripts": {
-    "preinstall": "node scripts/repo/only-bun.cjs",
-    "prepare": "[ \"$(git rev-parse --show-toplevel 2>/dev/null)\" = \"$(pwd -P)\" ] && git config core.hooksPath .githooks || true",
+    "prepare": "if [ \"$(git rev-parse --show-toplevel 2>/dev/null)\" = \"$(pwd -P)\" ]; then node scripts/repo/only-bun.cjs && { git config core.hooksPath .githooks || true; }; fi",
     "fix": "bun --bun eslint --cache --concurrency=auto . --fix && bun --bun prettier --write .",
     "check": "scaffolding check",
     "check:staged": "check-staged",
