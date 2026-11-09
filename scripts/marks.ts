@@ -1,13 +1,13 @@
-// Writes each mark's `scale` into data/marks.json: the share of a row's height at which it reads
-// as heavy as the others. Every mark covers row² × 1.1, a wide mark a little more per unit of log
-// aspect (aspect^0.1), a light, thin mark more than a dense one (the square root of a typical ink
-// share of 0.27 over its own, clamped to 0.8 to 1.6), never taller than the row.
-import { readFileSync, writeFileSync } from "node:fs";
+// Writes each mark's `size` and `scale` into data/marks.json. `scale` is the share of a row's
+// height at which it reads as heavy as the others. Every mark covers row² × 1.1, a wide mark a
+// little more per unit of log aspect (aspect^0.1), a light, thin mark more than a dense one (the
+// square root of a typical ink share of 0.27 over its own, clamped to 0.8 to 1.6), never taller
+// than the row.
 import { join } from "node:path";
 import sharp from "sharp";
+import { marks } from "../src/index.js";
 
 const ROOT = join(import.meta.dir, "..");
-const FILE = join(ROOT, "data/marks.json");
 
 /** A mark's pixels at print density. */
 export const render = (file: string) =>
@@ -38,7 +38,10 @@ export async function scale(mark: Pixels) {
 }
 
 if (import.meta.main) {
-  const list = JSON.parse(readFileSync(FILE, "utf8"));
-  for (const mark of list) mark.scale = await scale(await render(mark.file));
-  writeFileSync(FILE, JSON.stringify(list, null, 2) + "\n");
+  for (const mark of marks) {
+    mark.scale = await scale(await render(mark.file));
+    const { width, height } = await sharp(join(ROOT, "marks", mark.file)).metadata();
+    mark.size = { width, height };
+  }
+  await Bun.write(join(ROOT, "data/marks.json"), JSON.stringify(marks, null, 2) + "\n");
 }

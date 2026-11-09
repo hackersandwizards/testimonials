@@ -26,7 +26,7 @@ The data as JSON, for other languages: `@hackersandwizards/testimonials/marks.js
 
 Each mark carries `scale`, the share of a logo row's height at which it reads as heavy as the
 others, and `size`, the file's own width and height in pixels for `<img width height>`.
-`shownMarks` comes in display order, neighbours from different industries.
+`shownMarks` comes in display order.
 
 ## What a surface may show
 
@@ -56,7 +56,7 @@ data/testimonials.json   one entry per quote: person, role, portrait, company, q
 marks/                   the mark files
 portraits/               one portrait per quoted person
 scripts/retouch-portrait.ts  the retouch every portrait goes through: bun run retouch:portrait
-scripts/marks.ts         writes each mark's scale: bun run marks:scale
+scripts/marks.ts         writes each mark's size and scale: bun run marks:measure
 src/index.js             the data and shownMarks; src/index.d.ts holds the types
 ```
 

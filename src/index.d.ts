@@ -17,7 +17,8 @@ export interface Mark {
   scale: number;
   /** The file's own size in pixels, as sharp reads it: for `<img width height>`. */
   size: { width: number; height: number };
-  /** `true` where the mark draws its glyph on its own full-bleed tile, so its ground is opaque. */
+  /** `true` where the mark draws its glyph on its own full-bleed tile, so no transparent ground
+   * exists; such a mark stays `unreleased` until a transparent source replaces it. */
   ownTile?: boolean;
   /** `false` keeps the mark off generated onepagers. */
   onepager?: boolean;

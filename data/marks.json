@@ -680,9 +680,9 @@
     "name": "HSH",
     "file": "hsh.png",
     "surface": "unreleased",
-    "scale": 0.679,
+    "scale": 0.68,
     "size": {
-      "width": 120,
+      "width": 118,
       "height": 50
     }
   },

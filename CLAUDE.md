@@ -14,7 +14,7 @@ founders' choice. The approval behind each entry lives in Company OS, never here
   between neighbours of other industries.
 - `marks/`: each file cropped to its drawn edge on a transparent ground, which
   `scripts/marks.test.ts` gates (`ownTile` entries excepted while `unreleased`). After adding or
-  replacing one, `bun run marks:scale` writes every `scale`; `size` is the file's own.
+  replacing one, `bun run marks:measure` writes every `size` and `scale`.
 - `data/testimonials.json`: every quote as published, both locales. Change a quote only from its
   author's own words, and keep Moonfare's figures to the ones in the quote.
 - `portraits/`: one square WebP per quoted person, cut from the largest real photo of them that
