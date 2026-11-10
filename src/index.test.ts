@@ -1,7 +1,8 @@
 import { describe, expect, test } from "bun:test";
 import { existsSync, readdirSync } from "node:fs";
 import sharp from "sharp";
-import { marks, shownMarks, testimonials, type Surface } from "./index.js";
+import * as entry from "./index.js";
+import { marks, neverNamed, shownMarks, testimonials, type Surface } from "./index.js";
 
 const root = `${import.meta.dir}/../`;
 const surfaces: Surface[] = ["allowed", "unreleased", "never"];
@@ -53,6 +54,16 @@ describe("marks", () => {
   });
 });
 
+describe("never named", () => {
+  test("each name once, with a reason, and none a mark's name", () => {
+    const lower = (name: string) => name.toLowerCase();
+    expect(unique(neverNamed.map(({ name }) => lower(name)))).toEqual([]);
+    expect(neverNamed.filter(({ name, reason }) => !name.trim() || !reason.trim())).toEqual([]);
+    const markNames = new Set(marks.map(({ name }) => lower(name)));
+    expect(neverNamed.filter(({ name }) => markNames.has(lower(name)))).toEqual([]);
+  });
+});
+
 describe("testimonials", () => {
   test("each id once", () => {
     expect(unique(testimonials.map((t) => t.id))).toEqual([]);
@@ -90,6 +101,17 @@ describe("testimonials", () => {
 });
 
 describe("entry", () => {
+  // The list came in 2.2.0 beside the marks, so the exports before it keep their output.
+  test("exports the data, shownMarks and the never-named list, nothing else", () => {
+    expect(Object.keys(entry).sort()).toEqual([
+      "marks",
+      "neverNamed",
+      "shownMarks",
+      "testimonials",
+    ]);
+    expect(shownMarks).toEqual(marks.filter(({ surface }) => surface === "allowed"));
+  });
+
   // Node refuses TypeScript under node_modules; with stripping off, it refuses it here too.
   test("plain Node imports the package by name", () => {
     const run = Bun.spawnSync(
