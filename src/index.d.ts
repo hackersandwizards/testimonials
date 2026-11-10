@@ -31,8 +31,6 @@ export interface Mark {
 /** A name no surface may show, held without a mark. */
 export interface NeverNamed {
   name: string;
-  /** Why no surface shows it. */
-  reason: string;
 }
 
 export interface Testimonial {
