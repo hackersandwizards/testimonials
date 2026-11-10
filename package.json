@@ -36,7 +36,7 @@
     "fix": "bun --bun eslint --cache --concurrency=auto . --fix && bun --bun prettier --write .",
     "check": "scaffolding check",
     "check:staged": "check-staged",
-    "test": "bun test",
+    "test": "bun test --timeout ${SCAFFOLDING_TEST_TIMEOUT_MS:-5000}",
     "marks:measure": "bun scripts/marks.ts",
     "retouch:portrait": "bun scripts/retouch-portrait.ts"
   },
@@ -44,7 +44,10 @@
     "allow": [
       {
         "check": "confidential",
-        "path": "file names",
+        "path": [
+          "marks/*",
+          "portraits/*"
+        ],
         "text": [
           "adference",
           "aktion mensch",
@@ -139,7 +142,7 @@
           "vorwerk services",
           "westwerk events"
         ],
-        "reason": "a company's name and slug in its mark entry: the founders decided that this public repository holds every company mark h&w keeps, unreleased ones and OBI included; `surface` keeps such a mark off every rendered surface"
+        "reason": "a company's name and slug in its mark entry: the founders decided that this public repository holds every company mark h&w keeps, unreleased and `never` ones included; `surface` keeps such a mark off every rendered surface"
       },
       {
         "check": "confidential",
@@ -190,57 +193,7 @@
         "check": "confidential",
         "path": "src/index.test.ts",
         "text": "OBI",
-        "reason": "the test that holds OBI's mark at `never`"
-      },
-      {
-        "check": "confidential",
-        "path": "package.json",
-        "text": [
-          "adference",
-          "aktion mensch",
-          "atmina solutions",
-          "b braun",
-          "bauhaus",
-          "belma ibrahimovic",
-          "betterhomes",
-          "beurer",
-          "candylabs",
-          "certificates dev",
-          "conceptboard",
-          "continentale",
-          "destination solutions",
-          "dmtech",
-          "e motion experts",
-          "edataconsulting",
-          "finnofleet",
-          "fiskaly",
-          "giga green",
-          "haufe lexware",
-          "heise conferences",
-          "HSH",
-          "HWS",
-          "impower",
-          "kleinanzeigen",
-          "launch lab",
-          "lotto24",
-          "MediaMarktSaturn",
-          "mobil isc",
-          "OBI",
-          "phantomrausch",
-          "rheinwerk verlag",
-          "silverspin",
-          "sopra steria",
-          "startplatz",
-          "techniker krankenkasse",
-          "Thüga SmartService",
-          "tk elevator",
-          "vodafone",
-          "vorwerk elektrowerke",
-          "vorwerk patron",
-          "vorwerk services",
-          "westwerk events"
-        ],
-        "reason": "the allow entries in this file name each term they allow"
+        "reason": "the test that holds a mark at `never`"
       }
     ],
     "check": [],
@@ -256,7 +209,7 @@
     "minimatch": "11.0.5"
   },
   "devDependencies": {
-    "@hackersandwizards/scaffolding": "git+https://github.com/hackersandwizards/scaffolding.git#v5.11.0",
+    "@hackersandwizards/scaffolding": "git+https://github.com/hackersandwizards/scaffolding.git#v5.13.0",
     "@types/bun": "1.4.4",
     "@typescript/native": "npm:typescript@7.0.2",
     "eslint": "10.14.0",
