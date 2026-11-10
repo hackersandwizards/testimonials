@@ -151,22 +151,38 @@
       },
       {
         "check": "confidential",
-        "path": [
-          "marks/bauhaus.svg",
-          "marks/launch-lab.png",
-          "marks/mobil-isc.png",
-          "marks/obi.svg",
-          "marks/silverspin.png",
-          "marks/vorwerk-patron.png"
-        ],
-        "text": [
-          "bauhaus",
-          "launch lab",
-          "mobil isc",
-          "OBI",
-          "silverspin",
-          "vorwerk patron"
-        ],
+        "path": "marks/bauhaus.svg",
+        "text": "bauhaus",
+        "reason": "the company's own wordmark, read by OCR from its mark"
+      },
+      {
+        "check": "confidential",
+        "path": "marks/launch-lab.png",
+        "text": "launch lab",
+        "reason": "the company's own wordmark, read by OCR from its mark"
+      },
+      {
+        "check": "confidential",
+        "path": "marks/mobil-isc.png",
+        "text": "mobil isc",
+        "reason": "the company's own wordmark, read by OCR from its mark"
+      },
+      {
+        "check": "confidential",
+        "path": "marks/obi.svg",
+        "text": "OBI",
+        "reason": "the company's own wordmark, read by OCR from its mark"
+      },
+      {
+        "check": "confidential",
+        "path": "marks/silverspin.png",
+        "text": "silverspin",
+        "reason": "the company's own wordmark, read by OCR from its mark"
+      },
+      {
+        "check": "confidential",
+        "path": "marks/vorwerk-patron.png",
+        "text": "vorwerk patron",
         "reason": "the company's own wordmark, read by OCR from its mark"
       },
       {
