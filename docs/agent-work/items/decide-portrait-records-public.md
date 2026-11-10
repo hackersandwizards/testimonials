@@ -3,7 +3,7 @@ kind: decision
 status: open
 priority: 1
 order: 24
-area: testimonials
+area: marketing
 owner: Benedikt
 evidence: "Read whole on 09.11.: docs/agent-work/2026-11-08-portrait-sources.md, docs/agent-work/2026-11-08-portraits-ai.md and docs/agent-work/items/ask-clients-for-portrait-originals.md. gh api reports the repository as public."
 recommended: move
