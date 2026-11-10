@@ -1,6 +1,8 @@
 ---
 kind: decision
-status: open
+status: decided
+decision: move-purge
+by: Benedikt
 priority: 1
 order: 24
 area: marketing
