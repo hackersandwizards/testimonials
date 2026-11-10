@@ -20,13 +20,24 @@ const file = import.meta.resolve(`@hackersandwizards/testimonials/marks/${shownM
 ```
 
 The entry is plain JavaScript with types beside it, so Bun, Vite and plain Node import it alike.
-The data as JSON, for other languages: `@hackersandwizards/testimonials/marks.json` and
-`@hackersandwizards/testimonials/testimonials.json`. Images: `/marks/<file>` and
-`/portraits/<file>`.
+The data as JSON: `@hackersandwizards/testimonials/marks.json` and
+`@hackersandwizards/testimonials/testimonials.json`, the files `data/marks.json` and
+`data/testimonials.json` in the package for a reader without an `exports` resolver, such as
+Python. Images: `/marks/<file>` and `/portraits/<file>`.
 
 Each mark carries `scale`, the share of a logo row's height at which it reads as heavy as the
-others, and `size`, the file's own width and height in pixels for `<img width height>`.
-`shownMarks` comes in display order.
+others, and `size`, the file's own width and height in pixels. `shownMarks` comes in display order.
+
+## Rendering
+
+- Set a mark's height to `scale` times the row height and let the width follow. `size` gives the
+  aspect ratio and a raster's `<img width height>`; an SVG's `size` is read at 72 dpi and may be
+  tiny.
+- Some SVG marks fill with `currentColor`: inside `<img>` they render black, and to colour them a
+  page inlines the SVG and sets `color`.
+- `person.role` holds the role as published, in English only.
+- `import.meta.resolve` returns a `file://` URL. A build step reads the file from there; a page
+  needs the file copied into its assets or imported through its bundler.
 
 ## What a surface may show
 
@@ -42,16 +53,18 @@ carries `surface`:
 `surface` belongs to the entry, not its file. Where entries of one group share a file, a surface
 may show it once one of them is `allowed`, under that entry's `name` only: key by `slug`.
 
-A mark with `onepager: false` stays off generated onepagers. A testimonial names its company by
-`slug`: show a logo beside it only where `shownMarks` holds that slug. Quote in the locale you
-render, whole or cut to its first sentences where the space holds no more: split with
-`Intl.Segmenter` in that locale, never inside a sentence, never skipping one, and never where a
-dropped sentence qualifies a kept one. Never add figures a quote does not carry.
+A mark with `ownTile: true` draws on its own opaque tile and stays `unreleased` until a
+transparent source replaces it. A mark with `onepager: false` stays off generated onepagers. A
+testimonial names its company by `slug`: show a logo beside it only where `shownMarks` holds that
+slug. Quote in the locale you render, whole or cut to its first sentences where the space holds no
+more: split with `Intl.Segmenter` in that locale, never inside a sentence, never skipping one, and
+never where a dropped sentence qualifies a kept one. Never add figures a quote does not carry.
 
 ## Layout
 
 ```
-data/marks.json          one entry per company mark: slug, name, file, surface, scale, size, source
+data/marks.json          one entry per company mark: slug, name, file, surface, scale, size,
+                         ownTile, onepager, source
 data/testimonials.json   one entry per quote: person, role, portrait, company, quote EN and DE
 marks/                   the mark files
 portraits/               one portrait per quoted person
