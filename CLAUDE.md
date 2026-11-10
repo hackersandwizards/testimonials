@@ -6,9 +6,10 @@ founders' choice. The approval behind each entry lives in Company OS, never here
 
 ## Data
 
-- `data/marks.json`: `slug` is the company's slug in Company OS. `surface` decides whether a
-  rendered surface may show the mark (`README.md` states the values). A new mark enters as
-  `unreleased`; it turns `allowed` once Company OS records the company's release. OBI stays `never`.
+- `data/marks.json`: `slug` is the company's slug in Company OS. `surface` is the founders'
+  choice of what a rendered surface may show (`README.md` states the values); the company's
+  clearance lives in Company OS, never here. A new mark enters as `unreleased` and turns `allowed`
+  once the founders choose it, its clearance recorded in Company OS. OBI stays `never`.
   Array order is display order, so no consumer sorts: the `allowed` marks lead, neighbours from
   different industries, and the rest follows by slug. The marks after SDK keep the order of
   Benedikt's prioritised list of 31.10.2026, as website `fcbe40c1` records it; the order test pins

@@ -1,6 +1,7 @@
 /**
- * Whether a rendered surface may show the entry: `allowed` it may, `unreleased` it may not until
- * the company releases it, `never` it may not at all. The data itself is public either way.
+ * Whether a rendered surface may show the entry, by h&w's choice: `allowed` it may, `unreleased` it
+ * may not until h&w chooses it, `never` it may not at all. Whether the company cleared its mark is
+ * recorded in Company OS, not here. The data itself is public either way.
  */
 export type Surface = "allowed" | "unreleased" | "never";
 

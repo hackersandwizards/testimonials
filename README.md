@@ -44,13 +44,14 @@ others, and `size`, the file's own width and height in pixels. `shownMarks` come
 Everything here is public, but not everything may appear on a page, a deck or a banner. Each mark
 carries `surface`:
 
-| Value        | Meaning                                                                  |
-| ------------ | ------------------------------------------------------------------------ |
-| `allowed`    | A rendered surface may show it. `shownMarks` holds exactly these.        |
-| `unreleased` | Held as company data. No surface shows it until the company releases it. |
-| `never`      | No surface shows it, whatever else changes.                              |
+| Value        | Meaning                                                                         |
+| ------------ | ------------------------------------------------------------------------------- |
+| `allowed`    | h&w chose it: a rendered surface may show it. `shownMarks` holds exactly these. |
+| `unreleased` | Not chosen. No surface shows it until h&w chooses it.                           |
+| `never`      | No surface shows it, whatever else changes.                                     |
 
-`surface` belongs to the entry, not its file. Where entries of one group share a file, a surface
+`surface` records h&w's choice only. Whether a company cleared its mark is recorded in Company OS,
+not here. `surface` belongs to the entry, not its file. Where entries of one group share a file, a surface
 may show it once one of them is `allowed`, under that entry's `name` only: key by `slug`.
 
 A mark with `ownTile: true` draws on its own opaque tile and stays `unreleased` until a
