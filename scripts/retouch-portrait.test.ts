@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import { rejection } from "@hackersandwizards/scaffolding/rejection";
 import sharp from "sharp";
 import {
   denoise,
@@ -53,7 +54,7 @@ describe("retouch-portrait", () => {
     const { webp, size } = await retouchPortrait(source, { sharpen: true });
     const meta = await sharp(webp).metadata();
     expect([size, meta.width, meta.height, meta.format]).toEqual([1760, 1760, 1760, "webp"]);
-    await expect(retouchPortrait(source, { size: 1761 })).rejects.toThrow("limit");
+    expect(await rejection(retouchPortrait(source, { size: 1761 }))).toContain("limit");
   });
 
   test("crops a photo stored with an EXIF rotation from its upright size", async () => {
@@ -66,9 +67,9 @@ describe("retouch-portrait", () => {
     expect((await retouchPortrait(source, { crop: { left: 0, top: 100, size: 300 } })).size).toBe(
       300,
     );
-    await expect(
-      retouchPortrait(source, { crop: { left: 0, top: 101, size: 300 } }),
-    ).rejects.toThrow("reaches past the 300×400 source");
+    expect(
+      await rejection(retouchPortrait(source, { crop: { left: 0, top: 101, size: 300 } })),
+    ).toContain("reaches past the 300×400 source");
   });
 
   test("the CLI takes exactly three whole numbers for --crop and a positive one for --size", () => {
