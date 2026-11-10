@@ -80,13 +80,20 @@ export function denoise(rgb: Uint8Array, width: number, height: number): Buffer 
   const raw = ["-f", "rawvideo", "-pix_fmt", "rgb24"];
   const run = spawnSync(
     "ffmpeg",
-    ["-loglevel", "error", ...raw, "-s", `${width}x${height}`, "-i", "pipe:0"].concat([
+    [
+      "-loglevel",
+      "error",
+      ...raw,
+      "-s",
+      `${width}x${height}`,
+      "-i",
+      "pipe:0",
       "-vf",
       // On a single frame a temporal strength keeps the input, and 0 selects the default strength.
       "hqdn3d=2:1.5:0.0001:0.0001",
       ...raw,
       "pipe:1",
-    ]),
+    ],
     { input: rgb, maxBuffer: rgb.length * 2 },
   );
   if (run.status !== 0)
@@ -102,8 +109,8 @@ export interface RetouchOptions {
 
 /** Returns the retouched master as WebP and what it measured on the way. */
 export async function retouchPortrait(source: string | Buffer, options: RetouchOptions = {}) {
-  const image = sharp(source).rotate();
-  // autoOrient: the size after the EXIF rotation that rotate() applies.
+  const image = sharp(source).autoOrient();
+  // metadata() reads the stored size; autoOrient holds it after the EXIF rotation.
   const { width, height } = (await image.metadata()).autoOrient;
   const side = Math.min(width, height);
   const crop = options.crop ?? {
@@ -139,6 +146,19 @@ export async function retouchPortrait(source: string | Buffer, options: RetouchO
   return { webp, size, sigma, denoised, gains };
 }
 
+/** The CLI's --crop and --size, refused unless whole and positive. */
+export function parseRetouchArgs({ crop, size }: { crop?: string; size?: string }) {
+  if (crop !== undefined && !/^\d+,\d+,[1-9]\d*$/.test(crop))
+    throw new Error("--crop takes three whole numbers: left,top,size");
+  if (size !== undefined && !/^[1-9]\d*$/.test(size))
+    throw new Error("--size takes a whole number of pixels above 0");
+  const [left, top, side] = crop?.split(",").map(Number) ?? [];
+  return {
+    crop: crop === undefined ? undefined : { left, top, size: side },
+    size: size === undefined ? undefined : Number(size),
+  };
+}
+
 if (import.meta.main) {
   const { values, positionals } = parseArgs({
     allowPositionals: true,
@@ -151,20 +171,14 @@ if (import.meta.main) {
     );
     process.exit(2);
   }
-  const [left, top, size] = values.crop?.split(",").map(Number) ?? [];
-  if (values.crop && ![left, top, size].every(Number.isInteger)) {
-    console.error("--crop takes three whole numbers: left,top,size");
+  let args: Pick<RetouchOptions, "crop" | "size">;
+  try {
+    args = parseRetouchArgs(values);
+  } catch (error) {
+    console.error((error as Error).message);
     process.exit(2);
   }
-  if (values.size && !Number.isInteger(Number(values.size))) {
-    console.error("--size takes a whole number of pixels");
-    process.exit(2);
-  }
-  const result = await retouchPortrait(source, {
-    crop: values.crop ? { left, top, size } : undefined,
-    size: values.size ? Number(values.size) : undefined,
-    sharpen: values.sharpen,
-  });
+  const result = await retouchPortrait(source, { ...args, sharpen: values.sharpen });
   await Bun.write(out, result.webp);
   console.log(
     `${out}: ${result.size} px, noise ${result.sigma.toFixed(2)}${result.denoised ? " (denoised)" : ""}, gains ${result.gains.map((g) => g.toFixed(3)).join("/")}`,

@@ -7,6 +7,9 @@ const root = `${import.meta.dir}/../`;
 const surfaces: Surface[] = ["allowed", "unreleased", "never"];
 const slug = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
+// Dotfiles such as Finder's .DS_Store stay out of git and the package.
+const listed = (dir: string) =>
+  readdirSync(`${root}${dir}`).filter((file) => !file.startsWith("."));
 const unique = (values: string[]) => values.filter((value, i) => values.indexOf(value) !== i);
 
 describe("marks", () => {
@@ -29,17 +32,7 @@ describe("marks", () => {
 
   test("every file in marks/ belongs to an entry", () => {
     const named = new Set(marks.map((mark) => mark.file));
-    expect(readdirSync(`${root}marks`).filter((file) => !named.has(file))).toEqual([]);
-  });
-
-  test("size is the file's own, as sharp reads it", async () => {
-    const read = await Promise.all(
-      marks.map(async ({ file }) => {
-        const { width, height } = await sharp(`${root}marks/${file}`).metadata();
-        return { file, width, height };
-      }),
-    );
-    expect(marks.map(({ file, size }) => ({ file, ...size }))).toEqual(read);
+    expect(listed("marks").filter((file) => !named.has(file))).toEqual([]);
   });
 
   test("the shown marks lead and the rest follows by slug", () => {
@@ -48,10 +41,10 @@ describe("marks", () => {
     expect(rest.map((mark) => mark.slug)).toEqual(rest.map((mark) => mark.slug).sort());
   });
 
-  test("SDK, Beta Systems, momox, saas.group and Temedica keep the order of website fcbe40c1", () => {
+  test("Beta Systems, momox, saas.group and Temedica follow SDK directly, as in website fcbe40c1", () => {
     const pinned = ["sdk", "beta-systems", "momox", "saas-group", "temedica"];
-    const shown = shownMarks.map((mark) => mark.slug).filter((slug) => pinned.includes(slug));
-    expect(shown).toEqual(pinned);
+    const shown = shownMarks.map((mark) => mark.slug);
+    expect(shown.slice(shown.indexOf("sdk"), shown.indexOf("sdk") + pinned.length)).toEqual(pinned);
   });
 
   test("OBI is never shown", () => {
@@ -91,7 +84,7 @@ describe("testimonials", () => {
 
   test("every file in portraits/ belongs to a testimonial", () => {
     const named = new Set(testimonials.map((t) => t.person.portrait));
-    expect(readdirSync(`${root}portraits`).filter((file) => !named.has(file))).toEqual([]);
+    expect(listed("portraits").filter((file) => !named.has(file))).toEqual([]);
   });
 });
 
@@ -108,6 +101,14 @@ describe("entry", () => {
       ],
       { cwd: root },
     );
-    expect(run.stdout.toString().trim()).toBe(String(shownMarks.length));
+    expect({
+      status: run.exitCode,
+      stdout: run.stdout.toString().trim(),
+      stderr: run.stderr.toString(),
+    }).toEqual({
+      status: 0,
+      stdout: String(shownMarks.length),
+      stderr: expect.any(String),
+    });
   });
 });

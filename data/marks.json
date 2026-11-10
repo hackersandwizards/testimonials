@@ -283,7 +283,7 @@
     "name": "Beta Systems",
     "file": "beta-systems.svg",
     "surface": "allowed",
-    "scale": 0.664,
+    "scale": 0.665,
     "size": {
       "width": 324,
       "height": 70
@@ -486,7 +486,8 @@
     "size": {
       "width": 836,
       "height": 136
-    }
+    },
+    "ownTile": true
   },
   {
     "slug": "beurer",
@@ -548,7 +549,7 @@
     "name": "Continentale",
     "file": "continentale.svg",
     "surface": "unreleased",
-    "scale": 0.812,
+    "scale": 0.813,
     "size": {
       "width": 467,
       "height": 282
@@ -713,7 +714,7 @@
     "name": "Kleinanzeigen",
     "file": "kleinanzeigen.svg",
     "surface": "unreleased",
-    "scale": 0.522,
+    "scale": 0.523,
     "size": {
       "width": 787,
       "height": 132
@@ -834,7 +835,7 @@
     "name": "phantomRausch",
     "file": "phantomrausch.svg",
     "surface": "unreleased",
-    "scale": 0.475,
+    "scale": 0.474,
     "size": {
       "width": 388,
       "height": 72

@@ -9,13 +9,22 @@ import { marks } from "../src/index.js";
 
 const ROOT = join(import.meta.dir, "..");
 
-/** A mark's pixels at print density. */
-export const render = (file: string) =>
-  sharp(join(ROOT, "marks", file), { density: 600 })
+/** The long side, in pixels, an SVG renders at; a raster renders at its own size. */
+export const RIM = 2400;
+
+/** A mark's pixels, an SVG at print density capped so its long side stays near RIM, and its own
+ * size as sharp reads it. sharp reads an SVG's size at 72 dpi. */
+export async function render(file: string) {
+  const path = join(ROOT, "marks", file);
+  const { width, height } = await sharp(path).metadata();
+  const density = Math.min(600, (72 * RIM) / Math.max(width, height));
+  const pixels = await sharp(path, { density })
     .ensureAlpha()
     .raw()
     .toBuffer({ resolveWithObject: true });
-type Pixels = Awaited<ReturnType<typeof render>>;
+  return { ...pixels, size: { width, height } };
+}
+type Pixels = Pick<Awaited<ReturnType<typeof render>>, "data" | "info">;
 
 /** Share of the mark's box covered by ink: opaque and dark counts fully. */
 async function ink(mark: Pixels) {
@@ -39,9 +48,9 @@ export async function scale(mark: Pixels) {
 
 if (import.meta.main) {
   for (const mark of marks) {
-    mark.scale = await scale(await render(mark.file));
-    const { width, height } = await sharp(join(ROOT, "marks", mark.file)).metadata();
-    mark.size = { width, height };
+    const pixels = await render(mark.file);
+    mark.scale = await scale(pixels);
+    mark.size = pixels.size;
   }
   await Bun.write(join(ROOT, "data/marks.json"), JSON.stringify(marks, null, 2) + "\n");
 }

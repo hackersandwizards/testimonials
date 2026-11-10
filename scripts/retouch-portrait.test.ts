@@ -4,6 +4,7 @@ import {
   denoise,
   neutralGains,
   noiseSigma,
+  parseRetouchArgs,
   retouchPortrait,
   toneCurve,
 } from "./retouch-portrait.ts";
@@ -65,5 +66,17 @@ describe("retouch-portrait", () => {
     expect((await retouchPortrait(source, { crop: { left: 0, top: 100, size: 300 } })).size).toBe(
       300,
     );
+  });
+
+  test("the CLI takes exactly three whole numbers for --crop and a positive one for --size", () => {
+    expect(parseRetouchArgs({ crop: "10,20,300", size: "200" })).toEqual({
+      crop: { left: 10, top: 20, size: 300 },
+      size: 200,
+    });
+    expect(parseRetouchArgs({})).toEqual({ crop: undefined, size: undefined });
+    for (const crop of ["10,,300", "1,2,3,4", "1,2", "1,-2,3", "1.5,2,3", "0,0,0"])
+      expect(() => parseRetouchArgs({ crop })).toThrow("--crop");
+    for (const size of ["0", "-5", "1.5", "x"])
+      expect(() => parseRetouchArgs({ size })).toThrow("--size");
   });
 });
