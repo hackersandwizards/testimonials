@@ -57,12 +57,8 @@ describe("never named", () => {
   test("each entry a name only, once, trimmed, and none a mark's or a quoted company's", () => {
     const key = (name: string) => name.trim().toLowerCase();
     expect(unique(neverNamed.map(({ name }) => key(name)))).toEqual([]);
-    expect(
-      neverNamed.filter(
-        (entry) =>
-          Object.keys(entry).join() !== "name" || !entry.name || entry.name !== entry.name.trim(),
-      ),
-    ).toEqual([]);
+    expect(neverNamed.map(Object.keys)).toEqual(neverNamed.map(() => ["name"]));
+    expect(neverNamed.filter(({ name }) => !name || name !== name.trim())).toEqual([]);
     const held = new Set(
       [...marks, ...testimonials.map((t) => t.company)].map(({ name }) => key(name)),
     );
