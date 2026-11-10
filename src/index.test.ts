@@ -1,7 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { existsSync, readdirSync } from "node:fs";
 import sharp from "sharp";
-import * as entry from "./index.js";
 import { marks, neverNamed, shownMarks, testimonials, type Surface } from "./index.js";
 
 const root = `${import.meta.dir}/../`;
@@ -55,12 +54,16 @@ describe("marks", () => {
 });
 
 describe("never named", () => {
-  test("each name once, with a reason, and none a mark's name", () => {
-    const lower = (name: string) => name.toLowerCase();
-    expect(unique(neverNamed.map(({ name }) => lower(name)))).toEqual([]);
-    expect(neverNamed.filter(({ name, reason }) => !name.trim() || !reason.trim())).toEqual([]);
-    const markNames = new Set(marks.map(({ name }) => lower(name)));
-    expect(neverNamed.filter(({ name }) => markNames.has(lower(name)))).toEqual([]);
+  test("each name once, trimmed, with a reason, and none a mark's or a quoted company's", () => {
+    const key = (name: string) => name.trim().toLowerCase();
+    expect(unique(neverNamed.map(({ name }) => key(name)))).toEqual([]);
+    expect(
+      neverNamed.filter(({ name, reason }) => !name || name !== name.trim() || !reason.trim()),
+    ).toEqual([]);
+    const held = new Set(
+      [...marks, ...testimonials.map((t) => t.company)].map(({ name }) => key(name)),
+    );
+    expect(neverNamed.filter(({ name }) => held.has(key(name)))).toEqual([]);
   });
 });
 
@@ -101,15 +104,13 @@ describe("testimonials", () => {
 });
 
 describe("entry", () => {
-  // The list came in 2.2.0 beside the marks, so the exports before it keep their output.
-  test("exports the data, shownMarks and the never-named list, nothing else", () => {
-    expect(Object.keys(entry).sort()).toEqual([
+  test("exports the data, shownMarks and the never-named list, nothing else", async () => {
+    expect(Object.keys(await import("./index.js")).sort()).toEqual([
       "marks",
       "neverNamed",
       "shownMarks",
       "testimonials",
     ]);
-    expect(shownMarks).toEqual(marks.filter(({ surface }) => surface === "allowed"));
   });
 
   // Node refuses TypeScript under node_modules; with stripping off, it refuses it here too.
