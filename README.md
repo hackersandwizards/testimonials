@@ -50,9 +50,12 @@ carries `surface`:
 | `unreleased` | Not chosen by h&w. No surface shows it.                                                                     |
 | `never`      | No surface shows it, whatever else changes.                                                                 |
 
-The clearance itself is recorded in Company OS, not here. `surface` belongs to the entry, not its
-file. Where entries of one group share a file, a surface may show it once one of them is `allowed`,
-under that entry's `name` only: key by `slug`.
+The clearance itself is recorded in Company OS, not here. A deny check takes the names no surface
+shows from the never section of the private list `hackersandwizards/confidential-terms`, which
+Company OS builds from the companies whose public-reference state is `never` or `declined`, through
+scaffolding's `check-confidential never`. `surface` belongs to the entry, not its file. Where
+entries of one group share a file, a surface may show it once one of them is `allowed`, under that
+entry's `name` only: key by `slug`.
 
 A mark with `ownTile: true` draws on its own opaque tile and stays `unreleased` until a
 transparent source replaces it. A mark with `onepager: false` stays off generated onepagers. A
