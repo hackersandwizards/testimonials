@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { existsSync, readdirSync } from "node:fs";
 import sharp from "sharp";
-import { marks, neverNamed, shownMarks, testimonials, type Surface } from "./index.js";
+import { marks, shownMarks, testimonials, type Surface } from "./index.js";
 
 const root = `${import.meta.dir}/../`;
 const surfaces: Surface[] = ["allowed", "unreleased", "never"];
@@ -53,19 +53,6 @@ describe("marks", () => {
   });
 });
 
-describe("never named", () => {
-  test("each entry a name only, once, trimmed, and none a mark's or a quoted company's", () => {
-    const key = (name: string) => name.trim().toLowerCase();
-    expect(unique(neverNamed.map(({ name }) => key(name)))).toEqual([]);
-    expect(neverNamed.map(Object.keys)).toEqual(neverNamed.map(() => ["name"]));
-    expect(neverNamed.filter(({ name }) => !name || name !== name.trim())).toEqual([]);
-    const held = new Set(
-      [...marks, ...testimonials.map((t) => t.company)].map(({ name }) => key(name)),
-    );
-    expect(neverNamed.filter(({ name }) => held.has(key(name)))).toEqual([]);
-  });
-});
-
 describe("testimonials", () => {
   test("each id once", () => {
     expect(unique(testimonials.map((t) => t.id))).toEqual([]);
@@ -103,10 +90,9 @@ describe("testimonials", () => {
 });
 
 describe("entry", () => {
-  test("exports the data, shownMarks and the never-named list, nothing else", async () => {
+  test("exports the data and shownMarks, nothing else", async () => {
     expect(Object.keys(await import("./index.js")).sort()).toEqual([
       "marks",
-      "neverNamed",
       "shownMarks",
       "testimonials",
     ]);

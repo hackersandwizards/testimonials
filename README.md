@@ -50,9 +50,8 @@ carries `surface`:
 | `unreleased` | Not chosen by h&w. No surface shows it.                                                                     |
 | `never`      | No surface shows it, whatever else changes.                                                                 |
 
-`neverNamed` lists names that have no mark and that no surface shows either, each entry a `name`
-(also `@hackersandwizards/testimonials/never-named.json`). A check that a page or deck
-names nothing forbidden takes the `never` marks' names and these.
+This package holds no list of names a surface must never show: a deny check takes them from
+Company OS.
 
 The clearance itself is recorded in Company OS, not here. `surface` belongs to the entry, not its
 file. Where entries of one group share a file, a surface may show it once one of them is `allowed`,
@@ -70,13 +69,12 @@ never where a dropped sentence qualifies a kept one. Never add figures a quote d
 ```
 data/marks.json          one entry per company mark: slug, name, file, surface, scale, size,
                          ownTile, onepager, source
-data/never-named.json    names no surface shows that have no mark: name
 data/testimonials.json   one entry per quote: person, role, portrait, company, quote EN and DE
 marks/                   the mark files
 portraits/               one portrait per quoted person
 scripts/retouch-portrait.ts  the retouch every portrait goes through: bun run retouch:portrait
 scripts/marks.ts         writes each mark's size and scale: bun run marks:measure
-src/index.js             the data, shownMarks and neverNamed; src/index.d.ts holds the types
+src/index.js             the data and shownMarks; src/index.d.ts holds the types
 ```
 
 `bun install`, then `bun run check` runs the full gate. A release is a version bump and a tag.

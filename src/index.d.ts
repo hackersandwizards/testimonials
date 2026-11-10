@@ -28,11 +28,6 @@ export interface Mark {
   source?: string;
 }
 
-/** A name no surface may show, held without a mark. */
-export interface NeverNamed {
-  name: string;
-}
-
 export interface Testimonial {
   id: string;
   person: {
@@ -55,7 +50,5 @@ export interface Testimonial {
 
 export declare const marks: Mark[];
 export declare const testimonials: Testimonial[];
-/** Names no surface may show that have no mark; a deny check takes these with the `never` marks. */
-export declare const neverNamed: NeverNamed[];
 /** The marks a rendered surface may show, in display order. */
 export declare const shownMarks: Mark[];
