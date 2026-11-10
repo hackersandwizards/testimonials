@@ -2,13 +2,11 @@ import { expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { marks } from "../src/index.js";
-import { render, RIM, scale } from "./marks";
+import { type Pixels, render, RIM, scale } from "./marks";
 
 // Below this share of transparent edge pixels a mark sits on its own tile: a cut or rounded corner
 // of an opaque tile leaves a few percent, a mark on a transparent ground far more.
 const GROUND = 0.1;
-
-type Pixels = Pick<Awaited<ReturnType<typeof render>>, "data" | "info">;
 
 /** Whether the box ends on the drawn edge, and the share of transparent pixels on that edge. The
  * bounds come from the pixels, not from sharp's trim: with a transparent background trim lands
@@ -62,7 +60,7 @@ test("an opaque tile with one cut corner does not count as a transparent ground"
 
 // Surfaces inline SVG marks into their pages, and the marks come from third-party sites.
 const active =
-  /<script|<foreignObject|<image\b|<iframe|<embed|<object|\son[a-z]+\s*=|javascript:|@import|\bhref\s*=\s*["'](?!#)|url\(\s*["']?(?!#)/i;
+  /<script|<foreignObject|<set\b|<animate|<!ENTITY|<image\b|<iframe|<embed|<object|\son[a-z]+\s*=|javascript:|@import|\bhref\s*=\s*["'](?!#)|url\(\s*["']?(?!#)/i;
 
 test("no SVG mark carries active content or loads anything", () => {
   const svgs = marks.map((mark) => mark.file).filter((file) => file.endsWith(".svg"));
@@ -74,6 +72,9 @@ test("no SVG mark carries active content or loads anything", () => {
     "<script>alert(1)</script>",
     '<g onload="x()">',
     "<foreignObject>",
+    '<a><set attributeName="href" to="https://example.com"/></a>',
+    '<animate attributeName="href" values="data:text/html,x"/>',
+    '<!DOCTYPE svg [<!ENTITY x SYSTEM "https://example.com/x">]>',
     '<a href="javascript:x()">',
     '<image href="https://example.com/a.png"/>',
     '<use xlink:href="https://example.com/s.svg#a"/>',

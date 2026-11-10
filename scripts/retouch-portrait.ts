@@ -118,6 +118,10 @@ export async function retouchPortrait(source: string | Buffer, options: RetouchO
     top: Math.floor((height - side) / 2),
     size: side,
   };
+  if (crop.left + crop.size > width || crop.top + crop.size > height)
+    throw new Error(
+      `--crop ${crop.left},${crop.top},${crop.size} reaches past the ${width}×${height} source`,
+    );
   const limit = Math.min(crop.size, MAX_SIZE);
   const size = options.size ?? limit;
   if (size > limit) throw new Error(`--size ${size} is above the ${limit} px limit of this crop`);

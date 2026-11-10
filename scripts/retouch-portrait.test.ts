@@ -66,6 +66,9 @@ describe("retouch-portrait", () => {
     expect((await retouchPortrait(source, { crop: { left: 0, top: 100, size: 300 } })).size).toBe(
       300,
     );
+    await expect(
+      retouchPortrait(source, { crop: { left: 0, top: 101, size: 300 } }),
+    ).rejects.toThrow("reaches past the 300×400 source");
   });
 
   test("the CLI takes exactly three whole numbers for --crop and a positive one for --size", () => {

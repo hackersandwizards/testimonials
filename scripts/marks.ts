@@ -24,7 +24,7 @@ export async function render(file: string) {
     .toBuffer({ resolveWithObject: true });
   return { ...pixels, size: { width, height } };
 }
-type Pixels = Pick<Awaited<ReturnType<typeof render>>, "data" | "info">;
+export type Pixels = Pick<Awaited<ReturnType<typeof render>>, "data" | "info">;
 
 /** Share of the mark's box covered by ink: opaque and dark counts fully. */
 async function ink(mark: Pixels) {

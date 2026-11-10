@@ -44,7 +44,8 @@ describe("marks", () => {
   test("Beta Systems, momox, saas.group and Temedica follow SDK directly, as in website fcbe40c1", () => {
     const pinned = ["sdk", "beta-systems", "momox", "saas-group", "temedica"];
     const shown = shownMarks.map((mark) => mark.slug);
-    expect(shown.slice(shown.indexOf("sdk"), shown.indexOf("sdk") + pinned.length)).toEqual(pinned);
+    const sdk = shown.indexOf("sdk");
+    expect(shown.slice(sdk, sdk + pinned.length)).toEqual(pinned);
   });
 
   test("OBI is never shown", () => {

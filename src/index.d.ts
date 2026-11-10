@@ -15,7 +15,8 @@ export interface Mark {
   surface: Surface;
   /** Share of a logo row's height at which the mark reads as heavy as the others. */
   scale: number;
-  /** The file's own size in pixels, as sharp reads it: for `<img width height>`. */
+  /** The file's own size in pixels, as sharp reads it, an SVG's at 72 dpi: the mark's aspect
+   * ratio, and a raster's `<img width height>`. */
   size: { width: number; height: number };
   /** `true` where the mark draws its glyph on its own full-bleed tile, so no transparent ground
    * exists; such a mark stays `unreleased` until a transparent source replaces it. */
