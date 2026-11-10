@@ -9,8 +9,7 @@ import { type Pixels, render, RIM, scale } from "./marks";
 const GROUND = 0.1;
 
 /** Whether the box ends on the drawn edge, and the share of transparent pixels on that edge. The
- * bounds come from the pixels, not from sharp's trim: with a transparent background trim lands
- * 1 to 2 px off the pixel bounds on some marks. */
+ * bounds come from the alpha of every pixel, so ink in a corner cannot shift them. */
 function frame({ data, info: { width, height, channels } }: Pixels, svg: boolean) {
   const alpha = (x: number, y: number) => data[(y * width + x) * channels + 3];
   let [left, right, top, bottom] = [width, -1, height, -1];
@@ -60,7 +59,7 @@ test("an opaque tile with one cut corner does not count as a transparent ground"
 
 // Surfaces inline SVG marks into their pages, and the marks come from third-party sites.
 const active =
-  /<script|<foreignObject|<set\b|<animate|<!ENTITY|<image\b|<iframe|<embed|<object|\son[a-z]+\s*=|javascript:|@import|\bhref\s*=\s*["'](?!#)|url\(\s*["']?(?!#)/i;
+  /<script|<foreignObject|<set\b|<animate|<!ENTITY|<image\b|<iframe|<embed|<object|[\s/"']on[a-z]+\s*=|javascript:|@import|\bhref\s*=(?!\s*["']?\s*#)|url\((?!\s*["']?\s*#)/i;
 
 test("no SVG mark carries active content or loads anything", () => {
   const svgs = marks.map((mark) => mark.file).filter((file) => file.endsWith(".svg"));
@@ -71,6 +70,9 @@ test("no SVG mark carries active content or loads anything", () => {
   const planted = [
     "<script>alert(1)</script>",
     '<g onload="x()">',
+    '<g id="a"onload="x()">',
+    "<svg/onload=x>",
+    "<a href=https://example.com>",
     "<foreignObject>",
     '<a><set attributeName="href" to="https://example.com"/></a>',
     '<animate attributeName="href" values="data:text/html,x"/>',
@@ -82,5 +84,6 @@ test("no SVG mark carries active content or loads anything", () => {
     'fill="url(https://example.com/s.svg#g)"',
   ];
   expect(planted.filter((svg) => !active.test(svg))).toEqual([]);
-  expect(active.test('<use href="#a"/><path fill="url(#g)"/>')).toBe(false);
+  expect(active.test(`<use href="#a"/><path fill="url(#g)"/><path fill="url('#g')"/>`)).toBe(false);
+  expect(active.test('<use href = " #a"/><path fill="url( #g)"/>')).toBe(false);
 });
