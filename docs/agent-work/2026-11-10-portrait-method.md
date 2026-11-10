@@ -9,7 +9,7 @@ Measured in headless Chrome for Testing on the website's build, at a 1440 px win
 390 px window at 3x, on every page with a client portrait.
 
 - 14 portraits. 6 show on quote cards at 492 CSS px on a laptop and 80 CSS px on a phone; the card
-  asks for 960 px on a 2x screen. Their files are 389 to 480 px.
+  asks for 960 px on a 2x screen (`sizes` 480px). Their files are 389 to 480 px.
 - 8 show only as 48 to 64 CSS px avatars, which ask for 96 to 192 px. All but one file cover that.
 
 ## Search for larger real photos
@@ -28,7 +28,7 @@ read-only. Signed-in sources were left out.
 
 `bun run retouch:portrait` (`scripts/retouch-portrait.ts`): crop, denoise only above a noise level,
 white balance by channel gain on near-neutral pixels, a tone curve with a soft highlight roll-off,
-optional sharp-2, WebP q82.
+optional sharp-2 (`--sharpen`: unsharp mask on luminance, 70 %, threshold 2), WebP q82.
 
 - Immerkær sigma of the 14 masters: 0.26 to 2.09, all under the 2.5 threshold, so none was denoised.
 - Channel gains stayed within 0.966 to 1.026.
@@ -73,14 +73,12 @@ Result: all 17 failed. Cosine to the current file ranged from 0.617 to 0.904; th
 0.904 failed the landmark bar at 5.0 %. No candidate reached the reviewers' identity question. Every
 candidate was larger than the current file, so resolution does not explain the misses.
 
-## Blind review of two real photos found on the way
+## Blind review of two real photos found during the AI work
 
-Two larger real photos, published by the clients' own companies, scored against the current files:
+Two larger real photos of people on the quote cards scored against their current files:
 three personas (the CTO on laptop and phone, a portrait photographer on the laptop), Claude and
 Codex, two runs each, 12 runs. Noise: Claude 0.47 (largest 1.33), Codex 0.18 (largest 0.50).
 
 - One photo won outside the noise in all four model-run cells, on every persona.
 - The other led on the laptop and lost on the phone, and one run put its lead inside the noise, so
   it did not win.
-
-Using either photo needs the client's leave. That question is a decision in Company OS.
