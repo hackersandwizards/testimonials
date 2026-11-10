@@ -45,8 +45,43 @@
       {
         "check": "confidential",
         "path": [
-          "marks/*",
-          "portraits/*"
+          "marks/adference.svg",
+          "marks/aktion-mensch.png",
+          "marks/atmina-solutions.svg",
+          "marks/b-braun.svg",
+          "marks/bauhaus.svg",
+          "marks/betterhomes.svg",
+          "marks/beurer.svg",
+          "marks/candylabs.svg",
+          "marks/certificates-dev.svg",
+          "marks/conceptboard.svg",
+          "marks/continentale.svg",
+          "marks/destination-solutions.svg",
+          "marks/e-motion-experts.svg",
+          "marks/edataconsulting.png",
+          "marks/finnofleet.svg",
+          "marks/fiskaly.svg",
+          "marks/giga-green.svg",
+          "marks/heise-conferences.svg",
+          "marks/hsh.png",
+          "marks/hws.svg",
+          "marks/impower.svg",
+          "marks/kleinanzeigen.svg",
+          "marks/launch-lab.png",
+          "marks/lotto24.svg",
+          "marks/mobil-isc.png",
+          "marks/obi.svg",
+          "marks/phantomrausch.svg",
+          "marks/rheinwerk-verlag.svg",
+          "marks/silverspin.png",
+          "marks/sopra-steria.svg",
+          "marks/startplatz.png",
+          "marks/techniker-krankenkasse.svg",
+          "marks/tk-elevator.svg",
+          "marks/vodafone.svg",
+          "marks/vorwerk-patron.png",
+          "marks/westwerk-events.svg",
+          "portraits/belma-ibrahimovic.webp"
         ],
         "text": [
           "adference",
@@ -87,7 +122,7 @@
           "vorwerk patron",
           "westwerk events"
         ],
-        "reason": "a mark file or portrait named for its company or person, per the founders' decision that this public repository holds them all"
+        "reason": "a mark file or portrait named for its company or person, and the wordmark OCR reads in a mark, per the founders' decision that this public repository holds them all"
       },
       {
         "check": "confidential",
@@ -155,45 +190,9 @@
       },
       {
         "check": "confidential",
-        "path": "marks/bauhaus.svg",
-        "text": "bauhaus",
-        "reason": "the company's own wordmark, read by OCR from its mark"
-      },
-      {
-        "check": "confidential",
-        "path": "marks/launch-lab.png",
-        "text": "launch lab",
-        "reason": "the company's own wordmark, read by OCR from its mark"
-      },
-      {
-        "check": "confidential",
-        "path": "marks/mobil-isc.png",
-        "text": "mobil isc",
-        "reason": "the company's own wordmark, read by OCR from its mark"
-      },
-      {
-        "check": "confidential",
-        "path": "marks/obi.svg",
-        "text": "OBI",
-        "reason": "the company's own wordmark, read by OCR from its mark"
-      },
-      {
-        "check": "confidential",
-        "path": "marks/silverspin.png",
-        "text": "silverspin",
-        "reason": "the company's own wordmark, read by OCR from its mark"
-      },
-      {
-        "check": "confidential",
-        "path": "marks/vorwerk-patron.png",
-        "text": "vorwerk patron",
-        "reason": "the company's own wordmark, read by OCR from its mark"
-      },
-      {
-        "check": "confidential",
         "path": "src/index.test.ts",
         "text": "OBI",
-        "reason": "the test that holds a mark at `never`"
+        "reason": "the test that holds this company's mark at `never`"
       }
     ],
     "check": [],
