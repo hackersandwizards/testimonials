@@ -8,8 +8,7 @@ import { type Pixels, render, RIM, scale } from "./marks";
 // of an opaque tile leaves a few percent, a mark on a transparent ground far more.
 const GROUND = 0.1;
 
-/** Whether the box ends on the drawn edge, and the share of transparent pixels on that edge. The
- * bounds come from the alpha of every pixel, so ink in a corner cannot shift them. */
+/** The bounds come from the alpha of every pixel, so ink in a corner cannot shift them. */
 function frame({ data, info: { width, height, channels } }: Pixels, svg: boolean) {
   const alpha = (x: number, y: number) => data[(y * width + x) * channels + 3];
   let [left, right, top, bottom] = [width, -1, height, -1];

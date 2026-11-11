@@ -1,5 +1,3 @@
-// The package's data as the review pages read it: through its own exports, as a consumer does,
-// with the files resolved to URLs Vite serves and each entry's flags and gaps spelled out.
 import { marks, testimonials, type Mark, type Testimonial } from "@hackersandwizards/testimonials";
 
 export { marks, testimonials, type Mark, type Testimonial };
@@ -16,7 +14,6 @@ const portraitUrls = urls(
     eager: true,
   }),
 );
-// docs/marks.md: inside <img> a currentColor mark renders black, so a page inlines it and sets color.
 const svgText = import.meta.glob<string>("../../../marks/*.svg", {
   query: "?raw",
   import: "default",
@@ -29,7 +26,6 @@ const inline = new Map(
 );
 
 export const markUrl = (mark: Mark) => markUrls.get(mark.file)!;
-/** Whether the mark is inlined rather than drawn as an <img>. */
 export const inlined = (mark: Mark) => inline.has(mark.file);
 
 let drawn = 0;
@@ -57,17 +53,14 @@ export const sourceLabel: Record<Testimonial["source"], string> = {
   "feedback-mail": "From a feedback mail",
 };
 
-/** A facet's options from a label map, in its order. */
 export const options = (labels: Record<string, string>) =>
   Object.entries(labels).map(([value, label]) => ({ value, label }));
 
 export const markOf = (t: Testimonial) => marks.find((m) => m.slug === t.company.slug);
 export const quotesOf = (m: Mark) => testimonials.filter((t) => t.company.slug === m.slug);
-/** The other entries drawn from the same file, which a surface keys apart by slug. */
 export const sharing = (m: Mark) => marks.filter((o) => o.file === m.file && o.slug !== m.slug);
 
-/** Only the facets whose values each hold a row, and only those with two or more such values:
- *  a facet with one value splits nothing. */
+/** Drops the values no row holds, then each facet left with one value, which splits nothing. */
 export const splitting = <F extends { param: string; options: { value: string }[] }>(
   facets: F[],
   items: { facets: Record<string, string[]> }[],
@@ -91,7 +84,6 @@ export const locales = [
   { key: "de", name: "German" },
 ] as const;
 
-/** What a surface would want from the entry and the data does not hold. */
 export const missing = (t: Testimonial) => {
   const mark = markOf(t);
   return [

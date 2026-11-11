@@ -29,13 +29,11 @@
   }
 }
 
-/* A mark's surface is a state: allowed green, unreleased amber, never red, each pill in its hue's
-   text and night column (tokens.css, the hue table). */
+/* Each pill takes its hue's text and night column from the hue table in tokens.css. */
 [data-surface="allowed"] {
   --hw-pill-hue: var(--color-green-dark);
   --hw-pill-hue-night: var(--color-green);
 }
-/* A gap in an entry is a warning, amber as the unreleased surface. */
 [data-surface="unreleased"],
 [data-gap] {
   --hw-pill-hue: var(--color-amber-dark);

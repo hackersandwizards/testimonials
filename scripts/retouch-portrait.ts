@@ -32,7 +32,6 @@ export function toneCurve(): number[] {
   });
 }
 
-/** Channel gains that turn the near-neutral pixels grey, each held within 5 % of 1. */
 export function neutralGains(rgb: Uint8Array): [number, number, number] {
   const sum = [0, 0, 0];
   let n = 0;
@@ -76,7 +75,7 @@ export function noiseSigma(rgb: Uint8Array, width: number, height: number): numb
 }
 
 /** ffmpeg's hqdn3d, raw RGB through stdin and stdout, filtered as full-range YUV, since ffmpeg's
- * default limited range drops a seventh of the 256 levels; ffmpeg must be on the PATH. */
+ * default limited range drops a seventh of the 256 levels. */
 export function denoise(rgb: Uint8Array, width: number, height: number): Buffer {
   const raw = ["-f", "rawvideo", "-pix_fmt", "rgb24"];
   const run = spawnSync(
@@ -108,7 +107,6 @@ export interface RetouchOptions {
   sharpen?: boolean;
 }
 
-/** Returns the retouched master as WebP and what it measured on the way. */
 export async function retouchPortrait(source: string | Buffer, options: RetouchOptions = {}) {
   const image = sharp(source).autoOrient();
   // metadata() reads the stored size; autoOrient holds it after the EXIF rotation.
@@ -151,7 +149,6 @@ export async function retouchPortrait(source: string | Buffer, options: RetouchO
   return { webp, size, sigma, denoised, gains };
 }
 
-/** The CLI's --crop and --size, refused unless whole and positive. */
 export function parseRetouchArgs({ crop, size }: { crop?: string; size?: string }) {
   if (crop !== undefined && !/^\d+,\d+,[1-9]\d*$/.test(crop))
     throw new Error("--crop takes three whole numbers: left,top,size");

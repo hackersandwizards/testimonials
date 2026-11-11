@@ -1,14 +1,10 @@
 ---
-// One mark as the marks page reviews it: its name, slug and surface, its flags, its file and
-// source, then the mark on a light and a night ground at a logo row's height. A `never` mark is
-// listed without its drawing: no surface shows it, this one included.
 import type { FilterItem } from "@hackersandwizards/brand/elements/list-filter.ts";
 import MarkImage from "./MarkImage.astro";
 import { quotesOf, sharing, surfaceLabel, type Mark } from "../lib/data";
 
 interface Props {
   mark: Mark;
-  /** The card as the page's list filter reads it. */
   filter?: FilterItem;
 }
 const { mark, filter } = Astro.props;

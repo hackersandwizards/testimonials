@@ -7,7 +7,6 @@ const root = `${import.meta.dir}/../`;
 const surfaces: Surface[] = ["allowed", "unreleased", "never"];
 const slug = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
-// Dotfiles such as Finder's .DS_Store stay out of git and the package.
 const listed = (dir: string) =>
   readdirSync(`${root}${dir}`).filter((file) => !file.startsWith("."));
 const duplicates = (values: string[]) => values.filter((value, i) => values.indexOf(value) !== i);

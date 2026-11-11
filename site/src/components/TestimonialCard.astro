@@ -1,6 +1,4 @@
 ---
-// One quote as a reviewer checks it: the person with portrait, role and company, the company's
-// mark on a light tile, every flag the entry carries and what it lacks, then the quote in each locale side by side.
 import type { FilterItem } from "@hackersandwizards/brand/elements/list-filter.ts";
 import MarkImage from "./MarkImage.astro";
 import {
@@ -15,7 +13,6 @@ import {
 
 interface Props {
   testimonial: Testimonial;
-  /** The card as the overview's list filter reads it. */
   filter?: FilterItem;
 }
 const { testimonial: t, filter } = Astro.props;

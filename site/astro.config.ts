@@ -3,7 +3,6 @@ import tailwindcss from "@tailwindcss/vite";
 import { catalog } from "@hackersandwizards/scaffolding/catalog";
 import { links } from "./src/lib/links";
 
-// A review surface only, never hosted (CLAUDE.md, Site): it draws the marks no surface may show.
 export default defineConfig({
   server: { host: "127.0.0.1", port: 4327 },
   devToolbar: { enabled: false },
@@ -17,11 +16,10 @@ export default defineConfig({
       home: "./catalog/Home.astro",
       serverOnly: true,
       htmlClass: ["hw-focus-ring"],
-      // The site's own links, so the catalog's header stays in the site.
       nav: { items: links, current: "Catalog" },
     }),
   ],
-  // Every mark and portrait a file of its own: inlined, the marks page's 60 small marks, each drawn
+  // Every mark and portrait a file of its own: inlined, the marks page's small marks, each drawn
   // twice, would load uncached and ignore loading="lazy".
   vite: { plugins: [tailwindcss()], build: { assetsInlineLimit: 0 } },
 });
