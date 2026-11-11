@@ -351,6 +351,19 @@
     "source": "Company OS src/content/companies/logos/fricke-gruppe.png"
   },
   {
+    "slug": "re-cinq",
+    "name": "re:cinq",
+    "file": "re-cinq.svg",
+    "surface": "allowed",
+    "scale": 0.663,
+    "size": {
+      "width": 675,
+      "height": 184
+    },
+    "onepager": false,
+    "source": "Company OS src/content/companies/logos/re-cinq.svg; its stylesheet classes inlined as fills"
+  },
+  {
     "slug": "neue-fische",
     "name": "neue fische",
     "file": "neue-fische.svg",
@@ -387,6 +400,18 @@
     },
     "onepager": false,
     "source": "website public/logos/client/stashaway.svg, the testimonial logo; viewBox cropped to the drawn mark"
+  },
+  {
+    "slug": "tessl",
+    "name": "Tessl",
+    "file": "tessl.svg",
+    "surface": "allowed",
+    "scale": 0.642,
+    "size": {
+      "width": 77,
+      "height": 28
+    },
+    "onepager": false
   },
   {
     "slug": "adference",
@@ -842,17 +867,6 @@
     }
   },
   {
-    "slug": "re-cinq",
-    "name": "re:cinq",
-    "file": "re-cinq.svg",
-    "surface": "unreleased",
-    "scale": 0.663,
-    "size": {
-      "width": 675,
-      "height": 184
-    }
-  },
-  {
     "slug": "rheinwerk-verlag",
     "name": "Rheinwerk Verlag",
     "file": "rheinwerk-verlag.svg",
@@ -929,17 +943,6 @@
       "height": 90
     },
     "ownTile": true
-  },
-  {
-    "slug": "tessl",
-    "name": "Tessl",
-    "file": "tessl.svg",
-    "surface": "unreleased",
-    "scale": 0.642,
-    "size": {
-      "width": 77,
-      "height": 28
-    }
   },
   {
     "slug": "thuega-smartservice",
