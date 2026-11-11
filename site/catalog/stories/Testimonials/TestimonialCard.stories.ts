@@ -1,5 +1,6 @@
 import TestimonialCard from "../../../src/components/TestimonialCard.astro";
-import { frame, markOf, missing, quote } from "../entries";
+import { frame, quote } from "../entries";
+import { markOf, missing } from "../../../src/lib/data";
 
 export default { component: TestimonialCard };
 

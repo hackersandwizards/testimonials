@@ -52,6 +52,15 @@ export const surfaceLabel: Record<Mark["surface"], string> = {
   never: "Never",
 };
 
+export const sourceLabel: Record<Testimonial["source"], string> = {
+  testimonial: "Written for publication",
+  "feedback-mail": "From a feedback mail",
+};
+
+/** A facet's options from a label map, in its order. */
+export const options = (labels: Record<string, string>) =>
+  Object.entries(labels).map(([value, label]) => ({ value, label }));
+
 export const markOf = (t: Testimonial) => marks.find((m) => m.slug === t.company.slug);
 export const quotesOf = (m: Mark) => testimonials.filter((t) => t.company.slug === m.slug);
 /** The other entries drawn from the same file, which a surface keys apart by slug. */
@@ -78,8 +87,8 @@ export const filterCopy = {
 };
 
 export const locales = [
-  { key: "en", lang: "en", name: "English" },
-  { key: "de", lang: "de", name: "German" },
+  { key: "en", name: "English" },
+  { key: "de", name: "German" },
 ] as const;
 
 /** What a surface would want from the entry and the data does not hold. */

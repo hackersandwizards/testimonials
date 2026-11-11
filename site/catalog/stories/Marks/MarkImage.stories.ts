@@ -1,5 +1,6 @@
 import MarkImage from "../../../src/components/MarkImage.astro";
-import { frame, mark, inlined } from "../entries";
+import { frame, mark } from "../entries";
+import { inlined } from "../../../src/lib/data";
 
 export default { component: MarkImage };
 

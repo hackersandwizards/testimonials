@@ -21,5 +21,7 @@ export default defineConfig({
       nav: { items: links, current: "Catalog" },
     }),
   ],
-  vite: { plugins: [tailwindcss() as never] },
+  // Every mark and portrait a file of its own: inlined, the marks page's 60 small marks, each drawn
+  // twice, would load uncached and ignore loading="lazy".
+  vite: { plugins: [tailwindcss()], build: { assetsInlineLimit: 0 } },
 });

@@ -5,7 +5,17 @@ import type { FilterItem } from "@hackersandwizards/brand/elements/list-filter.t
 import ListFilter from "@hackersandwizards/brand/expert/components/ListFilter.astro";
 import Layout from "../layouts/Layout.astro";
 import TestimonialCard from "../components/TestimonialCard.astro";
-import { filterCopy, markOf, missing, splitting, testimonials } from "../lib/data";
+import {
+  filterCopy,
+  locales,
+  markOf,
+  missing,
+  options,
+  sourceLabel,
+  splitting,
+  surfaceLabel,
+  testimonials,
+} from "../lib/data";
 
 const rows = testimonials.map((t) => {
   const filter: FilterItem = {
@@ -25,29 +35,20 @@ const facets = splitting(
     {
       param: "source",
       legend: "Source",
-      options: [
-        { value: "testimonial", label: "Written for publication" },
-        { value: "feedback-mail", label: "Feedback mail" },
-      ],
+      options: options(sourceLabel),
     },
     {
       param: "original",
       legend: "Original",
       options: [
-        { value: "en", label: "English" },
-        { value: "de", label: "German" },
+        ...locales.map((l) => ({ value: l.key, label: l.name })),
         { value: "none", label: "Not recorded" },
       ],
     },
     {
       param: "mark",
       legend: "Mark",
-      options: [
-        { value: "allowed", label: "Allowed" },
-        { value: "unreleased", label: "Unreleased" },
-        { value: "never", label: "Never" },
-        { value: "none", label: "None" },
-      ],
+      options: [...options(surfaceLabel), { value: "none", label: "None" }],
     },
     {
       param: "gaps",
@@ -63,19 +64,19 @@ const facets = splitting(
 ---
 
 <Layout
-  title="Testimonials"
+  title="Quotes"
   description="Every client quote in this package, in English and German, with its person, company, mark and what it lacks."
   current="/"
 >
   <div class="mx-auto w-full max-w-content px-gutter pb-section">
-    <h1 class="mt-8 font-mono text-h2 font-bold tracking-tight">Testimonials</h1>
+    <h1 class="mt-8 font-mono text-h2 font-bold tracking-tight">Quotes</h1>
     <p class="mt-2 max-w-measure text-muted">
       Every quote in <code>data/testimonials.json</code>, in English and German, with the person,
       the company's mark and what the entry lacks. A mark shows here whatever its surface; on a
       page, a deck or a banner only an allowed one may.
     </p>
 
-    <div class="mt-8" id="controls">
+    <div class="mt-8">
       <ListFilter
         id="find"
         action="/"

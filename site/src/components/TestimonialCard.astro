@@ -3,7 +3,15 @@
 // mark on a light tile, every flag the entry carries and what it lacks, then the quote in each locale side by side.
 import type { FilterItem } from "@hackersandwizards/brand/elements/list-filter.ts";
 import MarkImage from "./MarkImage.astro";
-import { locales, markOf, missing, portraitUrl, surfaceLabel, type Testimonial } from "../lib/data";
+import {
+  locales,
+  markOf,
+  missing,
+  portraitUrl,
+  sourceLabel,
+  surfaceLabel,
+  type Testimonial,
+} from "../lib/data";
 
 interface Props {
   testimonial: Testimonial;
@@ -13,7 +21,6 @@ interface Props {
 const { testimonial: t, filter } = Astro.props;
 const mark = markOf(t);
 const lacks = missing(t);
-const source = t.source === "feedback-mail" ? "From a feedback mail" : "Written for publication";
 const original = locales.find((l) => l.key === t.original);
 ---
 
@@ -44,7 +51,7 @@ const original = locales.find((l) => l.key === t.original);
       </p>
       <p class="mt-3 flex flex-wrap gap-1.5">
         <span class="hw-pill" data-tone="neutral">
-          {source}
+          {sourceLabel[t.source]}
         </span>
         {original && (
           <span class="hw-pill" data-tone="neutral">
@@ -85,7 +92,7 @@ const original = locales.find((l) => l.key === t.original);
           {l.name}
           {original && original.key !== l.key && " · translation"}
         </figcaption>
-        <blockquote class="hw-quote mt-2 max-w-measure" lang={l.lang}>
+        <blockquote class="hw-quote mt-2 max-w-measure" lang={l.key}>
           {t.quote[l.key]?.trim() ? <p>{t.quote[l.key]}</p> : <p class="text-muted">None</p>}
         </blockquote>
       </figure>

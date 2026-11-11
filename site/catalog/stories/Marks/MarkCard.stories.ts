@@ -1,5 +1,6 @@
 import MarkCard from "../../../src/components/MarkCard.astro";
-import { frame, mark, inlined } from "../entries";
+import { frame, mark } from "../entries";
+import { inlined } from "../../../src/lib/data";
 
 export default { component: MarkCard };
 

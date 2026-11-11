@@ -206,9 +206,7 @@
     "check": [
       [
         "check:colours",
-        "check:copies"
-      ],
-      [
+        "check:copies",
         "check:elements",
         "check:retired"
       ]

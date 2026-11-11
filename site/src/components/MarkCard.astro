@@ -41,6 +41,11 @@ const row = 48;
           Off onepagers
         </span>
       )}
+      {!mark.source && (
+        <span class="hw-pill" data-gap>
+          Missing: source
+        </span>
+      )}
       {quotes > 0 && (
         <span class="hw-pill" data-tone="neutral">
           {quotes === 1 ? "1 quote" : `${quotes} quotes`}

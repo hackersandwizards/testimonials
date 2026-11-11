@@ -5,7 +5,7 @@ import type { FilterItem } from "@hackersandwizards/brand/elements/list-filter.t
 import ListFilter from "@hackersandwizards/brand/expert/components/ListFilter.astro";
 import Layout from "../layouts/Layout.astro";
 import MarkCard from "../components/MarkCard.astro";
-import { filterCopy, marks, quotesOf, splitting } from "../lib/data";
+import { filterCopy, marks, options, quotesOf, splitting, surfaceLabel } from "../lib/data";
 
 const rows = marks.map((mark) => {
   const filter: FilterItem = {
@@ -25,11 +25,7 @@ const facets = splitting(
     {
       param: "surface",
       legend: "Surface",
-      options: [
-        { value: "allowed", label: "Allowed" },
-        { value: "unreleased", label: "Unreleased" },
-        { value: "never", label: "Never" },
-      ],
+      options: options(surfaceLabel),
     },
     {
       param: "quoted",
@@ -73,7 +69,7 @@ const facets = splitting(
       show only here, and a mark that is never shown is listed without its drawing.
     </p>
 
-    <div class="mt-8" id="controls">
+    <div class="mt-8">
       <ListFilter
         id="find"
         action="/marks/"

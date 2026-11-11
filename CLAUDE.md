@@ -33,15 +33,12 @@ founders' choice. The approval behind each entry lives in Company OS, never here
 
 ## Site
 
-`site/` is a local review page of everything above, never hosted: it draws unreleased marks, which
-no surface may show, so it stays off every deploy, and every page carries `noindex`. `bun run dev`
-serves it at http://127.0.0.1:4327 (http://testimonials.localhost behind the shared Caddy setup):
-the quotes at `/`, the marks at `/marks/`, the catalog at `/catalog/`. A `never` mark is listed
-without its drawing. The site reads the data through the package's own exports and the files by
-glob, so it needs no copy. `bun run build` writes `site/dist/` for the gate. `check:colours` scans
-`site/` alone: the marks carry their owners' colours. Every component in `site/src/components/`
-has a story in `site/catalog/stories/` (`site/catalog/coverage.test.ts`), each picking its entry by
-the state it shows, never by name.
+`site/` is the local review page the README's "Review it" opens. It draws unreleased marks, so it
+is never hosted and every page carries `noindex`; a `never` mark is listed without its drawing. It
+reads the data through the package's exports and the files by glob, never a copy. `check:colours`
+scans `site/` alone, as the marks carry their owners' colours. Every component in
+`site/src/components/` has a story (`site/catalog/coverage.test.ts`), each picking its entry by the
+state it shows, never by name.
 
 ## Checks
 
