@@ -35,7 +35,7 @@ export const markSvg = (mark: Mark) => {
   const prefix = `mark${++drawn}-`;
   return inline
     .get(mark.file)!
-    .replace(/(<svg\b[^>]*?)\s+class="[^"]*"/, "$1")
+    .replace(/(<svg\b[^>]*?)\s+class="[^"]*"/, "$1 ")
     .replaceAll(/\bid=(["'])/g, `id=$1${prefix}`)
     .replaceAll(/url\((["']?)#/g, `url($1#${prefix}`)
     .replaceAll(/href=(["'])#/g, `href=$1#${prefix}`);
