@@ -1,0 +1,14 @@
+---
+// A story's ground: a card sits in a list as on its page. The catalog's tile draws the
+// data-hw-preview element alone.
+interface Props {
+  list?: boolean;
+}
+const List = Astro.props.list ? "ul" : "div";
+---
+
+<div class="p-6">
+  <List class="grid max-w-5xl" data-hw-preview="">
+    <slot />
+  </List>
+</div>

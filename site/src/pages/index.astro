@@ -1,0 +1,105 @@
+---
+// Every testimonial as the data holds it, in the data's order, each card complete: no page of its
+// own. The facets are what the data distinguishes; one with a value nobody has splits nothing.
+import type { FilterItem } from "@hackersandwizards/brand/elements/list-filter.ts";
+import ListFilter from "@hackersandwizards/brand/expert/components/ListFilter.astro";
+import Layout from "../layouts/Layout.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import { markOf, missing, testimonials } from "../lib/data";
+
+const rows = testimonials.map((t) => {
+  const filter: FilterItem = {
+    text: [t.person.name, t.person.role, t.company.name, t.quote.en, t.quote.de].join(" "),
+    facets: {
+      source: [t.source],
+      original: [t.original ?? "none"],
+      mark: [markOf(t)?.surface ?? "none"],
+      gaps: [missing(t).length ? "some" : "none"],
+    },
+  };
+  return { t, filter };
+});
+const items = rows.map((r) => r.filter);
+const facets = [
+  {
+    param: "source",
+    legend: "Source",
+    options: [
+      { value: "testimonial", label: "Written for publication" },
+      { value: "feedback-mail", label: "Feedback mail" },
+    ],
+  },
+  {
+    param: "original",
+    legend: "Original",
+    options: [
+      { value: "en", label: "English" },
+      { value: "de", label: "German" },
+      { value: "none", label: "Not recorded" },
+    ],
+  },
+  {
+    param: "mark",
+    legend: "Mark",
+    options: [
+      { value: "allowed", label: "Allowed" },
+      { value: "unreleased", label: "Unreleased" },
+      { value: "never", label: "Never" },
+      { value: "none", label: "None" },
+    ],
+  },
+  {
+    param: "gaps",
+    legend: "Gaps",
+    options: [
+      { value: "some", label: "Something missing" },
+      { value: "none", label: "Complete" },
+    ],
+  },
+]
+  .map((f) => ({
+    ...f,
+    options: f.options.filter((o) => items.some((i) => i.facets[f.param]?.includes(o.value))),
+  }))
+  .filter((f) => f.options.length > 1);
+---
+
+<Layout
+  title="Testimonials"
+  description="Every client quote in this package, in English and German, with its person, company, mark and what it lacks."
+  current="/"
+>
+  <div class="mx-auto w-full max-w-content px-gutter pb-section">
+    <h1 class="mt-8 font-mono text-h2 font-bold tracking-tight">Testimonials</h1>
+    <p class="mt-2 max-w-measure text-muted">
+      Every quote in <code>data/testimonials.json</code>, in English and German, with the person,
+      the company's mark and what the entry lacks. A mark shows here whatever its surface; on a
+      page, a deck or a banner only an allowed one may.
+    </p>
+
+    <div class="mt-8" id="controls">
+      <ListFilter
+        id="find"
+        action="/"
+        label="Find a name, company or word"
+        items={items}
+        state={{ q: "", facets: {} }}
+        facets={facets}
+        count="{shown} of {total} quotes"
+        copy={{
+          all: "All",
+          clear: "Clear all",
+          empty: "No quote matches.",
+          submit: "Search",
+          filters: "Filters",
+        }}
+      >
+        <ul class="mt-6 grid gap-6">
+          {rows.map((r) => (
+            <TestimonialCard testimonial={r.t} filter={r.filter} />
+          ))}
+        </ul>
+      </ListFilter>
+    </div>
+  </div>
+</Layout>

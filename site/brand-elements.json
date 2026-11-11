@@ -1,0 +1,19 @@
+{
+  "site": "dist",
+  "pages": ["/", "/marks/", "/catalog/"],
+  "catalog": "dist/catalog",
+  "uses": [
+    "card",
+    "pill",
+    "quote",
+    "label",
+    "facts",
+    "link",
+    "field",
+    "search",
+    "button",
+    "form-field",
+    "choice",
+    "focus-ring"
+  ]
+}

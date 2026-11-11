@@ -1,0 +1,47 @@
+@import "tailwindcss";
+@import "@hackersandwizards/brand/tokens.css";
+@import "@hackersandwizards/brand/tokens.root.css";
+@import "@hackersandwizards/brand/fonts.css";
+@import "@hackersandwizards/brand/night.css";
+@import "@hackersandwizards/brand/header.css";
+@import "@hackersandwizards/brand/elements/scales.css";
+@import "@hackersandwizards/brand/elements/pill.css";
+@import "@hackersandwizards/brand/elements/label.css";
+@import "@hackersandwizards/brand/elements/facts.css";
+@import "@hackersandwizards/brand/elements/card.css";
+@import "@hackersandwizards/brand/elements/quote.css";
+@import "@hackersandwizards/brand/elements/field.css";
+@import "@hackersandwizards/brand/elements/search.css";
+@import "@hackersandwizards/brand/elements/choice.css";
+@import "@hackersandwizards/brand/elements/button.css";
+@import "@hackersandwizards/brand/elements/form-field.css";
+@import "@hackersandwizards/brand/elements/list-filter.css";
+@import "@hackersandwizards/brand/elements/select.css";
+@import "@hackersandwizards/brand/elements/link.css";
+@import "@hackersandwizards/brand/elements/focus.css";
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply flex min-h-svh flex-col bg-bg font-sans text-ink;
+  }
+}
+
+/* A mark's surface is a state: allowed green, unreleased amber, never red, each pill in its hue's
+   text and night column (tokens.css, the hue table). */
+[data-surface="allowed"] {
+  --hw-pill-hue: var(--color-green-dark);
+  --hw-pill-hue-night: var(--color-green);
+}
+/* A gap in an entry is a warning, amber as the unreleased surface. */
+[data-surface="unreleased"],
+[data-gap] {
+  --hw-pill-hue: var(--color-amber-dark);
+  --hw-pill-hue-night: var(--color-amber);
+}
+[data-surface="never"] {
+  --hw-pill-hue: var(--color-red);
+  --hw-pill-hue-night: var(--color-red-night);
+}

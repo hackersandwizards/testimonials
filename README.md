@@ -47,7 +47,7 @@ carries `surface`:
 | Value        | Meaning                                                                                                     |
 | ------------ | ----------------------------------------------------------------------------------------------------------- |
 | `allowed`    | Cleared by the company and chosen by h&w: a rendered surface may show it. `shownMarks` holds exactly these. |
-| `unreleased` | Not chosen by h&w. No surface shows it.                                                                     |
+| `unreleased` | Not chosen by h&w. No surface shows it but the local review page (below).                                   |
 | `never`      | No surface shows it, whatever else changes.                                                                 |
 
 A deny check, scaffolding's `check-confidential never`, takes the names h&w never shows from the
@@ -65,6 +65,21 @@ slug. Quote in the locale you render, whole or cut to its first sentences where 
 more: split with `Intl.Segmenter` in that locale, never inside a sentence, never skipping one, and
 never where a dropped sentence qualifies a kept one. Never add figures a quote does not carry.
 
+## Review it
+
+`bun install`, then `bun run dev` and open http://127.0.0.1:4327: every quote in both languages
+with its person, portrait, mark and what it lacks at `/`, every mark on a light and a night ground
+at `/marks/`, the page's components at `/catalog/`. It runs on your machine only and is never
+hosted, as it draws marks no surface may show. With the shared Caddy setup, add this block to the
+Caddyfile and open http://testimonials.localhost:
+
+```caddyfile
+http://testimonials.localhost {
+    bind 127.0.0.1
+    reverse_proxy 127.0.0.1:4327
+}
+```
+
 ## Layout
 
 ```
@@ -76,6 +91,7 @@ portraits/               one portrait per quoted person
 scripts/retouch-portrait.ts  the retouch every portrait goes through: bun run retouch:portrait
 scripts/marks.ts         writes each mark's size and scale: bun run marks:measure
 src/index.js             the data and shownMarks; src/index.d.ts holds the types
+site/                    the local review page: bun run dev
 ```
 
 `bun install`, then `bun run check` runs the full gate. A release is a version bump and a tag.

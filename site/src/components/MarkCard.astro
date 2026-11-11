@@ -1,0 +1,113 @@
+---
+// One mark as the marks page reviews it: its name, slug and surface, its flags, its file and
+// source, then the mark on a light and a night ground at a logo row's height. A `never` mark is
+// listed without its drawing: no surface shows it, this one included.
+import type { FilterItem } from "@hackersandwizards/brand/elements/list-filter.ts";
+import MarkImage from "./MarkImage.astro";
+import { quotesOf, sharing, surfaceLabel, type Mark } from "../lib/data";
+
+interface Props {
+  mark: Mark;
+  /** The card as the page's list filter reads it. */
+  filter?: FilterItem;
+}
+const { mark, filter } = Astro.props;
+const quotes = quotesOf(mark).length;
+const shared = sharing(mark);
+const row = 48;
+---
+
+<li
+  class="hw-card grid min-w-0 content-start gap-4 [--hw-card-pad:1rem]"
+  data-filter-item={filter && ""}
+  data-filter-text={filter?.text}
+  data-filter-facets={filter && JSON.stringify(filter.facets)}
+>
+  <div>
+    <h3 class="font-medium text-ink" data-filter-title>
+      {mark.name}
+    </h3>
+    <p class="mt-tight flex flex-wrap gap-1.5">
+      <span class="hw-pill" data-surface={mark.surface}>
+        {surfaceLabel[mark.surface]}
+      </span>
+      {mark.ownTile && (
+        <span class="hw-pill" data-tone="neutral">
+          Own tile
+        </span>
+      )}
+      {mark.onepager === false && (
+        <span class="hw-pill" data-tone="neutral">
+          Off onepagers
+        </span>
+      )}
+      {quotes > 0 && (
+        <span class="hw-pill" data-tone="neutral">
+          {quotes === 1 ? "1 quote" : `${quotes} quotes`}
+        </span>
+      )}
+    </p>
+  </div>
+  {mark.surface === "never" ? (
+    <p class="text-small text-muted">Not drawn: no surface ever shows this mark.</p>
+  ) : (
+    <div class="grid grid-cols-2 gap-2">
+      <div
+        class="grid h-24 place-items-center rounded-brand border bg-white p-3 text-ink"
+        data-theme="light"
+      >
+        <MarkImage mark={mark} row={row} />
+      </div>
+      <div
+        class="grid h-24 place-items-center rounded-brand bg-night p-3 text-night-ink"
+        data-theme="dark"
+      >
+        <MarkImage mark={mark} row={row} />
+      </div>
+    </div>
+  )}
+  <dl class="hw-facts grid grid-cols-2 gap-x-4 gap-y-3 text-small">
+    <div>
+      <dt class="hw-label" data-tone="muted">
+        Slug
+      </dt>
+      <dd class="break-all">{mark.slug}</dd>
+    </div>
+    <div>
+      <dt class="hw-label" data-tone="muted">
+        File
+      </dt>
+      <dd class="break-all">{mark.file}</dd>
+    </div>
+    <div>
+      <dt class="hw-label" data-tone="muted">
+        Scale
+      </dt>
+      <dd>{mark.scale}</dd>
+    </div>
+    <div>
+      <dt class="hw-label" data-tone="muted">
+        Size
+      </dt>
+      <dd>
+        {mark.size.width} × {mark.size.height} px
+      </dd>
+    </div>
+    {shared.length > 0 && (
+      <div class="col-span-2">
+        <dt class="hw-label" data-tone="muted">
+          File shared with
+        </dt>
+        <dd>{shared.map((m) => m.name).join(", ")}</dd>
+      </div>
+    )}
+    <div class="col-span-2">
+      <dt class="hw-label" data-tone="muted">
+        Source
+      </dt>
+      <dd class:list={["[overflow-wrap:anywhere]", !mark.source && "text-muted"]}>
+        {mark.source ?? "Not recorded"}
+      </dd>
+    </div>
+  </dl>
+</li>

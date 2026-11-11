@@ -1,0 +1,72 @@
+---
+import AppHeader from "@hackersandwizards/brand/expert/components/AppHeader.astro";
+import ThemeToggle from "@hackersandwizards/brand/expert/components/ThemeToggle.astro";
+import faviconIco from "@hackersandwizards/brand/logos/favicon.ico?url";
+import faviconSvg from "@hackersandwizards/brand/logos/favicon.svg?url";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  /** The header link of the page shown. */
+  current: "/" | "/marks/";
+}
+const { title, description, current } = Astro.props;
+const links = [
+  { href: "/", label: "Quotes" },
+  { href: "/marks/", label: "Marks" },
+  // The catalog is for whoever builds the site; on a phone the bar holds only the pages.
+  { href: "/catalog/", label: "Catalog", wide: true },
+];
+---
+
+<!doctype html>
+<html lang="en" class="hw-focus-ring" data-hw-night>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta name="description" content={description} />
+    <title>{title} | hackers&wizards</title>
+    <link rel="icon" href={faviconIco} sizes="32x32" />
+    <link rel="icon" href={faviconSvg} type="image/svg+xml" />
+    {/* Applied before first paint, or the wrong theme flashes. */}
+    <script is:inline>
+      let theme;
+      // Storage can be blocked (site data off); the system preference still holds.
+      try {
+        theme = localStorage.getItem("theme");
+      } catch {}
+      theme ||= window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", theme);
+    </script>
+  </head>
+  <body>
+    <AppHeader product="Testimonials">
+      <nav class="hw-header-nav" aria-label="Main">
+        {links.map((l) => (
+          <a
+            class:list={["hw-header-link", l.wide && "wide"]}
+            href={l.href}
+            aria-current={l.href === current ? "page" : undefined}
+          >
+            {l.label}
+          </a>
+        ))}
+        <ThemeToggle />
+      </nav>
+    </AppHeader>
+    <main class="w-full flex-1">
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style>
+  /* header.css draws its links outside a cascade layer, so a utility cannot hide one. */
+  @media (width < 40rem) {
+    .hw-header-link.wide {
+      display: none;
+    }
+  }
+</style>

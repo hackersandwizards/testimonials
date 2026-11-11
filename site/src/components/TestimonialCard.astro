@@ -1,0 +1,107 @@
+---
+// One quote as a reviewer checks it: the person with portrait, role and company, the company's
+// mark on a light tile, every flag the entry carries and what it lacks, then the quote in each locale side by side.
+import type { FilterItem } from "@hackersandwizards/brand/elements/list-filter.ts";
+import MarkImage from "./MarkImage.astro";
+import { locales, markOf, missing, portraitUrl, surfaceLabel, type Testimonial } from "../lib/data";
+
+interface Props {
+  testimonial: Testimonial;
+  /** The card as the overview's list filter reads it. */
+  filter?: FilterItem;
+}
+const { testimonial: t, filter } = Astro.props;
+const mark = markOf(t);
+const lacks = missing(t);
+const source = t.source === "feedback-mail" ? "From a feedback mail" : "Written for publication";
+const original = locales.find((l) => l.key === t.original);
+---
+
+<li
+  class="hw-card grid min-w-0 gap-6 [--hw-card-pad:1.25rem]"
+  data-filter-item={filter && ""}
+  data-filter-text={filter?.text}
+  data-filter-facets={filter && JSON.stringify(filter.facets)}
+>
+  <div class="grid grid-cols-[4.5rem_1fr] items-start gap-4 sm:grid-cols-[6rem_1fr_auto]">
+    <img
+      src={portraitUrl(t)}
+      alt=""
+      width="96"
+      height="96"
+      loading="lazy"
+      decoding="async"
+      class="aspect-square w-full rounded-brand object-cover"
+    />
+    <div class="min-w-0">
+      <h2 class="font-mono text-h4 font-bold">
+        <a href={t.person.url} class="hw-link" data-filter-title>
+          {t.person.name}
+        </a>
+      </h2>
+      <p class="mt-tight text-small text-muted">
+        {t.person.role}, {t.company.name}
+      </p>
+      <p class="mt-3 flex flex-wrap gap-1.5">
+        <span class="hw-pill" data-tone="neutral">
+          {source}
+        </span>
+        {original && (
+          <span class="hw-pill" data-tone="neutral">
+            {original.name} original
+          </span>
+        )}
+        {t.date && (
+          <span class="hw-pill" data-tone="neutral">
+            {t.date}
+          </span>
+        )}
+        {mark && (
+          <span class="hw-pill" data-surface={mark.surface}>
+            Mark {surfaceLabel[mark.surface].toLowerCase()}
+          </span>
+        )}
+        {lacks.length > 0 && (
+          <span class="hw-pill" data-gap>
+            Missing: {lacks.join(", ")}
+          </span>
+        )}
+      </p>
+    </div>
+    {mark && mark.surface !== "never" && (
+      <div
+        class="col-span-2 grid h-16 w-40 place-items-center rounded-brand border bg-white px-3 text-ink sm:col-span-1"
+        data-theme="light"
+      >
+        <MarkImage mark={mark} row={40} />
+      </div>
+    )}
+  </div>
+
+  <div class="grid gap-6 md:grid-cols-2">
+    {locales.map((l) => (
+      <figure class="min-w-0">
+        <figcaption class="hw-label" data-tone="muted">
+          {l.name}
+          {original && original.key !== l.key && " · translation"}
+        </figcaption>
+        <blockquote class="hw-quote mt-2 max-w-measure" lang={l.lang}>
+          {t.quote[l.key]?.trim() ? <p>{t.quote[l.key]}</p> : <p class="text-muted">None</p>}
+        </blockquote>
+      </figure>
+    ))}
+  </div>
+
+  <dl class="flex flex-wrap gap-x-6 gap-y-2 text-small">
+    {[
+      ["ID", t.id],
+      ["Portrait", t.person.portrait],
+      ["Company slug", t.company.slug],
+    ].map(([name, value]) => (
+      <div class="flex gap-2">
+        <dt class="text-muted">{name}</dt>
+        <dd class="font-mono">{value}</dd>
+      </div>
+    ))}
+  </dl>
+</li>

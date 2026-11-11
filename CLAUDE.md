@@ -27,8 +27,21 @@ founders' choice. The approval behind each entry lives in Company OS, never here
   `scripts/retouch-portrait.ts`) from that source at full resolution; a noisy source needs `ffmpeg`
   on the PATH. Add `--sharpen` only where a blind review in page context scores it ahead outside
   the noise. No AI-restored or AI-upscaled file enters here.
-- The package depends on no other h&w package at runtime, and on brand not even for its gate:
-  brand takes its marks from here.
+- The package depends on no other h&w package at runtime. Brand, scaffolding's catalog and Astro
+  are devDependencies of the review site only; brand pins a tag of this package among its own
+  devDependencies, which neither install pulls into the other.
+
+## Site
+
+`site/` is a local review page of everything above, never hosted: it draws unreleased marks, which
+no surface may show, so it stays off every deploy, and every page carries `noindex`. `bun run dev`
+serves it at http://127.0.0.1:4327 (http://testimonials.localhost behind the shared Caddy setup):
+the quotes at `/`, the marks at `/marks/`, the catalog at `/catalog/`. A `never` mark is listed
+without its drawing. The site reads the data through the package's own exports and the files by
+glob, so it needs no copy. `bun run build` writes `site/dist/` for the gate. `check:colours` scans
+`site/` alone: the marks carry their owners' colours. Every component in `site/src/components/`
+has a story in `site/catalog/stories/` (`site/catalog/coverage.test.ts`), each picking its entry by
+the state it shows, never by name.
 
 ## Checks
 

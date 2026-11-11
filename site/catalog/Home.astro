@@ -1,0 +1,99 @@
+---
+// The catalog's home: the component tiles, then one tile per brand element the pages use, drawn
+// with brand's Element tile. brand-elements.json lists the elements; brand-elements measures every
+// tile against brand's rule and fails on a used element without one.
+import Element from "@hackersandwizards/brand/Element.astro";
+import Home from "@hackersandwizards/scaffolding/catalog/Home.astro";
+import ThemeToggle from "@hackersandwizards/brand/expert/components/ThemeToggle.astro";
+import { mark, quote } from "./stories/entries";
+
+const allowed = mark("allowed", (m) => m.surface === "allowed");
+const sample = quote("with an English quote", (t) => Boolean(t.quote.en));
+---
+
+<Home>
+  <ThemeToggle slot="nav" />
+  <h3>Brand elements</h3>
+  <p>
+    Each element as a page of this site draws it. A part of its own fails the gate's element check.
+  </p>
+  <div class="mt-4 grid gap-4 sm:grid-cols-2">
+    <Element name="card" note="A mark on the marks page">
+      <div class="hw-card max-w-60 [--hw-card-pad:1rem]">
+        <p class="font-medium">{allowed.name}</p>
+      </div>
+    </Element>
+    <Element name="pill" note="A mark's surface, a quote's source">
+      <p class="flex flex-wrap gap-1.5">
+        <span class="hw-pill" data-surface="allowed">
+          Allowed
+        </span>
+        <span class="hw-pill" data-tone="neutral">
+          From a feedback mail
+        </span>
+        <span class="hw-pill" data-gap>
+          Missing: date
+        </span>
+      </p>
+    </Element>
+    <Element name="quote" note="A quote in one locale">
+      <blockquote class="hw-quote" lang="en">
+        <p>{sample.quote.en}</p>
+      </blockquote>
+    </Element>
+    <Element name="label" note="A quote's locale">
+      <p class="hw-label" data-tone="muted">
+        English
+      </p>
+    </Element>
+    <Element name="facts" note="A mark's slug and file">
+      <dl class="hw-facts text-small">
+        <div>
+          <dt class="hw-label" data-tone="muted">
+            Slug
+          </dt>
+          <dd>{allowed.slug}</dd>
+        </div>
+      </dl>
+    </Element>
+    <Element name="link" note="The quoted person's profile">
+      <p>
+        <a class="hw-link" href="/">
+          {sample.person.name}
+        </a>
+      </p>
+    </Element>
+    <Element name="field" note="The text field inside the search">
+      <input type="text" class="hw-field" placeholder="Find a name" aria-label="Find a name" />
+    </Element>
+    <Element name="search" note="Find a name, company or word">
+      <div class="hw-search">
+        <input type="search" class="hw-field" placeholder="Find a name" aria-label="Find a name" />
+      </div>
+    </Element>
+    <Element name="button" note="Send the search">
+      <button type="button" class="hw-button" data-variant="secondary">
+        Search
+      </button>
+    </Element>
+    <Element name="form-field" note="A facet's legend over its values">
+      <fieldset class="hw-form-field">
+        <legend class="hw-form-label">Mark</legend>
+        <p class="text-small text-muted">All, allowed, unreleased or none</p>
+      </fieldset>
+    </Element>
+    <Element name="choice" note="One value of a facet">
+      <div class="hw-choices" role="group" aria-label="Mark">
+        <label class="hw-choice">
+          <input type="radio" name="mark" value="" checked /> All
+        </label>
+        <label class="hw-choice">
+          <input type="radio" name="mark" value="allowed" /> Allowed
+        </label>
+      </div>
+    </Element>
+    <Element name="focus-ring" note="Focus the link">
+      <a href="/">Testimonials</a>
+    </Element>
+  </div>
+</Home>
