@@ -119,11 +119,15 @@ test("no SVG mark carries active content or loads anything", () => {
 // A surface inlines the shown marks into one page, where a mark's stylesheet, classes and ids reach
 // the rest.
 test("a shown SVG mark carries no stylesheet, no class and no id another shown mark uses", () => {
-  const files = [...new Set(shownMarks.map((mark) => mark.file))].filter((f) => f.endsWith(".svg"));
-  const ids = files.flatMap((file) => [...new Set(read(file).match(/(?<=\sid=["'])[^"']*/g))]);
+  const svgs = [...new Set(shownMarks.map((mark) => mark.file))]
+    .filter((file) => file.endsWith(".svg"))
+    .map((file) => ({ file, text: read(file) }));
+  const where = (pattern: RegExp) =>
+    svgs.filter(({ text }) => pattern.test(text)).map(({ file }) => file);
+  const ids = svgs.flatMap(({ text }) => [...new Set(text.match(/(?<=\sid\s*=\s*["'])[^"']*/gi))]);
   expect({
-    styled: files.filter((file) => read(file).includes("<style")),
-    classed: files.filter((file) => /\sclass=/.test(read(file))),
+    styled: where(/<style/i),
+    classed: where(/\sclass\s*=/i),
     shared: ids.filter((id, i) => ids.indexOf(id) !== i),
   }).toEqual({ styled: [], classed: [], shared: [] });
 });

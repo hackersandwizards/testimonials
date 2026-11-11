@@ -36,9 +36,9 @@ export const markSvg = (mark: Mark) => {
   return inline
     .get(mark.file)!
     .replace(/(<svg\b[^>]*?)\s+class="[^"]*"/, "$1")
-    .replaceAll(/\bid="([^"]+)"/g, `id="${prefix}$1"`)
-    .replaceAll(/url\(#([^)]+)\)/g, `url(#${prefix}$1)`)
-    .replaceAll(/href="#([^"]+)"/g, `href="#${prefix}$1"`);
+    .replaceAll(/\bid=(["'])/g, `id=$1${prefix}`)
+    .replaceAll(/url\((["']?)#/g, `url($1#${prefix}`)
+    .replaceAll(/href=(["'])#/g, `href=$1#${prefix}`);
 };
 export const portraitUrl = (t: Testimonial) => portraitUrls.get(t.person.portrait)!;
 

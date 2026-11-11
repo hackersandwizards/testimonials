@@ -9,7 +9,6 @@ interface Props {
 const { mark, row } = Astro.props;
 const height = Math.round(mark.scale * row * 10) / 10;
 const svg = inlined(mark) && markSvg(mark);
-const width = Math.round((height * mark.size.width) / mark.size.height);
 ---
 
 {svg ? (
@@ -25,8 +24,8 @@ const width = Math.round((height * mark.size.width) / mark.size.height);
     class="block max-w-full object-contain"
     src={markUrl(mark)}
     alt={mark.name}
-    width={width}
-    height={Math.round(height)}
+    width={mark.size.width}
+    height={mark.size.height}
     style={`height: ${height}px; width: auto`}
     loading="lazy"
     decoding="async"
