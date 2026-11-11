@@ -34,7 +34,8 @@ function frame({ data, info: { width, height, channels } }: Pixels, svg: boolean
 }
 
 test("every mark is tight on a transparent ground, and its size and scale are current", async () => {
-  const [found, wanted] = [[] as object[], [] as object[]];
+  const found: object[] = [];
+  const wanted: object[] = [];
   for (const { file, surface, ownTile, size, scale: stored } of marks) {
     const mark = await render(file);
     const { tight, ground } = frame(mark, file.endsWith(".svg"));
@@ -58,15 +59,22 @@ test("an opaque tile with one cut corner does not count as a transparent ground"
   expect({ tight, transparent: ground >= GROUND }).toEqual({ tight: true, transparent: false });
 });
 
-// Surfaces inline SVG marks into their pages, and the marks come from third-party sites. No mark
-// needs a character reference or a CSS escape, and either can spell a load the patterns miss.
-const active =
-  /<([\w.-]+:)?(script|foreignObject|set\b|animate|image\b|iframe|embed|object)|<!ENTITY|[\s/"']on[a-z]+\s*=|javascript:|@import|\bhref\s*=(?!\s*["']?\s*#)|url\((?!\s*["']?\s*#)|image-set\s*\(|&(?!(amp|lt|gt|quot|apos);)|\\/i;
+// Surfaces inline SVG marks into their pages, and the marks come from third-party sites. The
+// elements are the ones the marks use: a new one joins after a look at what it can run or load. No
+// mark needs a character reference or a CSS escape, and either can spell a load the patterns miss.
+const ELEMENTS = new Set(
+  `svg g path stop rect defs polygon clipPath linearGradient style use title polyline mask circle
+  text desc sodipodi:namedview`.split(/\s+/),
+);
+const loads =
+  /<!ENTITY|[\s/"']on[a-z]+\s*=|javascript:|@import|\bhref\s*=(?!\s*["']?\s*#)|url\((?!\s*["']?\s*#)|image-set\s*\(|&(?!(amp|lt|gt|quot|apos);)|\\/i;
+const unsafe = (svg: string) =>
+  loads.test(svg) || [...svg.matchAll(/<([\w.:-]+)/g)].some(([, name]) => !ELEMENTS.has(name));
 
 test("no SVG mark carries active content or loads anything", () => {
   const svgs = marks.map((mark) => mark.file).filter((file) => file.endsWith(".svg"));
   const hits = svgs.filter((file) =>
-    active.test(readFileSync(join(import.meta.dir, "../marks", file), "utf8")),
+    unsafe(readFileSync(join(import.meta.dir, "../marks", file), "utf8")),
   );
   expect(hits).toEqual([]);
   const planted = [
@@ -94,8 +102,8 @@ test("no SVG mark carries active content or loads anything", () => {
     'style="fill:&#117;rl(https://example.com/x)"',
     '<style>&commat;import "https://example.com/a.css";</style>',
   ];
-  expect(planted.filter((svg) => !active.test(svg))).toEqual([]);
-  expect(active.test(`<use href="#a"/><path fill="url(#g)"/><path fill="url('#g')"/>`)).toBe(false);
-  expect(active.test('<use href = " #a"/><path fill="url( #g)"/>')).toBe(false);
-  expect(active.test("<title>A &amp; B &lt;C&gt;</title>")).toBe(false);
+  expect(planted.filter((svg) => !unsafe(svg))).toEqual([]);
+  expect(unsafe(`<use href="#a"/><path fill="url(#g)"/><path fill="url('#g')"/>`)).toBe(false);
+  expect(unsafe('<use href = " #a"/><path fill="url( #g)"/>')).toBe(false);
+  expect(unsafe("<title>A &amp; B &lt;C&gt;</title>")).toBe(false);
 });
