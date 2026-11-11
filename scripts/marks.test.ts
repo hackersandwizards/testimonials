@@ -58,9 +58,10 @@ test("an opaque tile with one cut corner does not count as a transparent ground"
   expect({ tight, transparent: ground >= GROUND }).toEqual({ tight: true, transparent: false });
 });
 
-// Surfaces inline SVG marks into their pages, and the marks come from third-party sites.
+// Surfaces inline SVG marks into their pages, and the marks come from third-party sites. No mark
+// needs a character reference or a CSS escape, and either can spell a load the patterns miss.
 const active =
-  /<([\w.-]+:)?(script|foreignObject|set\b|animate|image\b|iframe|embed|object)|<!ENTITY|[\s/"']on[a-z]+\s*=|javascript:|@import|\bhref\s*=(?!\s*["']?\s*#)|url\((?!\s*["']?\s*#)|image-set\s*\(/i;
+  /<([\w.-]+:)?(script|foreignObject|set\b|animate|image\b|iframe|embed|object)|<!ENTITY|[\s/"']on[a-z]+\s*=|javascript:|@import|\bhref\s*=(?!\s*["']?\s*#)|url\((?!\s*["']?\s*#)|image-set\s*\(|&(?!(amp|lt|gt|quot|apos);)|\\/i;
 
 test("no SVG mark carries active content or loads anything", () => {
   const svgs = marks.map((mark) => mark.file).filter((file) => file.endsWith(".svg"));
@@ -87,8 +88,14 @@ test("no SVG mark carries active content or loads anything", () => {
     "<s:foreignObject>",
     '<s:animate attributeName="href" values="data:text/html,x"/>',
     '<style>path{background-image:image-set("https://example.com/a.png" 1x)}</style>',
+    '<style>&#64;import "https://example.com/a.css";</style>',
+    "<style>@\\69mport 'https://example.com/a.css';</style>",
+    'style="fill:u\\72l(https://example.com/x)"',
+    'style="fill:&#117;rl(https://example.com/x)"',
+    '<style>&commat;import "https://example.com/a.css";</style>',
   ];
   expect(planted.filter((svg) => !active.test(svg))).toEqual([]);
   expect(active.test(`<use href="#a"/><path fill="url(#g)"/><path fill="url('#g')"/>`)).toBe(false);
   expect(active.test('<use href = " #a"/><path fill="url( #g)"/>')).toBe(false);
+  expect(active.test("<title>A &amp; B &lt;C&gt;</title>")).toBe(false);
 });
