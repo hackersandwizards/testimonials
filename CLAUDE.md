@@ -16,8 +16,10 @@ founders' choice. The approval behind each entry lives in Company OS, never here
   `fcbe40c1` records it; the order test pins it. A mark turning `allowed` moves into the lead
   between neighbours of other industries.
 - `marks/`: each file cropped to its drawn edge on a transparent ground, which
-  `scripts/marks.test.ts` gates (`ownTile` entries excepted while `unreleased`). After adding or
-  replacing one, `bun run marks:measure` writes every `size` and `scale`.
+  `scripts/marks.test.ts` gates (`ownTile` entries excepted while `unreleased`). The same test
+  holds an SVG to the elements it lists, with no `<!` declaration, `&` reference, CSS escape or
+  external load, and an `allowed` SVG to no `<style>` and no id another `allowed` mark uses. After
+  adding or replacing one, `bun run marks:measure` writes every `size` and `scale`.
 - `data/testimonials.json`: every quote as published, both locales. Change a quote only from its
   author's own words, and keep Moonfare's figures to the ones in the quote.
 - `portraits/`: one square WebP per quoted person, cut from the largest real photo of them that

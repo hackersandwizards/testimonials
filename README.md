@@ -47,7 +47,7 @@ carries `surface`:
 | Value        | Meaning                                                                                                     |
 | ------------ | ----------------------------------------------------------------------------------------------------------- |
 | `allowed`    | Cleared by the company and chosen by h&w: a rendered surface may show it. `shownMarks` holds exactly these. |
-| `unreleased` | Not yet chosen by h&w, or not yet cleared by the company. No surface shows it.                              |
+| `unreleased` | Not chosen by h&w. No surface shows it.                                                                     |
 | `never`      | No surface shows it, whatever else changes.                                                                 |
 
 A deny check, scaffolding's `check-confidential never`, takes the names h&w never shows from the
