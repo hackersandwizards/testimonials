@@ -33,8 +33,6 @@ function frame({ data, info: { width, height, channels } }: Pixels, svg: boolean
   };
 }
 
-// A mark drawing its own tile has no transparent ground, and a surface may show it only from a
-// transparent source.
 test("every mark is tight on a transparent ground, and its size and scale are current", async () => {
   for (const { file, surface, ownTile, size, scale: stored } of marks) {
     const mark = await render(file);
