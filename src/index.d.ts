@@ -1,8 +1,5 @@
-/**
- * Whether a rendered surface may show the entry: `allowed` it may (the company cleared it and h&w
- * chose it), `unreleased` it may not yet (h&w has not chosen it, or the company has not cleared
- * it), `never` it may not at all. The data itself is public either way.
- */
+/** Whether a rendered surface may show the entry; the README's "What a surface may show" states
+ * each value. The data itself is public either way. */
 export type Surface = "allowed" | "unreleased" | "never";
 
 export interface Mark {

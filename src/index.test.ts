@@ -77,14 +77,12 @@ describe("testimonials", () => {
     const read = await Promise.all(
       testimonials.map(async ({ person: { portrait } }) => {
         const { format, width, height } = await sharp(`${root}portraits/${portrait}`).metadata();
-        return {
-          portrait,
-          webp: format === "webp" && portrait.endsWith(".webp"),
-          square: width === height,
-        };
+        return { portrait, format, square: width === height };
       }),
     );
-    expect(read.filter(({ webp, square }) => !webp || !square)).toEqual([]);
+    expect(
+      read.filter((p) => p.format !== "webp" || !p.portrait.endsWith(".webp") || !p.square),
+    ).toEqual([]);
   });
 
   test("every file in portraits/ belongs to a testimonial", () => {

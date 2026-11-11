@@ -44,7 +44,9 @@ describe("retouch-portrait", () => {
       noiseSigma(noisy, side, side) * 0.9,
     );
     const ramp = Uint8Array.from({ length: 256 * 4 * 3 }, (_, i) => Math.floor(i / 3) % 256);
-    expect(new Set(denoise(ramp, 256, 4)).size).toBeGreaterThanOrEqual(250);
+    const smooth = denoise(ramp, 256, 4);
+    expect(new Set(smooth).size).toBeGreaterThanOrEqual(250);
+    expect(Math.max(...smooth.map((v, i) => Math.abs(v - ramp[i])))).toBeLessThanOrEqual(2);
   });
 
   test("crops to a square master and caps it at 1760 px", async () => {

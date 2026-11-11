@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { marks } from "../src/index.js";
+import { marks, shownMarks } from "../src/index.js";
 import { type Pixels, render, RIM, scale } from "./marks";
 
 // Below this share of transparent edge pixels a mark sits on its own tile: a cut or rounded corner
@@ -60,23 +60,25 @@ test("an opaque tile with one cut corner does not count as a transparent ground"
 });
 
 // Surfaces inline SVG marks into their pages, and the marks come from third-party sites. The
-// elements are the ones the marks use: a new one joins after a look at what it can run or load. No
-// mark needs a character reference or a CSS escape, and either can spell a load the patterns miss.
+// elements are the ones the marks use: a new one joins after a look at what it can run or load.
+// Comments go first, since one can split a word the patterns look for. Any other declaration
+// (DOCTYPE, ATTLIST, CDATA), reference or CSS escape fails: no mark needs one, and each can add or
+// spell what the patterns miss.
 const ELEMENTS = new Set(
   `svg g path stop rect defs polygon clipPath linearGradient style use title polyline mask circle
   text desc sodipodi:namedview`.split(/\s+/),
 );
 const loads =
-  /<!ENTITY|[\s/"']on[a-z]+\s*=|javascript:|@import|\bhref\s*=(?!\s*["']?\s*#)|url\((?!\s*["']?\s*#)|image-set\s*\(|&(?!(amp|lt|gt|quot|apos);)|\\/i;
-const unsafe = (svg: string) =>
-  loads.test(svg) || [...svg.matchAll(/<([\w.:-]+)/g)].some(([, name]) => !ELEMENTS.has(name));
+  /<!|[\s/"']on[a-z]+\s*=|javascript:|@import|\bhref\s*=(?!\s*["']?\s*#)|url\((?!\s*["']?\s*#)|image-set\s*\(|&|\\/i;
+const unsafe = (file: string) => {
+  const svg = file.replace(/<!--[\s\S]*?-->/g, "");
+  return loads.test(svg) || [...svg.matchAll(/<([\w.:-]+)/g)].some(([, n]) => !ELEMENTS.has(n));
+};
+const read = (file: string) => readFileSync(join(import.meta.dir, "../marks", file), "utf8");
 
 test("no SVG mark carries active content or loads anything", () => {
   const svgs = marks.map((mark) => mark.file).filter((file) => file.endsWith(".svg"));
-  const hits = svgs.filter((file) =>
-    unsafe(readFileSync(join(import.meta.dir, "../marks", file), "utf8")),
-  );
-  expect(hits).toEqual([]);
+  expect(svgs.filter((file) => unsafe(read(file)))).toEqual([]);
   const planted = [
     "<script>alert(1)</script>",
     '<g onload="x()">',
@@ -101,9 +103,26 @@ test("no SVG mark carries active content or loads anything", () => {
     'style="fill:u\\72l(https://example.com/x)"',
     'style="fill:&#117;rl(https://example.com/x)"',
     '<style>&commat;import "https://example.com/a.css";</style>',
+    '<!DOCTYPE svg [<!ATTLIST svg onload CDATA "alert(1)">]><svg/>',
+    '<!DOCTYPE svg [<!ATTLIST use xlink:href CDATA "https://example.com/s.svg#a">]>',
+    '<!DOCTYPE svg SYSTEM "https://example.com/x.dtd"><svg/>',
+    '<style>@imp<!---->ort "https://example.com/a.css";</style>',
+    '<style>@imp<![CDATA[ort "https://example.com/a.css";]]></style>',
+    "<style>path{fill:ur<!---->l(https://example.com/x)}</style>",
+    "<style>&lt;script&gt;alert(1)&lt;/script&gt;</style>",
   ];
   expect(planted.filter((svg) => !unsafe(svg))).toEqual([]);
   expect(unsafe(`<use href="#a"/><path fill="url(#g)"/><path fill="url('#g')"/>`)).toBe(false);
   expect(unsafe('<use href = " #a"/><path fill="url( #g)"/>')).toBe(false);
-  expect(unsafe("<title>A &amp; B &lt;C&gt;</title>")).toBe(false);
+  expect(unsafe("<!-- Generator: x --><title>A</title>")).toBe(false);
+});
+
+// A surface inlines the shown marks into one page, where a mark's stylesheet and ids reach the rest.
+test("a shown SVG mark carries no stylesheet and no id another shown mark uses", () => {
+  const files = [...new Set(shownMarks.map((mark) => mark.file))].filter((f) => f.endsWith(".svg"));
+  const ids = files.flatMap((file) => [...new Set(read(file).match(/(?<=\sid=")[^"]*/g))]);
+  expect({
+    styled: files.filter((file) => read(file).includes("<style")),
+    shared: ids.filter((id, i) => ids.indexOf(id) !== i),
+  }).toEqual({ styled: [], shared: [] });
 });
