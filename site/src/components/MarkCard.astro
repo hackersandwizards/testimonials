@@ -62,23 +62,24 @@ const row = 48;
       <div
         class="grid h-24 place-items-center rounded-brand bg-night p-3 text-night-ink"
         data-theme="dark"
+        aria-hidden="true"
       >
         <MarkImage mark={mark} row={row} />
       </div>
     </div>
   )}
-  <dl class="hw-facts grid grid-cols-2 gap-x-4 gap-y-3 text-small">
+  <dl class="hw-facts text-small" data-columns="2">
     <div>
       <dt class="hw-label" data-tone="muted">
         Slug
       </dt>
-      <dd class="break-all">{mark.slug}</dd>
+      <dd>{mark.slug}</dd>
     </div>
     <div>
       <dt class="hw-label" data-tone="muted">
         File
       </dt>
-      <dd class="break-all">{mark.file}</dd>
+      <dd>{mark.file}</dd>
     </div>
     <div>
       <dt class="hw-label" data-tone="muted">
@@ -106,9 +107,7 @@ const row = 48;
       <dt class="hw-label" data-tone="muted">
         Source
       </dt>
-      <dd class:list={["[overflow-wrap:anywhere]", !mark.source && "text-muted"]}>
-        {mark.source ?? "Not recorded"}
-      </dd>
+      <dd class:list={[!mark.source && "text-muted"]}>{mark.source ?? "Not recorded"}</dd>
     </div>
   </dl>
 </li>

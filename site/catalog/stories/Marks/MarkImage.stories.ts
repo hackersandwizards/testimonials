@@ -12,4 +12,4 @@ const markImage = (what: string, test: Parameters<typeof mark>[1]) => ({
 
 export const Svg = markImage("an SVG", (m) => m.file.endsWith(".svg") && !inlined(m));
 export const Raster = markImage("a raster", (m) => !m.file.endsWith(".svg"));
-export const CurrentColor = markImage("filling with currentColor", (m) => Boolean(inlined(m)));
+export const CurrentColor = markImage("filling with currentColor", inlined);
