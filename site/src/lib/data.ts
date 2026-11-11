@@ -16,7 +16,7 @@ const portraitUrls = urls(
     eager: true,
   }),
 );
-// The README: inside <img> a currentColor mark renders black, so a page inlines it and sets color.
+// docs/marks.md: inside <img> a currentColor mark renders black, so a page inlines it and sets color.
 const svgText = import.meta.glob<string>("../../../marks/*.svg", {
   query: "?raw",
   import: "default",

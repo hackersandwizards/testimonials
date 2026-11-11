@@ -5,13 +5,28 @@ its person, role, company and portrait, and every company mark we hold. The webs
 banners, the onepagers, documents and decks take them from here, so a quote or a logo changes in
 one place.
 
-## Use it
+| You want                               | Go to                                                     |
+| -------------------------------------- | --------------------------------------------------------- |
+| quotes and marks in your repository    | [Install](#install) and [Use it](#use-it)                 |
+| to draw a mark at the right size       | [docs/marks.md](docs/marks.md)                            |
+| to show a quote or cut it to fit       | [docs/marks.md](docs/marks.md#surfaces-groups-and-quotes) |
+| to know which marks a page may show    | [What a surface may show](#what-a-surface-may-show)       |
+| every quote and mark on screen         | [Review it](#review-it)                                   |
+| to add or change a quote or a mark     | [CLAUDE.md](CLAUDE.md)                                    |
+| to release a change                    | [CLAUDE.md](CLAUDE.md#release)                            |
+| to reuse a quote, a portrait or a mark | [Licence](#licence)                                       |
 
-Pin the newest tag:
+## Install
 
-```sh
-bun add github:hackersandwizards/testimonials#vX.Y.Z
+Add the dependency in exactly this form, pinned to the newest tag
+(`git ls-remote --tags https://github.com/hackersandwizards/testimonials.git` lists them):
+
+```json
+"@hackersandwizards/testimonials":
+  "git+https://github.com/hackersandwizards/testimonials.git#v<version>"
 ```
+
+## Use it
 
 ```ts
 import { shownMarks, testimonials } from "@hackersandwizards/testimonials";
@@ -28,17 +43,6 @@ Python. Images: `/marks/<file>` and `/portraits/<file>`.
 Each mark carries `scale`, the share of a logo row's height at which it reads as heavy as the
 others, and `size`, the file's own width and height in pixels. `shownMarks` comes in display order.
 
-## Rendering
-
-- Set a mark's height to `scale` times the row height and let the width follow. `size` gives the
-  aspect ratio and a raster's `<img width height>`; an SVG's `size` is read at 72 dpi and may be
-  tiny.
-- Some SVG marks fill with `currentColor`: inside `<img>` they render black, and to colour them a
-  page inlines the SVG and sets `color`.
-- `person.role` holds the role as published, in English only.
-- `import.meta.resolve` returns a `file://` URL. A build step reads the file from there; a page
-  needs the file copied into its assets or imported through its bundler.
-
 ## What a surface may show
 
 Everything here is public, but not everything may appear on a page, a deck or a banner. Each mark
@@ -54,44 +58,24 @@ A deny check, scaffolding's `check-confidential never`, takes the names h&w neve
 never section of the private list `hackersandwizards/confidential-terms`, which Company OS builds
 from the companies whose public-reference state is `never` or `declined`.
 
-The clearance itself is recorded in Company OS, not here. `surface` belongs to the entry, not its
-file. Where entries of one group share a file, a surface may show it once one of them is `allowed`,
-under that entry's `name` only: key by `slug`.
-
-A mark with `ownTile: true` draws on its own opaque tile and stays `unreleased` until a
-transparent source replaces it. A mark with `onepager: false` stays off generated onepagers. A
-testimonial names its company by `slug`: show a logo beside it only where `shownMarks` holds that
-slug. Quote in the locale you render, whole or cut to its first sentences where the space holds no
-more: split with `Intl.Segmenter` in that locale, never inside a sentence, never skipping one, and
-never where a dropped sentence qualifies a kept one. Never add figures a quote does not carry.
+How to draw a mark, share a file within a group and cut a quote: [docs/marks.md](docs/marks.md).
 
 ## Review it
 
-`bun install`, then `bun run dev` and open http://127.0.0.1:4327: every quote in both languages
-with its person, portrait, mark and what it lacks at `/`, every mark on a light and a night ground
-at `/marks/`, the page's components at `/catalog/`. It runs on your machine only and is never
-hosted, as it draws marks no surface may show. With the shared Caddy setup, add this block to the
-Caddyfile and open http://testimonials.localhost:
+With [Bun](https://bun.sh) installed, in a clone of this repository: `bun install`, then
+`bun run dev` and open http://127.0.0.1:4327: every quote in both languages with its person,
+portrait, mark and what it lacks at `/`, every mark on a light and a night ground at `/marks/`, the
+page's components at `/catalog/`. It runs on your machine only and is never hosted, as it draws
+marks no surface may show. With the [shared Caddy setup](https://github.com/hackersandwizards/practitioners/blob/main/docs/local-urls.md),
+open http://testimonials.localhost.
 
-```caddyfile
-http://testimonials.localhost {
-    bind 127.0.0.1
-    reverse_proxy 127.0.0.1:4327
-}
-```
-
-## Layout
-
-```
-data/marks.json          one entry per company mark: slug, name, file, surface, scale, size,
-                         ownTile, onepager, source
-data/testimonials.json   one entry per quote: person, role, portrait, company, quote EN and DE
-marks/                   the mark files
-portraits/               one portrait per quoted person
-scripts/retouch-portrait.ts  the retouch every portrait goes through: bun run retouch:portrait
-scripts/marks.ts         writes each mark's size and scale: bun run marks:measure
-src/index.js             the data and shownMarks; src/index.d.ts holds the types
-site/                    the local review page: bun run dev
-```
+## Work on the package
 
 `bun install`, then `bun run check` runs the full gate. A release is a version bump and a tag.
+The rules for changing data, marks and portraits are in [CLAUDE.md](CLAUDE.md).
+
+## Licence
+
+The code is under the [PolyForm Strict License 1.0.0](LICENSE). A quote stays its author's, a
+portrait its person's and its photographer's, and every company name and mark is a trademark of
+its owner. Maintained by hackers&wizards GmbH.
