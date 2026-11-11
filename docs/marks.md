@@ -6,7 +6,7 @@
   aspect ratio and a raster's `<img width height>`; an SVG's `size` is read at 72 dpi and may be
   tiny.
 - Some SVG marks fill with `currentColor`: inside `<img>` they render black, and to colour them a
-  page inlines the SVG and sets `color`.
+  page inlines the SVG and sets `color`. A page inlining one mark more than once prefixes its ids.
 - `person.role` holds the role as published, in English only.
 - `import.meta.resolve` returns a `file://` URL. A build step reads the file from there; a page
   needs the file copied into its assets or imported through its bundler.

@@ -60,18 +60,25 @@ test("an opaque tile with one cut corner does not count as a transparent ground"
 
 // Surfaces inline SVG marks into their pages, and the marks come from third-party sites. The
 // elements are the ones the marks use: a new one joins after a look at what it can run or load.
-// Comments go first, since one can split a word the patterns look for. Any other declaration
-// (DOCTYPE, ATTLIST, CDATA), reference or CSS escape fails: no mark needs one, and each can add or
-// spell what the patterns miss.
+// The file passes with its comments and without: one can split a word the patterns look for, and
+// HTML ends one where XML does not (<!-->, --!>, inside <style>). Any other declaration (DOCTYPE,
+// ATTLIST, CDATA), reference or CSS escape fails: no mark needs one, and each can add or spell what
+// the patterns miss.
 const ELEMENTS = new Set(
   `svg g path stop rect defs polygon clipPath linearGradient style use title polyline mask circle
   text desc sodipodi:namedview`.split(/\s+/),
 );
 const loads =
-  /<!|[\s/"']on[a-z]+\s*=|javascript:|@import|\bhref\s*=(?!\s*["']?\s*#)|url\((?!\s*["']?\s*#)|image-set\s*\(|&|\\/i;
+  /[\s/"']on[a-z]+\s*=|javascript:|@import|\bhref\s*=(?!\s*["']?\s*#)|url\((?!\s*["']?\s*#)|image-set\s*\(|&|\\/i;
 const unsafe = (file: string) => {
   const svg = file.replace(/<!--[\s\S]*?-->/g, "");
-  return loads.test(svg) || [...svg.matchAll(/<([\w.:-]+)/g)].some(([, n]) => !ELEMENTS.has(n));
+  return (
+    svg.includes("<!") ||
+    [svg, file].some(
+      (text) =>
+        loads.test(text) || [...text.matchAll(/<([\w.:-]+)/g)].some(([, n]) => !ELEMENTS.has(n)),
+    )
+  );
 };
 const read = (file: string) => readFileSync(join(import.meta.dir, "../marks", file), "utf8");
 
@@ -109,6 +116,10 @@ test("no SVG mark carries active content or loads anything", () => {
     '<style>@imp<![CDATA[ort "https://example.com/a.css";]]></style>',
     "<style>path{fill:ur<!---->l(https://example.com/x)}</style>",
     "<style>&lt;script&gt;alert(1)&lt;/script&gt;</style>",
+    "<!--><script>alert(1)</script>-->",
+    "<!---><script>alert(1)</script>-->",
+    "<!-- x --!><script>alert(1)</script>-->",
+    "<title><style><!--</style><script>alert(1)</script>--></style></title>",
   ];
   expect(planted.filter((svg) => !unsafe(svg))).toEqual([]);
   expect(unsafe(`<use href="#a"/><path fill="url(#g)"/><path fill="url('#g')"/>`)).toBe(false);
@@ -116,12 +127,14 @@ test("no SVG mark carries active content or loads anything", () => {
   expect(unsafe("<!-- Generator: x --><title>A</title>")).toBe(false);
 });
 
-// A surface inlines the shown marks into one page, where a mark's stylesheet and ids reach the rest.
-test("a shown SVG mark carries no stylesheet and no id another shown mark uses", () => {
+// A surface inlines the shown marks into one page, where a mark's stylesheet, classes and ids reach
+// the rest.
+test("a shown SVG mark carries no stylesheet, no class and no id another shown mark uses", () => {
   const files = [...new Set(shownMarks.map((mark) => mark.file))].filter((f) => f.endsWith(".svg"));
   const ids = files.flatMap((file) => [...new Set(read(file).match(/(?<=\sid=["'])[^"']*/g))]);
   expect({
     styled: files.filter((file) => read(file).includes("<style")),
+    classed: files.filter((file) => /\sclass=/.test(read(file))),
     shared: ids.filter((id, i) => ids.indexOf(id) !== i),
-  }).toEqual({ styled: [], shared: [] });
+  }).toEqual({ styled: [], classed: [], shared: [] });
 });
