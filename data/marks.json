@@ -399,7 +399,7 @@
       "height": 40
     },
     "onepager": false,
-    "source": "website public/logos/client/stashaway.svg, the testimonial logo; viewBox cropped to the drawn mark"
+    "source": "website public/logos/client/stashaway.svg, the testimonial logo, from the header of https://www.stashaway.sg/ with fills set to black; viewBox cropped to the drawn mark"
   },
   {
     "slug": "tessl",

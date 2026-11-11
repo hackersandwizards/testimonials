@@ -60,26 +60,16 @@ test("an opaque tile with one cut corner does not count as a transparent ground"
 
 // Surfaces inline SVG marks into their pages, and the marks come from third-party sites. The
 // elements are the ones the marks use: a new one joins after a look at what it can run or load.
-// The file passes with its comments and without: one can split a word the patterns look for, and
-// HTML ends one where XML does not (<!-->, --!>, inside <style>). Any other declaration (DOCTYPE,
-// ATTLIST, CDATA), reference or CSS escape fails: no mark needs one, and each can add or spell what
-// the patterns miss.
+// A comment, declaration (DOCTYPE, ATTLIST, CDATA), reference or CSS escape fails: no mark needs
+// one, and each can add or spell what the patterns miss; HTML also ends a comment where XML does not.
 const ELEMENTS = new Set(
   `svg g path stop rect defs polygon clipPath linearGradient style use title polyline mask circle
   text desc sodipodi:namedview`.split(/\s+/),
 );
 const loads =
-  /[\s/"']on[a-z]+\s*=|javascript:|@import|\bhref\s*=(?!\s*["']?\s*#)|url\((?!\s*["']?\s*#)|image-set\s*\(|&|\\/i;
-const unsafe = (file: string) => {
-  const svg = file.replace(/<!--[\s\S]*?-->/g, "");
-  return (
-    svg.includes("<!") ||
-    [svg, file].some(
-      (text) =>
-        loads.test(text) || [...text.matchAll(/<([\w.:-]+)/g)].some(([, n]) => !ELEMENTS.has(n)),
-    )
-  );
-};
+  /<!|[\s/"']on[a-z]+\s*=|javascript:|@import|\bhref\s*=(?!\s*["']?\s*#)|url\((?!\s*["']?\s*#)|image-set\s*\(|&|\\/i;
+const unsafe = (svg: string) =>
+  loads.test(svg) || [...svg.matchAll(/<([\w.:-]+)/g)].some(([, n]) => !ELEMENTS.has(n));
 const read = (file: string) => readFileSync(join(import.meta.dir, "../marks", file), "utf8");
 
 test("no SVG mark carries active content or loads anything", () => {
@@ -124,7 +114,6 @@ test("no SVG mark carries active content or loads anything", () => {
   expect(planted.filter((svg) => !unsafe(svg))).toEqual([]);
   expect(unsafe(`<use href="#a"/><path fill="url(#g)"/><path fill="url('#g')"/>`)).toBe(false);
   expect(unsafe('<use href = " #a"/><path fill="url( #g)"/>')).toBe(false);
-  expect(unsafe("<!-- Generator: x --><title>A</title>")).toBe(false);
 });
 
 // A surface inlines the shown marks into one page, where a mark's stylesheet, classes and ids reach

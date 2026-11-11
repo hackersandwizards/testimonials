@@ -107,7 +107,7 @@ const row = 48;
       <dt class="hw-label" data-tone="muted">
         Source
       </dt>
-      <dd class:list={[!mark.source && "text-muted"]}>{mark.source ?? "Not recorded"}</dd>
+      <dd class:list={{ "text-muted": !mark.source }}>{mark.source ?? "Not recorded"}</dd>
     </div>
   </dl>
 </li>
