@@ -1,14 +1,11 @@
 ---
-import faviconIco from "@hackersandwizards/brand/logos/favicon.ico?url";
-import faviconSvg from "@hackersandwizards/brand/logos/favicon.svg?url";
-// The site's <head> on every catalog page, inside scaffolding's: the favicon, the focus ring, noindex
-// and data-hw-night as the site's own <html> carries them (src/layouts/Layout.astro).
+// The site's <head> on every catalog page, inside scaffolding's: noindex and data-hw-night as the
+// site's own <html> carries them (src/layouts/Layout.astro). The shell leaves data-hw-night off a
+// state drawn alone while its theme still turns, so without it a dark theme drew dark elements on
+// the light ground.
 ---
 
 <meta name="robots" content="noindex" />
-<link rel="icon" href={faviconIco} sizes="32x32" />
-<link rel="icon" href={faviconSvg} type="image/svg+xml" />
 <script is:inline>
-  document.documentElement.classList.add("hw-focus-ring");
   document.documentElement.setAttribute("data-hw-night", "");
 </script>

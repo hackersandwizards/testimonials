@@ -1,5 +1,5 @@
 import MarkCard from "../../../src/components/MarkCard.astro";
-import { frame, mark, markSvg } from "../entries";
+import { frame, mark, inlined } from "../entries";
 
 export default { component: MarkCard };
 
@@ -13,4 +13,4 @@ export const Allowed = markCard("allowed", (m) => m.surface === "allowed");
 export const Unreleased = markCard("unreleased", (m) => m.surface === "unreleased");
 export const Never = markCard("never shown", (m) => m.surface === "never");
 export const OwnTile = markCard("on its own tile", (m) => Boolean(m.ownTile));
-export const CurrentColor = markCard("filling with currentColor", (m) => Boolean(markSvg(m)));
+export const CurrentColor = markCard("filling with currentColor", (m) => Boolean(inlined(m)));

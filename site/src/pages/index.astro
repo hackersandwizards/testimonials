@@ -5,7 +5,7 @@ import type { FilterItem } from "@hackersandwizards/brand/elements/list-filter.t
 import ListFilter from "@hackersandwizards/brand/expert/components/ListFilter.astro";
 import Layout from "../layouts/Layout.astro";
 import TestimonialCard from "../components/TestimonialCard.astro";
-import { markOf, missing, testimonials } from "../lib/data";
+import { filterCopy, markOf, missing, splitting, testimonials } from "../lib/data";
 
 const rows = testimonials.map((t) => {
   const filter: FilterItem = {
@@ -20,48 +20,46 @@ const rows = testimonials.map((t) => {
   return { t, filter };
 });
 const items = rows.map((r) => r.filter);
-const facets = [
-  {
-    param: "source",
-    legend: "Source",
-    options: [
-      { value: "testimonial", label: "Written for publication" },
-      { value: "feedback-mail", label: "Feedback mail" },
-    ],
-  },
-  {
-    param: "original",
-    legend: "Original",
-    options: [
-      { value: "en", label: "English" },
-      { value: "de", label: "German" },
-      { value: "none", label: "Not recorded" },
-    ],
-  },
-  {
-    param: "mark",
-    legend: "Mark",
-    options: [
-      { value: "allowed", label: "Allowed" },
-      { value: "unreleased", label: "Unreleased" },
-      { value: "never", label: "Never" },
-      { value: "none", label: "None" },
-    ],
-  },
-  {
-    param: "gaps",
-    legend: "Gaps",
-    options: [
-      { value: "some", label: "Something missing" },
-      { value: "none", label: "Complete" },
-    ],
-  },
-]
-  .map((f) => ({
-    ...f,
-    options: f.options.filter((o) => items.some((i) => i.facets[f.param]?.includes(o.value))),
-  }))
-  .filter((f) => f.options.length > 1);
+const facets = splitting(
+  [
+    {
+      param: "source",
+      legend: "Source",
+      options: [
+        { value: "testimonial", label: "Written for publication" },
+        { value: "feedback-mail", label: "Feedback mail" },
+      ],
+    },
+    {
+      param: "original",
+      legend: "Original",
+      options: [
+        { value: "en", label: "English" },
+        { value: "de", label: "German" },
+        { value: "none", label: "Not recorded" },
+      ],
+    },
+    {
+      param: "mark",
+      legend: "Mark",
+      options: [
+        { value: "allowed", label: "Allowed" },
+        { value: "unreleased", label: "Unreleased" },
+        { value: "never", label: "Never" },
+        { value: "none", label: "None" },
+      ],
+    },
+    {
+      param: "gaps",
+      legend: "Gaps",
+      options: [
+        { value: "some", label: "Something missing" },
+        { value: "none", label: "Complete" },
+      ],
+    },
+  ],
+  items,
+);
 ---
 
 <Layout
@@ -86,13 +84,7 @@ const facets = [
         state={{ q: "", facets: {} }}
         facets={facets}
         count="{shown} of {total} quotes"
-        copy={{
-          all: "All",
-          clear: "Clear all",
-          empty: "No quote matches.",
-          submit: "Search",
-          filters: "Filters",
-        }}
+        copy={{ ...filterCopy, empty: "No quote matches." }}
       >
         <ul class="mt-6 grid gap-6">
           {rows.map((r) => (

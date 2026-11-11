@@ -29,7 +29,21 @@ const inline = new Map(
 );
 
 export const markUrl = (mark: Mark) => markUrls.get(mark.file)!;
-export const markSvg = (mark: Mark) => inline.get(mark.file);
+/** Whether the mark is inlined rather than drawn as an <img>. */
+export const inlined = (mark: Mark) => inline.has(mark.file);
+
+let drawn = 0;
+/** The mark's SVG for one place on a page: the root's own classes dropped, which would meet the
+ *  page's Tailwind, and every id prefixed, as a page draws a mark more than once. */
+export const markSvg = (mark: Mark) => {
+  const prefix = `mark${++drawn}-`;
+  return inline
+    .get(mark.file)!
+    .replace(/(<svg\b[^>]*?)\s+class="[^"]*"/, "$1")
+    .replaceAll(/\bid="([^"]+)"/g, `id="${prefix}$1"`)
+    .replaceAll(/url\(#([^)]+)\)/g, `url(#${prefix}$1)`)
+    .replaceAll(/href="#([^"]+)"/g, `href="#${prefix}$1"`);
+};
 export const portraitUrl = (t: Testimonial) => portraitUrls.get(t.person.portrait)!;
 
 export const surfaceLabel: Record<Mark["surface"], string> = {
@@ -42,6 +56,26 @@ export const markOf = (t: Testimonial) => marks.find((m) => m.slug === t.company
 export const quotesOf = (m: Mark) => testimonials.filter((t) => t.company.slug === m.slug);
 /** The other entries drawn from the same file, which a surface keys apart by slug. */
 export const sharing = (m: Mark) => marks.filter((o) => o.file === m.file && o.slug !== m.slug);
+
+/** Only the facets whose values each hold a row, and only those with two or more such values:
+ *  a facet with one value splits nothing. */
+export const splitting = <F extends { param: string; options: { value: string }[] }>(
+  facets: F[],
+  items: { facets: Record<string, string[]> }[],
+) =>
+  facets
+    .map((f) => ({
+      ...f,
+      options: f.options.filter((o) => items.some((i) => i.facets[f.param]?.includes(o.value))),
+    }))
+    .filter((f) => f.options.length > 1);
+
+export const filterCopy = {
+  all: "All",
+  clear: "Clear all",
+  submit: "Search",
+  filters: "Filters",
+};
 
 export const locales = [
   { key: "en", lang: "en", name: "English" },

@@ -2,7 +2,7 @@
 // A company mark as the README tells a surface to draw it: `scale` times the row's height, the width
 // following. A mark filling with currentColor is inlined and takes the ground's text colour, as an
 // <img> would draw it black; any other is an <img> sized from `size`.
-import { markSvg, markUrl, type Mark } from "../lib/data";
+import { inlined, markSvg, markUrl, type Mark } from "../lib/data";
 
 interface Props {
   mark: Mark;
@@ -11,7 +11,7 @@ interface Props {
 }
 const { mark, row } = Astro.props;
 const height = Math.round(mark.scale * row * 10) / 10;
-const svg = markSvg(mark);
+const svg = inlined(mark) && markSvg(mark);
 const width = Math.round((height * mark.size.width) / mark.size.height);
 ---
 
@@ -25,7 +25,7 @@ const width = Math.round((height * mark.size.width) / mark.size.height);
   />
 ) : (
   <img
-    class="block h-auto max-w-full"
+    class="block max-w-full object-contain"
     src={markUrl(mark)}
     alt={mark.name}
     width={width}

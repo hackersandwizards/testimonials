@@ -11,9 +11,3 @@ test("every component in src/components has a story", () => {
   expect(components.length).toBeGreaterThan(0);
   expect(names("catalog/stories/**/*.stories.ts", ".stories.ts")).toEqual(components);
 });
-
-test("the header links the catalog", async () => {
-  expect(await Bun.file(join(site, "src/layouts/Layout.astro")).text()).toContain(
-    'href: "/catalog/"',
-  );
-});

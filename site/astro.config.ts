@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import { catalog } from "@hackersandwizards/scaffolding/catalog";
+import { links } from "./src/lib/links";
 
 // A review surface only, never hosted (CLAUDE.md, Site): it draws the marks no surface may show.
 export default defineConfig({
@@ -15,15 +16,9 @@ export default defineConfig({
       head: "./catalog/Head.astro",
       home: "./catalog/Home.astro",
       serverOnly: true,
+      htmlClass: ["hw-focus-ring"],
       // The site's own links, so the catalog's header stays in the site.
-      nav: {
-        items: [
-          { name: "Quotes", href: "/" },
-          { name: "Marks", href: "/marks/" },
-          { name: "Catalog", href: "/catalog/" },
-        ],
-        current: "Catalog",
-      },
+      nav: { items: links, current: "Catalog" },
     }),
   ],
   vite: { plugins: [tailwindcss() as never] },

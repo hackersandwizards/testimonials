@@ -3,7 +3,7 @@
 import {
   markOf,
   marks,
-  markSvg,
+  inlined,
   missing,
   testimonials,
   type Mark,
@@ -21,7 +21,7 @@ export const quote = (what: string, test: (t: Testimonial) => boolean) =>
   first(testimonials, what, test);
 export const mark = (what: string, test: (m: Mark) => boolean) => first(marks, what, test);
 
-export { markOf, markSvg, missing };
+export { markOf, inlined, missing };
 
 /** The story's ground; `list` holds a card in a list as the pages do. */
 export const frame = (props: { list?: boolean } = {}) => ({ component: Frame, props });

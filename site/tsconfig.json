@@ -1,6 +1,5 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "compilerOptions": { "types": ["bun"] },
+  "extends": "@hackersandwizards/scaffolding/tsconfig/astro.json",
   "include": [".astro/types.d.ts", "src/**/*", "catalog/**/*", "astro.config.ts"],
   "exclude": ["dist"]
 }

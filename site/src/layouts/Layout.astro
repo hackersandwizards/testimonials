@@ -3,6 +3,7 @@ import AppHeader from "@hackersandwizards/brand/expert/components/AppHeader.astr
 import ThemeToggle from "@hackersandwizards/brand/expert/components/ThemeToggle.astro";
 import faviconIco from "@hackersandwizards/brand/logos/favicon.ico?url";
 import faviconSvg from "@hackersandwizards/brand/logos/favicon.svg?url";
+import { links } from "../lib/links";
 import "../styles/global.css";
 
 interface Props {
@@ -12,12 +13,6 @@ interface Props {
   current: "/" | "/marks/";
 }
 const { title, description, current } = Astro.props;
-const links = [
-  { href: "/", label: "Quotes" },
-  { href: "/marks/", label: "Marks" },
-  // The catalog is for whoever builds the site; on a phone the bar holds only the pages.
-  { href: "/catalog/", label: "Catalog", wide: true },
-];
 ---
 
 <!doctype html>
@@ -46,11 +41,11 @@ const links = [
       <nav class="hw-header-nav" aria-label="Main">
         {links.map((l) => (
           <a
-            class:list={["hw-header-link", l.wide && "wide"]}
+            class:list={["hw-header-link", l.href === "/catalog/" && "wide"]}
             href={l.href}
             aria-current={l.href === current ? "page" : undefined}
           >
-            {l.label}
+            {l.name}
           </a>
         ))}
         <ThemeToggle />
@@ -63,7 +58,8 @@ const links = [
 </html>
 
 <style>
-  /* header.css draws its links outside a cascade layer, so a utility cannot hide one. */
+  /* The catalog is for whoever builds the site; on a phone the bar holds only the pages.
+     header.css draws its links outside a cascade layer, so a utility cannot hide one. */
   @media (width < 40rem) {
     .hw-header-link.wide {
       display: none;

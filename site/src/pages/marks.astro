@@ -5,7 +5,7 @@ import type { FilterItem } from "@hackersandwizards/brand/elements/list-filter.t
 import ListFilter from "@hackersandwizards/brand/expert/components/ListFilter.astro";
 import Layout from "../layouts/Layout.astro";
 import MarkCard from "../components/MarkCard.astro";
-import { marks, quotesOf } from "../lib/data";
+import { filterCopy, marks, quotesOf, splitting } from "../lib/data";
 
 const rows = marks.map((mark) => {
   const filter: FilterItem = {
@@ -20,46 +20,44 @@ const rows = marks.map((mark) => {
   return { mark, filter };
 });
 const items = rows.map((r) => r.filter);
-const facets = [
-  {
-    param: "surface",
-    legend: "Surface",
-    options: [
-      { value: "allowed", label: "Allowed" },
-      { value: "unreleased", label: "Unreleased" },
-      { value: "never", label: "Never" },
-    ],
-  },
-  {
-    param: "quoted",
-    legend: "Quote",
-    options: [
-      { value: "yes", label: "Quoted" },
-      { value: "no", label: "No quote" },
-    ],
-  },
-  {
-    param: "tile",
-    legend: "Ground",
-    options: [
-      { value: "transparent", label: "Transparent" },
-      { value: "own", label: "Own tile" },
-    ],
-  },
-  {
-    param: "onepager",
-    legend: "Onepagers",
-    options: [
-      { value: "on", label: "On onepagers" },
-      { value: "off", label: "Off onepagers" },
-    ],
-  },
-]
-  .map((f) => ({
-    ...f,
-    options: f.options.filter((o) => items.some((i) => i.facets[f.param]?.includes(o.value))),
-  }))
-  .filter((f) => f.options.length > 1);
+const facets = splitting(
+  [
+    {
+      param: "surface",
+      legend: "Surface",
+      options: [
+        { value: "allowed", label: "Allowed" },
+        { value: "unreleased", label: "Unreleased" },
+        { value: "never", label: "Never" },
+      ],
+    },
+    {
+      param: "quoted",
+      legend: "Quote",
+      options: [
+        { value: "yes", label: "Quoted" },
+        { value: "no", label: "No quote" },
+      ],
+    },
+    {
+      param: "tile",
+      legend: "Ground",
+      options: [
+        { value: "transparent", label: "Transparent" },
+        { value: "own", label: "Own tile" },
+      ],
+    },
+    {
+      param: "onepager",
+      legend: "Onepagers",
+      options: [
+        { value: "on", label: "On onepagers" },
+        { value: "off", label: "Off onepagers" },
+      ],
+    },
+  ],
+  items,
+);
 ---
 
 <Layout
@@ -84,13 +82,7 @@ const facets = [
         state={{ q: "", facets: {} }}
         facets={facets}
         count="{shown} of {total} marks"
-        copy={{
-          all: "All",
-          clear: "Clear all",
-          empty: "No mark matches.",
-          submit: "Search",
-          filters: "Filters",
-        }}
+        copy={{ ...filterCopy, empty: "No mark matches." }}
       >
         <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {rows.map((r) => (
