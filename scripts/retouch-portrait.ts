@@ -75,7 +75,8 @@ export function noiseSigma(rgb: Uint8Array, width: number, height: number): numb
   return (Math.sqrt(Math.PI / 2) * sum) / (6 * (width - 2) * (height - 2));
 }
 
-/** ffmpeg's hqdn3d, raw RGB through stdin and stdout, filtered as yuv444p; ffmpeg must be on the PATH. */
+/** ffmpeg's hqdn3d, raw RGB through stdin and stdout, filtered as full-range YUV, since ffmpeg's
+ * default limited range drops a seventh of the 256 levels; ffmpeg must be on the PATH. */
 export function denoise(rgb: Uint8Array, width: number, height: number): Buffer {
   const raw = ["-f", "rawvideo", "-pix_fmt", "rgb24"];
   const run = spawnSync(
@@ -90,7 +91,7 @@ export function denoise(rgb: Uint8Array, width: number, height: number): Buffer 
       "pipe:0",
       "-vf",
       // On a single frame a temporal strength keeps the input, and 0 selects the default strength.
-      "hqdn3d=2:1.5:0.0001:0.0001",
+      "scale=in_range=full:out_range=full,hqdn3d=2:1.5:0.0001:0.0001",
       ...raw,
       "pipe:1",
     ],

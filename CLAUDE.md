@@ -11,9 +11,9 @@ founders' choice. The approval behind each entry lives in Company OS, never here
   as `unreleased` and turns `allowed` once the founders choose it and Company OS records the
   company's clearance. OBI stays `never`.
   Array order is display order, so no consumer sorts: the `allowed` marks lead, neighbours from
-  different industries, and the rest follows by slug. The marks after SDK keep the order of
-  Benedikt's prioritised list of 31.10.2026, as website `fcbe40c1` records it; the order test pins
-  it. A mark turning `allowed` moves into the lead between neighbours of other industries.
+  different industries, and the rest follows by slug. Beta Systems, momox, saas.group and Temedica
+  follow SDK directly, in the order of Benedikt's prioritised list of 31.10.2026 as website
+  `fcbe40c1` records it; the order test pins it. A mark turning `allowed` moves into the lead between neighbours of other industries.
 - `marks/`: each file cropped to its drawn edge on a transparent ground, which
   `scripts/marks.test.ts` gates (`ownTile` entries excepted while `unreleased`). After adding or
   replacing one, `bun run marks:measure` writes every `size` and `scale`.

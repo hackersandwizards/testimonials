@@ -10,11 +10,11 @@ const slug = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 // Dotfiles such as Finder's .DS_Store stay out of git and the package.
 const listed = (dir: string) =>
   readdirSync(`${root}${dir}`).filter((file) => !file.startsWith("."));
-const unique = (values: string[]) => values.filter((value, i) => values.indexOf(value) !== i);
+const duplicates = (values: string[]) => values.filter((value, i) => values.indexOf(value) !== i);
 
 describe("marks", () => {
   test("each slug once, in the slug form", () => {
-    expect(unique(marks.map((mark) => mark.slug))).toEqual([]);
+    expect(duplicates(marks.map((mark) => mark.slug))).toEqual([]);
     expect(marks.filter((mark) => !slug.test(mark.slug))).toEqual([]);
   });
 
@@ -55,7 +55,7 @@ describe("marks", () => {
 
 describe("testimonials", () => {
   test("each id once", () => {
-    expect(unique(testimonials.map((t) => t.id))).toEqual([]);
+    expect(duplicates(testimonials.map((t) => t.id))).toEqual([]);
     expect(testimonials.filter((t) => !slug.test(t.id) || !slug.test(t.company.slug))).toEqual([]);
   });
 
@@ -77,10 +77,14 @@ describe("testimonials", () => {
     const read = await Promise.all(
       testimonials.map(async ({ person: { portrait } }) => {
         const { format, width, height } = await sharp(`${root}portraits/${portrait}`).metadata();
-        return { portrait, format, square: width === height };
+        return {
+          portrait,
+          webp: format === "webp" && portrait.endsWith(".webp"),
+          square: width === height,
+        };
       }),
     );
-    expect(read.filter(({ format, square }) => format !== "webp" || !square)).toEqual([]);
+    expect(read.filter(({ webp, square }) => !webp || !square)).toEqual([]);
   });
 
   test("every file in portraits/ belongs to a testimonial", () => {

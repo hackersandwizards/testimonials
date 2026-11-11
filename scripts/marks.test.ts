@@ -34,10 +34,12 @@ function frame({ data, info: { width, height, channels } }: Pixels, svg: boolean
 }
 
 test("every mark is tight on a transparent ground, and its size and scale are current", async () => {
+  const [found, wanted] = [[] as object[], [] as object[]];
   for (const { file, surface, ownTile, size, scale: stored } of marks) {
     const mark = await render(file);
     const { tight, ground } = frame(mark, file.endsWith(".svg"));
-    expect({ file, size, scale: stored, tight, transparent: ground >= GROUND }).toEqual({
+    found.push({ file, size, scale: stored, tight, transparent: ground >= GROUND });
+    wanted.push({
       file,
       size: mark.size,
       scale: expect.closeTo(await scale(mark), 2),
@@ -45,6 +47,7 @@ test("every mark is tight on a transparent ground, and its size and scale are cu
       transparent: !(ownTile && surface === "unreleased"),
     });
   }
+  expect(found).toEqual(wanted);
 }, 30_000);
 
 test("an opaque tile with one cut corner does not count as a transparent ground", () => {
@@ -57,7 +60,7 @@ test("an opaque tile with one cut corner does not count as a transparent ground"
 
 // Surfaces inline SVG marks into their pages, and the marks come from third-party sites.
 const active =
-  /<script|<foreignObject|<set\b|<animate|<!ENTITY|<image\b|<iframe|<embed|<object|[\s/"']on[a-z]+\s*=|javascript:|@import|\bhref\s*=(?!\s*["']?\s*#)|url\((?!\s*["']?\s*#)/i;
+  /<([\w.-]+:)?(script|foreignObject|set\b|animate|image\b|iframe|embed|object)|<!ENTITY|[\s/"']on[a-z]+\s*=|javascript:|@import|\bhref\s*=(?!\s*["']?\s*#)|url\((?!\s*["']?\s*#)|image-set\s*\(/i;
 
 test("no SVG mark carries active content or loads anything", () => {
   const svgs = marks.map((mark) => mark.file).filter((file) => file.endsWith(".svg"));
@@ -80,6 +83,10 @@ test("no SVG mark carries active content or loads anything", () => {
     '<use xlink:href="https://example.com/s.svg#a"/>',
     "<style>@import url(https://example.com/a.css)</style>",
     'fill="url(https://example.com/s.svg#g)"',
+    "<svg:script>alert(1)</svg:script>",
+    "<s:foreignObject>",
+    '<s:animate attributeName="href" values="data:text/html,x"/>',
+    '<style>path{background-image:image-set("https://example.com/a.png" 1x)}</style>',
   ];
   expect(planted.filter((svg) => !active.test(svg))).toEqual([]);
   expect(active.test(`<use href="#a"/><path fill="url(#g)"/><path fill="url('#g')"/>`)).toBe(false);
