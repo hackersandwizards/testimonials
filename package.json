@@ -237,5 +237,8 @@
     "stylelint": "18.0.0",
     "tailwindcss": "4.3.5",
     "typescript": "npm:@typescript/typescript6@6.0.2"
+  },
+  "admin": {
+    "label": "Testimonials"
   }
 }
