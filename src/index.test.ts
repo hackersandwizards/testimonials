@@ -25,6 +25,7 @@ describe("marks", () => {
       expect(mark.scale).toBeGreaterThan(0);
       expect(mark.scale).toBeLessThanOrEqual(1);
       expect([undefined, false]).toContain(mark.onepager);
+      expect([undefined, false]).toContain(mark.strip);
       expect([undefined, true]).toContain(mark.ownTile);
     }
   });

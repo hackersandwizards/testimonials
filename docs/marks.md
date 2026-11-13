@@ -18,8 +18,10 @@ file. Where entries of one group share a file, a surface may show it once one of
 under that entry's `name` only: key by `slug`.
 
 A mark with `ownTile: true` draws on its own opaque tile and stays `unreleased` until a
-transparent source replaces it. A mark with `onepager: false` stays off generated onepagers. A
-testimonial names its company by `slug`: show a logo beside it only where `shownMarks` holds that
-slug. Quote in the locale you render, whole or cut to its first sentences where the space holds no
-more: split with `Intl.Segmenter` in that locale, never inside a sentence, never skipping one, and
-never where a dropped sentence qualifies a kept one. Never add figures a quote does not carry.
+transparent source replaces it. A mark with `onepager: false` stays off generated onepagers, and
+one with `strip: false` off the website's client logo strip, which shows every other `allowed` mark
+in array order. A testimonial names its company by `slug`: show a logo beside it only where
+`shownMarks` holds that slug. Quote in the locale you render, whole or cut to its first sentences
+where the space holds no more: split with `Intl.Segmenter` in that locale, never inside a sentence,
+never skipping one, and never where a dropped sentence qualifies a kept one. Never add figures a
+quote does not carry.

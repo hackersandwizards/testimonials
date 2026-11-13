@@ -14,7 +14,8 @@ founders' choice. The approval behind each entry lives in Company OS, never here
   different industries, and the rest follows by slug. Beta Systems, momox, saas.group and Temedica
   follow SDK directly, in the order of Benedikt's prioritised list of 31.10.2026 as website
   `fcbe40c1` records it; the order test pins it. A mark turning `allowed` moves into the lead
-  between neighbours of other industries.
+  between neighbours of other industries, and joins the website's client logo strip unless the same
+  change gives it `strip: false`.
 - `marks/`: each file cropped to its drawn edge on a transparent ground, which
   `scripts/marks.test.ts` gates (`ownTile` entries excepted while `unreleased`). The same test
   holds an SVG to the elements it lists, with no `<!` comment or declaration, `&` reference, CSS

@@ -361,6 +361,7 @@
       "height": 184
     },
     "onepager": false,
+    "strip": false,
     "source": "Company OS src/content/companies/logos/re-cinq.svg; its stylesheet classes inlined as fills"
   },
   {
@@ -386,6 +387,7 @@
       "height": 40
     },
     "onepager": false,
+    "strip": false,
     "source": "website assets/source-media/client-logos/tegtmeier.svg, the case logo; draws in currentColor; viewBox cropped to the drawn mark"
   },
   {
@@ -399,6 +401,7 @@
       "height": 40
     },
     "onepager": false,
+    "strip": false,
     "source": "website public/logos/client/stashaway.svg, the testimonial logo, from the header of https://www.stashaway.sg/ with fills set to black; viewBox cropped to the drawn mark"
   },
   {
@@ -411,7 +414,8 @@
       "width": 77,
       "height": 28
     },
-    "onepager": false
+    "onepager": false,
+    "strip": false
   },
   {
     "slug": "adference",

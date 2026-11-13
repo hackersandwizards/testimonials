@@ -37,6 +37,11 @@ const row = 48;
           Off onepagers
         </span>
       )}
+      {mark.strip === false && (
+        <span class="hw-pill" data-tone="neutral">
+          Off strip
+        </span>
+      )}
       {!mark.source && (
         <span class="hw-pill" data-gap>
           Missing: source

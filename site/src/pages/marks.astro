@@ -12,6 +12,7 @@ const rows = marks.map((mark) => {
       surface: [mark.surface],
       tile: [mark.ownTile ? "own" : "transparent"],
       onepager: [mark.onepager === false ? "off" : "on"],
+      strip: [mark.strip === false ? "off" : "on"],
       quoted: [quotesOf(mark).length ? "yes" : "no"],
     },
   };
@@ -47,6 +48,14 @@ const facets = splitting(
       options: [
         { value: "on", label: "On onepagers" },
         { value: "off", label: "Off onepagers" },
+      ],
+    },
+    {
+      param: "strip",
+      legend: "Logo strip",
+      options: [
+        { value: "on", label: "On strip" },
+        { value: "off", label: "Off strip" },
       ],
     },
   ],

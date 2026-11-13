@@ -21,6 +21,8 @@ export interface Mark {
   ownTile?: boolean;
   /** `false` keeps the mark off generated onepagers. */
   onepager?: boolean;
+  /** `false` keeps the mark off the website's client logo strip. */
+  strip?: boolean;
   /** Where the file came from. */
   source?: string;
 }
