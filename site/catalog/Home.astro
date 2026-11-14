@@ -3,7 +3,6 @@
 // brand-elements.json lists without a tile here.
 import Element from "@hackersandwizards/brand/Element.astro";
 import Home from "@hackersandwizards/scaffolding/catalog/Home.astro";
-import ThemeToggle from "@hackersandwizards/brand/expert/components/ThemeToggle.astro";
 import { mark, quote } from "./stories/entries";
 
 const allowed = mark("allowed", (m) => m.surface === "allowed");
@@ -11,7 +10,6 @@ const sample = quote("with an English quote", (t) => Boolean(t.quote.en));
 ---
 
 <Home>
-  <ThemeToggle slot="nav" />
   <h3>Brand elements</h3>
   <p>
     Each element as a page of this site draws it. A part of its own fails the gate's element check.
