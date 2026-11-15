@@ -6,7 +6,9 @@ founders' choice. The approval behind each entry lives in Company OS, never here
 
 ## Data
 
-- `data/marks.json`: `slug` is the company's slug in Company OS. `surface` is the founders'
+- `data/marks.json`: `slug` is the company's slug in Company OS. The mark of every company h&w
+  holds may sit here, a prospect's included, with its name and slug on the confidential allow
+  lists in `package.json`: `surface` and `strip` decide what shows. `surface` is the founders'
   choice of what a rendered surface may show (`README.md` states the values). A new mark enters
   as `unreleased` and turns `allowed` once the founders choose it and Company OS records the
   company's clearance. OBI stays `never`.

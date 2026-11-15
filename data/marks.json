@@ -849,6 +849,19 @@
     }
   },
   {
+    "slug": "nordea",
+    "name": "Nordea",
+    "file": "nordea.svg",
+    "surface": "unreleased",
+    "scale": 0.467,
+    "size": {
+      "width": 74,
+      "height": 15
+    },
+    "strip": false,
+    "source": "https://www.nordea.com/themes/custom/nordea_theme/logo.svg, the site header logo; viewBox cropped to the drawn mark"
+  },
+  {
     "slug": "obi",
     "name": "OBI",
     "file": "obi.svg",
