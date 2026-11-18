@@ -115,11 +115,10 @@ describe("entry", () => {
     expect({
       status: run.exitCode,
       stdout: run.stdout.toString().trim(),
-      stderr: run.stderr.toString(),
     }).toEqual({
       status: 0,
       stdout: String(shownMarks.length),
-      stderr: expect.any(String),
     });
+    expect(typeof run.stderr.toString()).toBe("string");
   });
 });

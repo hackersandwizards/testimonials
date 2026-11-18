@@ -33,21 +33,16 @@ function frame({ data, info: { width, height, channels } }: Pixels, svg: boolean
 }
 
 test("every mark is tight on a transparent ground, and its size and scale are current", async () => {
-  const found: object[] = [];
-  const wanted: object[] = [];
   for (const { file, surface, ownTile, size, scale: stored } of marks) {
     const mark = await render(file);
     const { tight, ground } = frame(mark, file.endsWith(".svg"));
-    found.push({ file, size, scale: stored, tight, transparent: ground >= GROUND });
-    wanted.push({
-      file,
+    expect({ size, tight, transparent: ground >= GROUND }, file).toEqual({
       size: mark.size,
-      scale: expect.closeTo(await scale(mark), 2),
       tight: true,
       transparent: !(ownTile && surface === "unreleased"),
     });
+    expect(stored, file).toBeCloseTo(await scale(mark), 2);
   }
-  expect(found).toEqual(wanted);
 }, 30_000);
 
 test("an opaque tile with one cut corner does not count as a transparent ground", () => {
