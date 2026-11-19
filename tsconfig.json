@@ -1,4 +1,4 @@
 {
   "extends": "@hackersandwizards/scaffolding/tsconfig/bun.json",
-  "include": ["src/**/*.ts", "scripts/**/*.ts", "test/**/*.ts"]
+  "include": ["src/**/*.ts", "scripts/**/*.ts", "test/**/*.ts", "vitest.config.ts"]
 }

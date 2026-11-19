@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { existsSync, readdirSync } from "node:fs";
 import sharp from "sharp";
 import { marks, shownMarks, testimonials, type Surface } from "./index.js";
@@ -65,7 +65,7 @@ describe("testimonials", () => {
       expect(t.quote.de.trim()).not.toBe("");
       expect(t.person.name.trim()).not.toBe("");
       expect(t.person.role.trim()).not.toBe("");
-      expect(t.person.url).toStartWith("https://");
+      expect(t.person.url).toMatch(/^https:\/\//);
       expect(existsSync(`${root}portraits/${t.person.portrait}`)).toBe(true);
       expect(["testimonial", "feedback-mail"]).toContain(t.source);
       expect([undefined, "en", "de"]).toContain(t.original);

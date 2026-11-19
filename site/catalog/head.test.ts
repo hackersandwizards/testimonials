@@ -1,4 +1,4 @@
-import { expect, test } from "bun:test";
+import { expect, test } from "vitest";
 
 // Scaffolding's shell draws a state alone in the day theme because its <html> carries no
 // data-hw-night. The repository's catalog head runs on every catalog page, so it must not set it.

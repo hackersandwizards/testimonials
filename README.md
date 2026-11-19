@@ -71,7 +71,8 @@ open http://testimonials.localhost.
 
 ## Work on the package
 
-`bun install`, then `bun run check` runs the full gate. A release is a version bump and a tag.
+`bun install`, then `bun run check` runs the full gate. `bun run test` runs the Vitest suite on Bun.
+A release is a version bump and a tag.
 The rules for changing data, marks and portraits are in [CLAUDE.md](CLAUDE.md).
 
 ## Licence

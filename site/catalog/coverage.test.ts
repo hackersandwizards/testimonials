@@ -1,4 +1,4 @@
-import { expect, test } from "bun:test";
+import { expect, test } from "vitest";
 import { basename, join } from "node:path";
 import { Glob } from "bun";
 

@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { rejection } from "@hackersandwizards/scaffolding/rejection";
 import sharp from "sharp";
 import {
