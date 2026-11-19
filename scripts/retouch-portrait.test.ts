@@ -24,6 +24,13 @@ describe("retouch-portrait", () => {
     expect(tone[255]).toBe(255);
   });
 
+  test("the portrait tone curve preserves its shadow, midtone and highlight values", () => {
+    const tone = toneCurve();
+    expect([0, 32, 128, 192, 224, 245, 255].map((level) => tone[level])).toEqual([
+      0, 30, 131, 198, 234, 252, 255,
+    ]);
+  });
+
   test("a warm grey wall gets cooled, held within 5 %", () => {
     const [r, g, b] = neutralGains(solid([130, 126, 122], 1000));
     expect(r).toBeLessThan(1);
@@ -32,10 +39,44 @@ describe("retouch-portrait", () => {
     expect(neutralGains(solid([200, 40, 40], 1000))).toEqual([1, 1, 1]);
   });
 
+  test("a one-percent neutral patch sets the balance without picking up saturated or extreme tones", () => {
+    const warmGrey: [number, number, number] = [130, 126, 122];
+    const pixels = solid([200, 40, 40], 100);
+    pixels.set(warmGrey);
+    expect(neutralGains(pixels)).toEqual(neutralGains(solid(warmGrey, 100)));
+    expect(neutralGains(pixels)[0]).toBeCloseTo(0.9692, 4);
+    for (const rgb of [
+      [100, 96, 92],
+      [40, 39, 38],
+      [245, 239, 233],
+    ] as const)
+      expect(neutralGains(Uint8Array.from(rgb))).toEqual([1, 1, 1]);
+  });
+
+  test("white balance caps the correction in both directions", () => {
+    expect(neutralGains(solid([201, 185, 185], 9))[0]).toBe(0.95);
+    expect(neutralGains(solid([201, 201, 185], 9))[2]).toBe(1.05);
+  });
+
   test("noise reads near zero on a flat image and high on random pixels", () => {
     expect(noiseSigma(solid([128, 128, 128], 64 * 64), 64, 64)).toBe(0);
     const noisy = Uint8Array.from({ length: 64 * 64 * 3 }, (_, i) => (i * 7919) % 256);
     expect(noiseSigma(noisy, 64, 64)).toBeGreaterThan(20);
+  });
+
+  test("noise weights coloured hot pixels by luminance and allows for the frame boundary", () => {
+    const width = 5;
+    const height = 6;
+    const hotPixels = [
+      { x: 1, y: 1, channel: 0, sigma: 11.945 },
+      { x: 2, y: 1, channel: 1, sigma: 31.267 },
+      { x: 1, y: 3, channel: 2, sigma: 6.072 },
+    ];
+    for (const { x, y, channel, sigma } of hotPixels) {
+      const rgb = new Uint8Array(width * height * 3);
+      rgb[(y * width + x) * 3 + channel] = 255;
+      expect(noiseSigma(rgb, width, height)).toBeCloseTo(sigma, 3);
+    }
   });
 
   test.skipIf(ffmpegMissing)("the denoise filter lowers the noise of one frame", () => {
@@ -50,6 +91,7 @@ describe("retouch-portrait", () => {
     const smooth = denoise(ramp, 256, 4);
     expect(new Set(smooth).size).toBeGreaterThanOrEqual(250);
     expect(Math.max(...smooth.map((v, i) => Math.abs(v - ramp[i])))).toBeLessThanOrEqual(2);
+    expect(() => denoise(ramp, 0, 4)).toThrow("ffmpeg hqdn3d failed");
   });
 
   test("crops to a square master and caps it at 1760 px", async () => {
@@ -77,6 +119,26 @@ describe("retouch-portrait", () => {
     expect(
       await rejection(retouchPortrait(source, { crop: { left: 0, top: 101, size: 300 } })),
     ).toContain("reaches past the 300×400 source");
+  });
+
+  test("centres a tall portrait and neutralises its warm grey patch without denoising", async () => {
+    const width = 24;
+    const height = 60;
+    const pixels = Buffer.alloc(width * height * 3, 16);
+    pixels.set(solid([130, 126, 122], width * width), 18 * width * 3);
+    const source = await sharp(pixels, { raw: { width, height, channels: 3 } })
+      .png()
+      .toBuffer();
+    const { webp, size, denoised } = await retouchPortrait(source);
+    const rgb = await sharp(webp).raw().toBuffer();
+    expect(size).toBe(24);
+    expect(denoised).toBe(false);
+    expect(Math.min(...rgb)).toBeGreaterThan(124);
+    expect(Math.max(...rgb)).toBeLessThan(133);
+    expect(Math.max(...rgb) - Math.min(...rgb)).toBeLessThanOrEqual(2);
+    expect(
+      await rejection(retouchPortrait(source, { crop: { left: 1, top: 18, size: 24 } })),
+    ).toContain("reaches past the 24×60 source");
   });
 
   test("the CLI takes exactly three whole numbers for --crop and a positive one for --size", () => {
