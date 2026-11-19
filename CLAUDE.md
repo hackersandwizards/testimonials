@@ -50,6 +50,10 @@ state it shows, never by name.
 `bun run check:staged`.
 `src/index.test.ts` holds every file to an entry and every entry to a file.
 
+`bun run mutation` runs Stryker on the package entry point and the mark and portrait scripts, outside the gate.
+`site/catalog/coverage.test.ts` and `site/catalog/head.test.ts` (2 ms each) check catalog wiring and markup, so they and the unexercised `site/src/` files are outside the mutation run.
+The JSON report is `.stryker-reports/mutation.json`.
+
 ## Release
 
 Consumers pin a tag. Bump `version` in `package.json`, commit, tag `v<version>`, push the tag.

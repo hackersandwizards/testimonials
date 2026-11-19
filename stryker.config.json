@@ -1,0 +1,15 @@
+{
+  "mutate": ["src/index.js", "scripts/{marks,retouch-portrait}.ts"],
+  "testRunner": "vitest",
+  "vitest": { "configFile": "vitest.mutation.config.mjs" },
+  "coverageAnalysis": "perTest",
+  "reporters": ["clear-text", "json"],
+  "jsonReporter": { "fileName": ".stryker-reports/mutation.json" },
+  "tempDirName": ".stryker-tmp",
+  "cleanTempDir": "always",
+  "ignorePatterns": [".*"],
+  "concurrency": 2,
+  "ignoreStatic": true,
+  "incremental": true,
+  "incrementalFile": ".stryker-reports/incremental.json"
+}

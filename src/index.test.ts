@@ -1,4 +1,5 @@
 import { describe, expect, test } from "vitest";
+import { spawnSync } from "node:child_process";
 import { existsSync, readdirSync } from "node:fs";
 import sharp from "sharp";
 import { marks, shownMarks, testimonials, type Surface } from "./index.js";
@@ -102,23 +103,23 @@ describe("entry", () => {
 
   // Node refuses TypeScript under node_modules; with stripping off, it refuses it here too.
   test("plain Node imports the package by name", () => {
-    const run = Bun.spawnSync(
+    const run = spawnSync(
+      "node",
       [
-        "node",
         "--no-experimental-strip-types",
         "--input-type=module",
         "-e",
         'const m = await import("@hackersandwizards/testimonials"); console.log(m.shownMarks.length)',
       ],
-      { cwd: root },
+      { cwd: root, encoding: "utf8" },
     );
     expect({
-      status: run.exitCode,
-      stdout: run.stdout.toString().trim(),
+      status: run.status,
+      stdout: run.stdout.trim(),
     }).toEqual({
       status: 0,
       stdout: String(shownMarks.length),
     });
-    expect(typeof run.stderr.toString()).toBe("string");
+    expect(typeof run.stderr).toBe("string");
   });
 });

@@ -7,3 +7,5 @@ node_modules/
 .eslintcache
 dist/
 **/.astro/
+/.stryker-tmp/
+/.stryker-reports/

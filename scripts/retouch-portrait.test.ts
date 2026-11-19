@@ -1,4 +1,5 @@
 import { describe, expect, test } from "vitest";
+import { spawnSync } from "node:child_process";
 import { rejection } from "@hackersandwizards/scaffolding/rejection";
 import sharp from "sharp";
 import {
@@ -12,6 +13,8 @@ import {
 
 const solid = (rgb: [number, number, number], pixels: number) =>
   Uint8Array.from({ length: pixels * 3 }, (_, i) => rgb[i % 3]);
+const ffmpegError = spawnSync("ffmpeg", ["-version"]).error;
+const ffmpegMissing = ffmpegError && "code" in ffmpegError && ffmpegError.code === "ENOENT";
 
 describe("retouch-portrait", () => {
   test("the tone curve rises and flattens towards white", () => {
@@ -35,7 +38,7 @@ describe("retouch-portrait", () => {
     expect(noiseSigma(noisy, 64, 64)).toBeGreaterThan(20);
   });
 
-  test.skipIf(!Bun.which("ffmpeg"))("the denoise filter lowers the noise of one frame", () => {
+  test.skipIf(ffmpegMissing)("the denoise filter lowers the noise of one frame", () => {
     const side = 64;
     const noisy = Uint8Array.from({ length: side * side * 3 }, (_, i) => {
       return 123 + ((Math.floor(i / 3) * 7919) % 11);
