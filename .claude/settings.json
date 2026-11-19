@@ -4,7 +4,6 @@
   "env": {
     "CLAUDE_CODE_SUBAGENT_MODEL": "fable"
   },
-  "advisorModel": "claude-fable-5-2",
   "hooks": {
     "SessionStart": [
       {
