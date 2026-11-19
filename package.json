@@ -228,9 +228,7 @@
   "devDependencies": {
     "@astrojs/check": "0.9.12",
     "@hackersandwizards/brand": "git+https://github.com/hackersandwizards/brand.git#v2.28.1",
-    "@hackersandwizards/scaffolding": "git+https://github.com/hackersandwizards/scaffolding.git#v5.29.1",
-    "@stryker-mutator/core": "10.1.1",
-    "@stryker-mutator/vitest-runner": "10.1.1",
+    "@hackersandwizards/scaffolding": "git+https://github.com/hackersandwizards/scaffolding.git#v5.30.0",
     "@tailwindcss/vite": "4.3.5",
     "@types/bun": "1.4.4",
     "@typescript/native": "npm:typescript@7.0.2",
@@ -242,8 +240,7 @@
     "sharp": "0.35.5",
     "stylelint": "18.0.0",
     "tailwindcss": "4.3.5",
-    "typescript": "npm:@typescript/typescript6@6.0.2",
-    "vitest": "5.1.0"
+    "typescript": "npm:@typescript/typescript6@6.0.2"
   },
   "admin": {
     "label": "Testimonials"
