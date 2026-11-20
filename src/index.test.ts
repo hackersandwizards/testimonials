@@ -37,6 +37,8 @@ describe("marks", () => {
   });
 
   test("the shown marks lead and the rest follows by slug", () => {
+    expect(shownMarks).toEqual(marks.slice(0, shownMarks.length));
+    expect(shownMarks.every((mark) => mark.surface === "allowed")).toBe(true);
     const rest = marks.slice(shownMarks.length);
     expect(rest.filter((mark) => mark.surface === "allowed")).toEqual([]);
     expect(rest.map((mark) => mark.slug)).toEqual(rest.map((mark) => mark.slug).sort());
