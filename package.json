@@ -41,7 +41,7 @@
     "check": "scaffolding check",
     "check:staged": "check-staged",
     "test": "bun --bun vitest run",
-    "mutation": "stryker run",
+    "mutation": "scaffolding-mutation",
     "marks:measure": "bun scripts/marks.ts",
     "retouch:portrait": "bun scripts/retouch-portrait.ts",
     "check:colours": "cd site && brand-colours",
@@ -216,6 +216,10 @@
         "check:retired"
       ]
     ],
+    "fullOnly": {
+      "check:elements": "renders and checks elements",
+      "check:retired": "scans generated output"
+    },
     "skip": {
       "admin": "no items under docs/agent-work/items/ for admin-check to read"
     },
@@ -228,7 +232,7 @@
   "devDependencies": {
     "@astrojs/check": "0.9.12",
     "@hackersandwizards/brand": "git+https://github.com/hackersandwizards/brand.git#v2.28.2",
-    "@hackersandwizards/scaffolding": "git+https://github.com/hackersandwizards/scaffolding.git#v5.31.0",
+    "@hackersandwizards/scaffolding": "git+https://github.com/hackersandwizards/scaffolding.git#v5.32.0",
     "@tailwindcss/vite": "4.3.5",
     "@types/bun": "1.4.4",
     "@typescript/native": "npm:typescript@7.0.2",
