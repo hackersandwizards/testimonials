@@ -2,7 +2,8 @@ import { expect, test } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { marks, shownMarks } from "../src/index.js";
-import { type Pixels, render, RIM, scale } from "./marks";
+import { type Pixels, scale } from "./mark-scale.ts";
+import { render, RIM } from "./marks";
 
 // Below this share of transparent edge pixels a mark sits on its own tile: a cut or rounded corner
 // of an opaque tile leaves a few percent, a mark on a transparent ground far more.
@@ -49,7 +50,7 @@ test("an opaque tile with one cut corner does not count as a transparent ground"
   const [width, height, cut] = [200, 40, 12];
   const data = Buffer.alloc(width * height * 4, 255);
   for (let y = 0; y < cut; y++) for (let x = 0; x < cut - y; x++) data[(y * width + x) * 4 + 3] = 0;
-  const { tight, ground } = frame({ data, info: { width, height, channels: 4 } } as Pixels, true);
+  const { tight, ground } = frame({ data, info: { width, height, channels: 4 } }, true);
   expect({ tight, transparent: ground >= GROUND }).toEqual({ tight: true, transparent: false });
 });
 

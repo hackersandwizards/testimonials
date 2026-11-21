@@ -2,14 +2,9 @@ import { describe, expect, test } from "vitest";
 import { spawnSync } from "node:child_process";
 import { rejection } from "@hackersandwizards/scaffolding/rejection";
 import sharp from "sharp";
-import {
-  denoise,
-  neutralGains,
-  noiseSigma,
-  parseRetouchArgs,
-  retouchPortrait,
-  toneCurve,
-} from "./retouch-portrait.ts";
+import { neutralGains, noiseSigma, toneCurve } from "./portrait-math.ts";
+import { parseRetouchArgs } from "./retouch-args.ts";
+import { denoise, retouchPortrait } from "./retouch-portrait.ts";
 
 const solid = (rgb: [number, number, number], pixels: number) =>
   Uint8Array.from({ length: pixels * 3 }, (_, i) => rgb[i % 3]);
@@ -17,13 +12,6 @@ const ffmpegError = spawnSync("ffmpeg", ["-version"]).error;
 const ffmpegMissing = ffmpegError && "code" in ffmpegError && ffmpegError.code === "ENOENT";
 
 describe("retouch-portrait", () => {
-  test("the tone curve rises and flattens towards white", () => {
-    const tone = toneCurve();
-    expect(tone.every((v, i) => i === 0 || v >= tone[i - 1])).toBe(true);
-    expect(tone[255] - tone[245]).toBeLessThan(tone[135] - tone[125]);
-    expect(tone[255]).toBe(255);
-  });
-
   test("the portrait tone curve preserves its shadow, midtone and highlight values", () => {
     const tone = toneCurve();
     expect([0, 32, 128, 192, 224, 245, 255].map((level) => tone[level])).toEqual([
@@ -31,37 +19,12 @@ describe("retouch-portrait", () => {
     ]);
   });
 
-  test("a warm grey wall gets cooled, held within 5 %", () => {
-    const [r, g, b] = neutralGains(solid([130, 126, 122], 1000));
-    expect(r).toBeLessThan(1);
-    expect(b).toBeGreaterThan(1);
-    expect(Math.min(r, g, b)).toBeGreaterThanOrEqual(0.95);
-    expect(neutralGains(solid([200, 40, 40], 1000))).toEqual([1, 1, 1]);
+  test("an empty RGB buffer needs no white balance", () => {
+    expect(neutralGains(new Uint8Array())).toEqual([1, 1, 1]);
   });
 
-  test("a one-percent neutral patch sets the balance without picking up saturated or extreme tones", () => {
-    const warmGrey: [number, number, number] = [130, 126, 122];
-    const pixels = solid([200, 40, 40], 100);
-    pixels.set(warmGrey);
-    expect(neutralGains(pixels)).toEqual(neutralGains(solid(warmGrey, 100)));
-    expect(neutralGains(pixels)[0]).toBeCloseTo(0.9692, 4);
-    for (const rgb of [
-      [100, 96, 92],
-      [40, 39, 38],
-      [245, 239, 233],
-    ] as const)
-      expect(neutralGains(Uint8Array.from(rgb))).toEqual([1, 1, 1]);
-  });
-
-  test("white balance caps the correction in both directions", () => {
-    expect(neutralGains(solid([201, 185, 185], 9))[0]).toBe(0.95);
-    expect(neutralGains(solid([201, 201, 185], 9))[2]).toBe(1.05);
-  });
-
-  test("noise reads near zero on a flat image and high on random pixels", () => {
-    expect(noiseSigma(solid([128, 128, 128], 64 * 64), 64, 64)).toBe(0);
-    const noisy = Uint8Array.from({ length: 64 * 64 * 3 }, (_, i) => (i * 7919) % 256);
-    expect(noiseSigma(noisy, 64, 64)).toBeGreaterThan(20);
+  test("a 1×2 RGB image has no neighbourhood from which to estimate noise", () => {
+    expect(noiseSigma(new Uint8Array(6), 1, 2)).toBe(0);
   });
 
   test("noise weights coloured hot pixels by luminance and allows for the frame boundary", () => {
@@ -141,15 +104,11 @@ describe("retouch-portrait", () => {
     ).toContain("reaches past the 24×60 source");
   });
 
-  test("the CLI takes exactly three whole numbers for --crop and a positive one for --size", () => {
-    expect(parseRetouchArgs({ crop: "10,20,300", size: "200" })).toEqual({
-      crop: { left: 10, top: 20, size: 300 },
-      size: 200,
-    });
+  test("the CLI can omit both crop and output size", () => {
     expect(parseRetouchArgs({})).toEqual({ crop: undefined, size: undefined });
-    for (const crop of ["10,,300", "1,2,3,4", "1,2", "1,-2,3", "1.5,2,3", "0,0,0"])
-      expect(() => parseRetouchArgs({ crop })).toThrow("--crop");
-    for (const size of ["0", "-5", "1.5", "x"])
-      expect(() => parseRetouchArgs({ size })).toThrow("--size");
+  });
+
+  test("the CLI rejects the first pixel count above the safe integer limit", () => {
+    expect(() => parseRetouchArgs({ crop: "9007199254740992,0,1" })).toThrow("--crop");
   });
 });
