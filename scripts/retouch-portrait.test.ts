@@ -19,6 +19,20 @@ describe("retouch-portrait", () => {
     ]);
   });
 
+  test("the portrait tone curve stays in byte range without reversing adjacent levels", () => {
+    const tone = toneCurve();
+    expect(tone).toHaveLength(256);
+    for (const [input, level] of tone.entries()) {
+      expect(level, `input ${input}`).toBeGreaterThanOrEqual(tone[input - 1] ?? 0);
+      expect(level, `input ${input}`).toBeLessThanOrEqual(255);
+    }
+  });
+
+  test("the portrait tone curve rises more slowly in the highlights than in the midtones", () => {
+    const tone = toneCurve();
+    expect(tone[255] - tone[245]).toBeLessThan(tone[135] - tone[125]);
+  });
+
   test("an empty RGB buffer needs no white balance", () => {
     expect(neutralGains(new Uint8Array())).toEqual([1, 1, 1]);
   });

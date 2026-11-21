@@ -1,28 +1,9 @@
 import { fc, test } from "@hackersandwizards/scaffolding/property";
 import { expect } from "vitest";
-import { neutralGains, noiseSigma, toneCurve } from "./portrait-math.ts";
+import { neutralGains, noiseSigma } from "./portrait-math.ts";
 
 const byte = fc.integer({ min: 0, max: 255 });
 const rgb = fc.tuple(byte, byte, byte);
-
-test.prop([byte, byte], {
-  examples: [
-    [0, 255],
-    [190, 191],
-    [191, 192],
-    [249, 250],
-  ],
-})(
-  "the tone curve stays within byte range and preserves the order of light levels",
-  (first, second) => {
-    const tone = toneCurve();
-    const low = tone[Math.min(first, second)];
-    const high = tone[Math.max(first, second)];
-    expect(low).toBeGreaterThanOrEqual(0);
-    expect(high).toBeLessThanOrEqual(255);
-    expect(low).toBeLessThanOrEqual(high);
-  },
-);
 
 test.prop([rgb, fc.integer({ min: 0, max: 100 }), fc.integer({ min: 0, max: 100 })], {
   examples: [
