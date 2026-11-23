@@ -37,19 +37,14 @@
     "catalog": "bun run dev --open /catalog/",
     "build": "check-lock sh -c 'cd site && astro build'",
     "typecheck": "tsc --noEmit && cd site && astro check",
-    "fix": "bun --bun eslint --cache --concurrency=auto . --fix && bun --bun prettier --write .",
     "check": "scaffolding check",
     "check:staged": "check-staged",
     "test": "bun --bun vitest run",
-    "explore": "scaffolding-explore",
     "mutation": "scaffolding-mutation",
     "marks:measure": "bun scripts/marks.ts",
     "retouch:portrait": "bun scripts/retouch-portrait.ts",
     "check:colours": "cd site && brand-colours",
-    "check:copies": "brand-copies",
-    "check:elements": "cd site && brand-elements",
-    "check:retired": "brand-retired site/dist",
-    "check:links": "with-server 'cd site && bun run astro preview --ignore-lock --host 127.0.0.1 --port \"$PORT\"' -- check-links {url}"
+    "check:copies": "brand-copies"
   },
   "scaffolding": {
     "allow": [
@@ -214,15 +209,19 @@
       [
         "check:colours",
         "check:copies",
-        "check:elements",
-        "check:retired",
-        "check:links"
+        "elements",
+        "retired",
+        "links"
       ]
     ],
-    "fullOnly": {
-      "check:elements": "renders and checks elements",
-      "check:retired": "scans generated output",
-      "check:links": "crawls the built review site"
+    "brand": {
+      "directory": "site",
+      "retired": [
+        "site/dist"
+      ]
+    },
+    "server": {
+      "command": "cd site && bun run astro preview --ignore-lock --host 127.0.0.1 --port \"$PORT\""
     },
     "skip": {
       "admin": "no items under docs/agent-work/items/ for admin-check to read"

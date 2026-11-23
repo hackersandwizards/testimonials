@@ -73,7 +73,9 @@ open http://testimonials.localhost.
 
 `bun install`, then `bun run check` runs the full gate. `bun run test` runs the Vitest suite on Bun.
 `bun run mutation` runs the optional Stryker suite.
-`bun run explore` runs 512 cases per property with a fresh seed. Replay with `bun run explore --seed <seed>`.
+`bun run scaffolding-explore` runs 512 cases per property with a fresh seed. Replay with
+`bun run scaffolding-explore --seed <seed>`.
+`bun run scaffolding fix` applies ESLint fixes and formats the checkout with Prettier.
 A release is a version bump and a tag.
 The rules for changing data, marks and portraits are in [CLAUDE.md](CLAUDE.md).
 

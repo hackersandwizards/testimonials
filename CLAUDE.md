@@ -47,7 +47,7 @@ state it shows, never by name.
 ## Checks
 
 `bun run check` is the full gate. `bun run test` runs Vitest on Bun. The pre-commit hook runs
-`bun run check:staged`. The full gate's `check:links` step serves `site/dist` with Astro preview
+`bun run check:staged`. The full gate's `links` step serves `site/dist` with Astro preview
 and crawls the review site's internal links.
 `src/index.test.ts` holds every file to an entry and every entry to a file.
 
