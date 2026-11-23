@@ -48,7 +48,8 @@
     "check:colours": "cd site && brand-colours",
     "check:copies": "brand-copies",
     "check:elements": "cd site && brand-elements",
-    "check:retired": "brand-retired site/dist"
+    "check:retired": "brand-retired site/dist",
+    "check:links": "with-server 'cd site && bun run astro preview --ignore-lock --host 127.0.0.1 --port \"$PORT\"' -- check-links {url}"
   },
   "scaffolding": {
     "allow": [
@@ -214,12 +215,14 @@
         "check:colours",
         "check:copies",
         "check:elements",
-        "check:retired"
+        "check:retired",
+        "check:links"
       ]
     ],
     "fullOnly": {
       "check:elements": "renders and checks elements",
-      "check:retired": "scans generated output"
+      "check:retired": "scans generated output",
+      "check:links": "crawls the built review site"
     },
     "skip": {
       "admin": "no items under docs/agent-work/items/ for admin-check to read"
