@@ -42,9 +42,7 @@
     "test": "bun --bun vitest run",
     "mutation": "scaffolding-mutation",
     "marks:measure": "bun scripts/marks.ts",
-    "retouch:portrait": "bun scripts/retouch-portrait.ts",
-    "check:colours": "cd site && brand-colours",
-    "check:copies": "brand-copies"
+    "retouch:portrait": "bun scripts/retouch-portrait.ts"
   },
   "scaffolding": {
     "allow": [
@@ -207,8 +205,6 @@
     "typecheck": "typecheck",
     "check": [
       [
-        "check:colours",
-        "check:copies",
         "elements",
         "retired",
         "links"

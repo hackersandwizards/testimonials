@@ -39,8 +39,8 @@ founders' choice. The approval behind each entry lives in Company OS, never here
 
 `site/` is the local review page: `bun run dev`, then the URL the README's "Review it" names. It draws unreleased marks, so it
 is never hosted and every page carries `noindex`; a `never` mark is listed without its drawing. It
-reads the data through the package's exports and the files by glob, never a copy. `check:colours`
-scans `site/` alone, as the marks carry their owners' colours. Every component in
+reads the data through the package's exports and the files by glob, never a copy. The gate's
+`colours` step scans `site/` alone, as the marks carry their owners' colours. Every component in
 `site/src/components/` has a story (`site/catalog/coverage.test.ts`), each picking its entry by the
 state it shows, never by name.
 
