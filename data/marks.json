@@ -463,6 +463,28 @@
     "ownTile": true
   },
   {
+    "slug": "applike-group",
+    "name": "AppLike Group",
+    "file": "applike-group.svg",
+    "surface": "unreleased",
+    "scale": 0.568,
+    "size": {
+      "width": 140,
+      "height": 38
+    }
+  },
+  {
+    "slug": "aroundhome",
+    "name": "Aroundhome",
+    "file": "aroundhome.svg",
+    "surface": "unreleased",
+    "scale": 0.504,
+    "size": {
+      "width": 411,
+      "height": 71
+    }
+  },
+  {
     "slug": "atmina-solutions",
     "name": "ATMINA Solutions",
     "file": "atmina-solutions.svg",
@@ -471,6 +493,17 @@
     "size": {
       "width": 143,
       "height": 55
+    }
+  },
+  {
+    "slug": "auto-fleet-control",
+    "name": "Auto Fleet Control",
+    "file": "auto-fleet-control.svg",
+    "surface": "unreleased",
+    "scale": 0.692,
+    "size": {
+      "width": 847,
+      "height": 297
     }
   },
   {
@@ -538,6 +571,17 @@
     "size": {
       "width": 126,
       "height": 25
+    }
+  },
+  {
+    "slug": "caluno",
+    "name": "Caluno",
+    "file": "caluno.svg",
+    "surface": "unreleased",
+    "scale": 0.585,
+    "size": {
+      "width": 1052,
+      "height": 299
     }
   },
   {
@@ -684,6 +728,17 @@
     }
   },
   {
+    "slug": "garancy",
+    "name": "Garancy",
+    "file": "garancy.svg",
+    "surface": "unreleased",
+    "scale": 0.48,
+    "size": {
+      "width": 170,
+      "height": 34
+    }
+  },
+  {
     "slug": "giga-green",
     "name": "GIGA.GREEN",
     "file": "giga-green.svg",
@@ -783,6 +838,17 @@
     }
   },
   {
+    "slug": "libri",
+    "name": "Libri",
+    "file": "libri.svg",
+    "surface": "unreleased",
+    "scale": 0.999,
+    "size": {
+      "width": 53,
+      "height": 61
+    }
+  },
+  {
     "slug": "lotto24",
     "name": "LOTTO24",
     "file": "lotto24.svg",
@@ -873,6 +939,17 @@
     }
   },
   {
+    "slug": "opinov8",
+    "name": "Opinov8",
+    "file": "opinov8.svg",
+    "surface": "unreleased",
+    "scale": 0.642,
+    "size": {
+      "width": 199,
+      "height": 40
+    }
+  },
+  {
     "slug": "phantomrausch",
     "name": "phantomRausch",
     "file": "phantomrausch.svg",
@@ -925,6 +1002,17 @@
     "size": {
       "width": 526,
       "height": 67
+    }
+  },
+  {
+    "slug": "ssw-group",
+    "name": "SSW Group",
+    "file": "ssw-group.svg",
+    "surface": "unreleased",
+    "scale": 0.688,
+    "size": {
+      "width": 431,
+      "height": 102
     }
   },
   {
