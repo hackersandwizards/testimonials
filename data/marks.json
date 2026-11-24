@@ -739,17 +739,6 @@
     }
   },
   {
-    "slug": "covestro",
-    "name": "Covestro",
-    "file": "covestro.webp",
-    "surface": "unreleased",
-    "scale": 1,
-    "size": {
-      "width": 256,
-      "height": 256
-    }
-  },
-  {
     "slug": "cybus",
     "name": "Cybus",
     "file": "cybus.svg",
