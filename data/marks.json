@@ -429,6 +429,17 @@
     }
   },
   {
+    "slug": "abpay",
+    "name": "abpay",
+    "file": "abpay.png",
+    "surface": "unreleased",
+    "scale": 0.665,
+    "size": {
+      "width": 398,
+      "height": 126
+    }
+  },
+  {
     "slug": "adesso",
     "name": "adesso",
     "file": "adesso.svg",
@@ -448,6 +459,17 @@
     "size": {
       "width": 140,
       "height": 15
+    }
+  },
+  {
+    "slug": "adidas",
+    "name": "adidas",
+    "file": "adidas.svg",
+    "surface": "unreleased",
+    "scale": 0.485,
+    "size": {
+      "width": 2364,
+      "height": 546
     }
   },
   {
@@ -507,6 +529,17 @@
     }
   },
   {
+    "slug": "amazon-web-services",
+    "name": "Amazon Web Services (AWS)",
+    "file": "amazon-web-services.svg",
+    "surface": "unreleased",
+    "scale": 0.806,
+    "size": {
+      "width": 2400,
+      "height": 1486
+    }
+  },
+  {
     "slug": "anybill",
     "name": "anybill",
     "file": "anybill.png",
@@ -562,6 +595,28 @@
     }
   },
   {
+    "slug": "artlogic",
+    "name": "Artlogic",
+    "file": "artlogic.svg",
+    "surface": "unreleased",
+    "scale": 0.588,
+    "size": {
+      "width": 2396,
+      "height": 651
+    }
+  },
+  {
+    "slug": "asana",
+    "name": "Asana",
+    "file": "asana.svg",
+    "surface": "unreleased",
+    "scale": 0.507,
+    "size": {
+      "width": 2378,
+      "height": 470
+    }
+  },
+  {
     "slug": "atmina-solutions",
     "name": "ATMINA Solutions",
     "file": "atmina-solutions.svg",
@@ -573,6 +628,17 @@
     }
   },
   {
+    "slug": "audi",
+    "name": "Audi",
+    "file": "audi.svg",
+    "surface": "unreleased",
+    "scale": 0.585,
+    "size": {
+      "width": 2389,
+      "height": 831
+    }
+  },
+  {
     "slug": "auto-fleet-control",
     "name": "Auto Fleet Control",
     "file": "auto-fleet-control.svg",
@@ -581,6 +647,17 @@
     "size": {
       "width": 847,
       "height": 297
+    }
+  },
+  {
+    "slug": "aventus-it",
+    "name": "Aventus IT",
+    "file": "aventus-it.svg",
+    "surface": "unreleased",
+    "scale": 0.461,
+    "size": {
+      "width": 2292,
+      "height": 339
     }
   },
   {
@@ -606,6 +683,17 @@
     }
   },
   {
+    "slug": "backbase",
+    "name": "Backbase",
+    "file": "backbase.svg",
+    "surface": "unreleased",
+    "scale": 0.434,
+    "size": {
+      "width": 2400,
+      "height": 406
+    }
+  },
+  {
     "slug": "bauhaus",
     "name": "Bauhaus",
     "file": "bauhaus.svg",
@@ -614,6 +702,17 @@
     "size": {
       "width": 436,
       "height": 84
+    }
+  },
+  {
+    "slug": "bec-financial-technologies",
+    "name": "BEC Financial Technologies",
+    "file": "bec-financial-technologies.png",
+    "surface": "unreleased",
+    "scale": 0.876,
+    "size": {
+      "width": 4662,
+      "height": 2829
     }
   },
   {
@@ -659,6 +758,17 @@
     "size": {
       "width": 1581,
       "height": 434
+    }
+  },
+  {
+    "slug": "bosch",
+    "name": "Bosch",
+    "file": "bosch.svg",
+    "surface": "unreleased",
+    "scale": 0.529,
+    "size": {
+      "width": 2400,
+      "height": 535
     }
   },
   {
@@ -816,6 +926,28 @@
     }
   },
   {
+    "slug": "codekeepers",
+    "name": "CodeKeepers",
+    "file": "codekeepers.svg",
+    "surface": "unreleased",
+    "scale": 0.938,
+    "size": {
+      "width": 2400,
+      "height": 2400
+    }
+  },
+  {
+    "slug": "comdirect",
+    "name": "comdirect",
+    "file": "comdirect.svg",
+    "surface": "unreleased",
+    "scale": 0.453,
+    "size": {
+      "width": 2400,
+      "height": 380
+    }
+  },
+  {
     "slug": "complyance",
     "name": "Complyance",
     "file": "complyance.svg",
@@ -835,6 +967,17 @@
     "size": {
       "width": 244,
       "height": 62
+    }
+  },
+  {
+    "slug": "condukt",
+    "name": "Condukt",
+    "file": "condukt.svg",
+    "surface": "unreleased",
+    "scale": 0.472,
+    "size": {
+      "width": 2400,
+      "height": 479
     }
   },
   {
@@ -860,6 +1003,17 @@
     }
   },
   {
+    "slug": "css",
+    "name": "CSS",
+    "file": "css.svg",
+    "surface": "unreleased",
+    "scale": 0.683,
+    "size": {
+      "width": 2400,
+      "height": 854
+    }
+  },
+  {
     "slug": "cybus",
     "name": "Cybus",
     "file": "cybus.svg",
@@ -871,6 +1025,17 @@
     }
   },
   {
+    "slug": "cyviz",
+    "name": "Cyviz",
+    "file": "cyviz.svg",
+    "surface": "unreleased",
+    "scale": 0.733,
+    "size": {
+      "width": 2400,
+      "height": 1027
+    }
+  },
+  {
     "slug": "dash0",
     "name": "Dash0",
     "file": "dash0.svg",
@@ -879,6 +1044,39 @@
     "size": {
       "width": 2400,
       "height": 458
+    }
+  },
+  {
+    "slug": "databox",
+    "name": "Databox",
+    "file": "databox.svg",
+    "surface": "unreleased",
+    "scale": 0.548,
+    "size": {
+      "width": 2393,
+      "height": 530
+    }
+  },
+  {
+    "slug": "db-systel",
+    "name": "DB Systel",
+    "file": "db-systel.png",
+    "surface": "unreleased",
+    "scale": 0.538,
+    "size": {
+      "width": 2174,
+      "height": 561
+    }
+  },
+  {
+    "slug": "decathlon",
+    "name": "Decathlon Deutschland",
+    "file": "decathlon.svg",
+    "surface": "unreleased",
+    "scale": 0.438,
+    "size": {
+      "width": 2400,
+      "height": 361
     }
   },
   {
@@ -904,6 +1102,39 @@
     }
   },
   {
+    "slug": "deutsche-bank",
+    "name": "Deutsche Bank",
+    "file": "deutsche-bank.png",
+    "surface": "unreleased",
+    "scale": 0.4,
+    "size": {
+      "width": 268,
+      "height": 30
+    }
+  },
+  {
+    "slug": "deutsche-see",
+    "name": "Deutsche See",
+    "file": "deutsche-see.svg",
+    "surface": "unreleased",
+    "scale": 0.543,
+    "size": {
+      "width": 718,
+      "height": 102
+    }
+  },
+  {
+    "slug": "diamant-software",
+    "name": "Diamant Software",
+    "file": "diamant-software.svg",
+    "surface": "unreleased",
+    "scale": 0.898,
+    "size": {
+      "width": 1617,
+      "height": 701
+    }
+  },
+  {
     "slug": "digitale-leute",
     "name": "Digitale Leute",
     "file": "digitale-leute.png",
@@ -915,6 +1146,17 @@
     }
   },
   {
+    "slug": "dkb-code-factory",
+    "name": "DKB Code Factory",
+    "file": "dkb-code-factory.svg",
+    "surface": "unreleased",
+    "scale": 0.286,
+    "size": {
+      "width": 2380,
+      "height": 144
+    }
+  },
+  {
     "slug": "doccheck",
     "name": "DocCheck",
     "file": "doccheck.svg",
@@ -923,6 +1165,17 @@
     "size": {
       "width": 2367,
       "height": 382
+    }
+  },
+  {
+    "slug": "douglas",
+    "name": "Douglas",
+    "file": "douglas.png",
+    "surface": "unreleased",
+    "scale": 0.484,
+    "size": {
+      "width": 1179,
+      "height": 219
     }
   },
   {
@@ -948,6 +1201,17 @@
     }
   },
   {
+    "slug": "drip-agency",
+    "name": "DRIP Agency",
+    "file": "drip-agency.svg",
+    "surface": "unreleased",
+    "scale": 0.561,
+    "size": {
+      "width": 2376,
+      "height": 758
+    }
+  },
+  {
     "slug": "e-motion-experts",
     "name": "e-motion experts",
     "file": "e-motion-experts.svg",
@@ -956,6 +1220,28 @@
     "size": {
       "width": 178,
       "height": 50
+    }
+  },
+  {
+    "slug": "easysoft",
+    "name": "easySoft.",
+    "file": "easysoft.svg",
+    "surface": "unreleased",
+    "scale": 0.558,
+    "size": {
+      "width": 2323,
+      "height": 563
+    }
+  },
+  {
+    "slug": "ebay",
+    "name": "eBay",
+    "file": "ebay.svg",
+    "surface": "unreleased",
+    "scale": 0.808,
+    "size": {
+      "width": 1596,
+      "height": 640
     }
   },
   {
@@ -981,6 +1267,28 @@
     }
   },
   {
+    "slug": "empiriecom",
+    "name": "empiriecom",
+    "file": "empiriecom.svg",
+    "surface": "unreleased",
+    "scale": 0.543,
+    "size": {
+      "width": 2400,
+      "height": 511
+    }
+  },
+  {
+    "slug": "emplifi",
+    "name": "Emplifi",
+    "file": "emplifi.svg",
+    "surface": "unreleased",
+    "scale": 0.521,
+    "size": {
+      "width": 2396,
+      "height": 523
+    }
+  },
+  {
     "slug": "enbw",
     "name": "EnBW",
     "file": "enbw.svg",
@@ -989,6 +1297,17 @@
     "size": {
       "width": 844,
       "height": 148
+    }
+  },
+  {
+    "slug": "encentive",
+    "name": "encentive",
+    "file": "encentive.svg",
+    "surface": "unreleased",
+    "scale": 0.433,
+    "size": {
+      "width": 2397,
+      "height": 350
     }
   },
   {
@@ -1047,6 +1366,39 @@
     }
   },
   {
+    "slug": "eurofunk-kappacher",
+    "name": "eurofunk Kappacher",
+    "file": "eurofunk-kappacher.png",
+    "surface": "unreleased",
+    "scale": 0.669,
+    "size": {
+      "width": 396,
+      "height": 116
+    }
+  },
+  {
+    "slug": "exotravel",
+    "name": "exotravel",
+    "file": "exotravel.png",
+    "surface": "unreleased",
+    "scale": 0.626,
+    "size": {
+      "width": 380,
+      "height": 124
+    }
+  },
+  {
+    "slug": "expedia-group",
+    "name": "Expedia Group",
+    "file": "expedia-group.svg",
+    "surface": "unreleased",
+    "scale": 0.445,
+    "size": {
+      "width": 2390,
+      "height": 343
+    }
+  },
+  {
     "slug": "exxeta",
     "name": "Exxeta",
     "file": "exxeta.svg",
@@ -1099,6 +1451,28 @@
     "size": {
       "width": 601,
       "height": 185
+    }
+  },
+  {
+    "slug": "forward-inheritance",
+    "name": "Forward Inheritance",
+    "file": "forward-inheritance.png",
+    "surface": "unreleased",
+    "scale": 0.524,
+    "size": {
+      "width": 1235,
+      "height": 253
+    }
+  },
+  {
+    "slug": "freenet",
+    "name": "freenet",
+    "file": "freenet.svg",
+    "surface": "unreleased",
+    "scale": 0.542,
+    "size": {
+      "width": 2400,
+      "height": 461
     }
   },
   {
@@ -1190,6 +1564,28 @@
     }
   },
   {
+    "slug": "graylog",
+    "name": "Graylog",
+    "file": "graylog.png",
+    "surface": "unreleased",
+    "scale": 0.791,
+    "size": {
+      "width": 653,
+      "height": 210
+    }
+  },
+  {
+    "slug": "gridscale",
+    "name": "gridscale",
+    "file": "gridscale.svg",
+    "surface": "unreleased",
+    "scale": 0.658,
+    "size": {
+      "width": 2392,
+      "height": 684
+    }
+  },
+  {
     "slug": "haberkorn",
     "name": "Haberkorn",
     "file": "haberkorn.svg",
@@ -1256,6 +1652,17 @@
     }
   },
   {
+    "slug": "herose",
+    "name": "HEROSE",
+    "file": "herose.svg",
+    "surface": "unreleased",
+    "scale": 0.582,
+    "size": {
+      "width": 2400,
+      "height": 471
+    }
+  },
+  {
     "slug": "hsh",
     "name": "HSH",
     "file": "hsh.png",
@@ -1297,6 +1704,17 @@
     "size": {
       "width": 744,
       "height": 542
+    }
+  },
+  {
+    "slug": "ing",
+    "name": "ING",
+    "file": "ing.svg",
+    "surface": "unreleased",
+    "scale": 0.58,
+    "size": {
+      "width": 2397,
+      "height": 596
     }
   },
   {
@@ -1344,6 +1762,17 @@
     }
   },
   {
+    "slug": "iu-group",
+    "name": "IU Group",
+    "file": "iu-group.svg",
+    "surface": "unreleased",
+    "scale": 0.719,
+    "size": {
+      "width": 2398,
+      "height": 896
+    }
+  },
+  {
     "slug": "jdc",
     "name": "JDC",
     "file": "jdc.png",
@@ -1352,6 +1781,28 @@
     "size": {
       "width": 667,
       "height": 362
+    }
+  },
+  {
+    "slug": "justrelate",
+    "name": "JustRelate",
+    "file": "justrelate.svg",
+    "surface": "unreleased",
+    "scale": 0.457,
+    "size": {
+      "width": 2400,
+      "height": 400
+    }
+  },
+  {
+    "slug": "kaayo",
+    "name": "kaayo",
+    "file": "kaayo.png",
+    "surface": "unreleased",
+    "scale": 0.64,
+    "size": {
+      "width": 1600,
+      "height": 545
     }
   },
   {
@@ -1388,6 +1839,17 @@
     }
   },
   {
+    "slug": "kerno",
+    "name": "Kerno",
+    "file": "kerno.svg",
+    "surface": "unreleased",
+    "scale": 0.472,
+    "size": {
+      "width": 2400,
+      "height": 516
+    }
+  },
+  {
     "slug": "kertos",
     "name": "Kertos",
     "file": "kertos.svg",
@@ -1418,6 +1880,17 @@
     "size": {
       "width": 787,
       "height": 132
+    }
+  },
+  {
+    "slug": "kufer-software",
+    "name": "Kufer Software",
+    "file": "kufer-software.svg",
+    "surface": "unreleased",
+    "scale": 0.699,
+    "size": {
+      "width": 2400,
+      "height": 743
     }
   },
   {
@@ -1465,6 +1938,17 @@
     }
   },
   {
+    "slug": "lighthouse",
+    "name": "Lighthouse",
+    "file": "lighthouse.svg",
+    "surface": "unreleased",
+    "scale": 0.699,
+    "size": {
+      "width": 2400,
+      "height": 577
+    }
+  },
+  {
     "slug": "limehome",
     "name": "Limehome",
     "file": "limehome.svg",
@@ -1473,6 +1957,17 @@
     "size": {
       "width": 2398,
       "height": 479
+    }
+  },
+  {
+    "slug": "listaro-group",
+    "name": "Listaro Group",
+    "file": "listaro-group.png",
+    "surface": "unreleased",
+    "scale": 0.546,
+    "size": {
+      "width": 487,
+      "height": 94
     }
   },
   {
@@ -1509,6 +2004,28 @@
     }
   },
   {
+    "slug": "luenecom",
+    "name": "lünecom",
+    "file": "luenecom.png",
+    "surface": "unreleased",
+    "scale": 0.479,
+    "size": {
+      "width": 503,
+      "height": 88
+    }
+  },
+  {
+    "slug": "lynqtech",
+    "name": "LYNQTECH",
+    "file": "lynqtech.svg",
+    "surface": "unreleased",
+    "scale": 0.71,
+    "size": {
+      "width": 2400,
+      "height": 617
+    }
+  },
+  {
     "slug": "mach",
     "name": "MACH",
     "file": "mach.svg",
@@ -1528,6 +2045,17 @@
     "size": {
       "width": 216,
       "height": 36
+    }
+  },
+  {
+    "slug": "mambu",
+    "name": "Mambu",
+    "file": "mambu.svg",
+    "surface": "unreleased",
+    "scale": 0.518,
+    "size": {
+      "width": 2223,
+      "height": 454
     }
   },
   {
@@ -1586,6 +2114,17 @@
     }
   },
   {
+    "slug": "medion",
+    "name": "MEDION",
+    "file": "medion.png",
+    "surface": "unreleased",
+    "scale": 0.457,
+    "size": {
+      "width": 294,
+      "height": 59
+    }
+  },
+  {
     "slug": "meinauto",
     "name": "MeinAuto",
     "file": "meinauto.svg",
@@ -1608,6 +2147,17 @@
     }
   },
   {
+    "slug": "microsoft",
+    "name": "Microsoft",
+    "file": "microsoft.png",
+    "surface": "unreleased",
+    "scale": 0.565,
+    "size": {
+      "width": 216,
+      "height": 46
+    }
+  },
+  {
     "slug": "minubo",
     "name": "minubo",
     "file": "minubo.svg",
@@ -1627,6 +2177,28 @@
     "size": {
       "width": 200,
       "height": 88
+    }
+  },
+  {
+    "slug": "navan",
+    "name": "Navan",
+    "file": "navan.svg",
+    "surface": "unreleased",
+    "scale": 0.479,
+    "size": {
+      "width": 2367,
+      "height": 532
+    }
+  },
+  {
+    "slug": "netflix",
+    "name": "Netflix",
+    "file": "netflix.svg",
+    "surface": "unreleased",
+    "scale": 0.543,
+    "size": {
+      "width": 2400,
+      "height": 639
     }
   },
   {
@@ -1753,6 +2325,17 @@
     }
   },
   {
+    "slug": "opentext",
+    "name": "OpenText",
+    "file": "opentext.svg",
+    "surface": "unreleased",
+    "scale": 0.427,
+    "size": {
+      "width": 2397,
+      "height": 384
+    }
+  },
+  {
     "slug": "opinov8",
     "name": "Opinov8",
     "file": "opinov8.svg",
@@ -1841,6 +2424,17 @@
     }
   },
   {
+    "slug": "populix",
+    "name": "Populix",
+    "file": "populix.svg",
+    "surface": "unreleased",
+    "scale": 0.63,
+    "size": {
+      "width": 2400,
+      "height": 642
+    }
+  },
+  {
     "slug": "productsup",
     "name": "Productsup",
     "file": "productsup.svg",
@@ -1863,6 +2457,50 @@
     }
   },
   {
+    "slug": "publicare",
+    "name": "PubliCare",
+    "file": "publicare.svg",
+    "surface": "unreleased",
+    "scale": 0.541,
+    "size": {
+      "width": 2400,
+      "height": 394
+    }
+  },
+  {
+    "slug": "quanos",
+    "name": "Quanos",
+    "file": "quanos.svg",
+    "surface": "unreleased",
+    "scale": 0.537,
+    "size": {
+      "width": 2400,
+      "height": 471
+    }
+  },
+  {
+    "slug": "rebike",
+    "name": "rebike",
+    "file": "rebike.svg",
+    "surface": "unreleased",
+    "scale": 0.509,
+    "size": {
+      "width": 2394,
+      "height": 444
+    }
+  },
+  {
+    "slug": "red-hat",
+    "name": "Red Hat",
+    "file": "red-hat.svg",
+    "surface": "unreleased",
+    "scale": 0.514,
+    "size": {
+      "width": 2400,
+      "height": 565
+    }
+  },
+  {
     "slug": "redcare",
     "name": "Redcare",
     "file": "redcare.svg",
@@ -1871,6 +2509,17 @@
     "size": {
       "width": 933,
       "height": 267
+    }
+  },
+  {
+    "slug": "reservix",
+    "name": "Reservix",
+    "file": "reservix.svg",
+    "surface": "unreleased",
+    "scale": 0.587,
+    "size": {
+      "width": 2391,
+      "height": 800
     }
   },
   {
@@ -1896,6 +2545,17 @@
     }
   },
   {
+    "slug": "ringier",
+    "name": "Ringier",
+    "file": "ringier.svg",
+    "surface": "unreleased",
+    "scale": 0.536,
+    "size": {
+      "width": 2364,
+      "height": 455
+    }
+  },
+  {
     "slug": "rptu",
     "name": "RPTU",
     "file": "rptu.png",
@@ -1918,6 +2578,17 @@
     }
   },
   {
+    "slug": "saab",
+    "name": "Saab",
+    "file": "saab.png",
+    "surface": "unreleased",
+    "scale": 0.616,
+    "size": {
+      "width": 1174,
+      "height": 364
+    }
+  },
+  {
     "slug": "samedi",
     "name": "samedi",
     "file": "samedi.svg",
@@ -1937,6 +2608,17 @@
     "size": {
       "width": 999,
       "height": 288
+    }
+  },
+  {
+    "slug": "scramjet",
+    "name": "Scramjet",
+    "file": "scramjet.svg",
+    "surface": "unreleased",
+    "scale": 0.867,
+    "size": {
+      "width": 2400,
+      "height": 932
     }
   },
   {
@@ -2006,6 +2688,28 @@
     }
   },
   {
+    "slug": "smartbroker",
+    "name": "Smartbroker",
+    "file": "smartbroker.svg",
+    "surface": "unreleased",
+    "scale": 0.323,
+    "size": {
+      "width": 2398,
+      "height": 225
+    }
+  },
+  {
+    "slug": "smarter-ecommerce",
+    "name": "Smarter Ecommerce",
+    "file": "smarter-ecommerce.svg",
+    "surface": "unreleased",
+    "scale": 1,
+    "size": {
+      "width": 2366,
+      "height": 1842
+    }
+  },
+  {
     "slug": "social-knowledge",
     "name": "Social Knowledge",
     "file": "social-knowledge.png",
@@ -2014,6 +2718,17 @@
     "size": {
       "width": 311,
       "height": 49
+    }
+  },
+  {
+    "slug": "sonar",
+    "name": "Sonar",
+    "file": "sonar.svg",
+    "surface": "unreleased",
+    "scale": 0.634,
+    "size": {
+      "width": 2392,
+      "height": 760
     }
   },
   {
@@ -2061,6 +2776,17 @@
     }
   },
   {
+    "slug": "syncpilot",
+    "name": "SYNCPILOT Group",
+    "file": "syncpilot.svg",
+    "surface": "unreleased",
+    "scale": 0.583,
+    "size": {
+      "width": 2392,
+      "height": 582
+    }
+  },
+  {
     "slug": "synyx",
     "name": "synyx",
     "file": "synyx.svg",
@@ -2102,6 +2828,17 @@
     "size": {
       "width": 164,
       "height": 42
+    }
+  },
+  {
+    "slug": "taktiq",
+    "name": "TAKTIQ",
+    "file": "taktiq.svg",
+    "surface": "unreleased",
+    "scale": 0.523,
+    "size": {
+      "width": 2400,
+      "height": 431
     }
   },
   {
@@ -2172,6 +2909,17 @@
     }
   },
   {
+    "slug": "tourlane",
+    "name": "Tourlane",
+    "file": "tourlane.svg",
+    "surface": "unreleased",
+    "scale": 0.431,
+    "size": {
+      "width": 2400,
+      "height": 379
+    }
+  },
+  {
     "slug": "trusted-shops",
     "name": "Trusted Shops",
     "file": "trusted-shops.svg",
@@ -2235,6 +2983,28 @@
     "size": {
       "width": 462,
       "height": 82
+    }
+  },
+  {
+    "slug": "vattenfall",
+    "name": "Vattenfall",
+    "file": "vattenfall.svg",
+    "surface": "unreleased",
+    "scale": 0.477,
+    "size": {
+      "width": 2395,
+      "height": 379
+    }
+  },
+  {
+    "slug": "veehive",
+    "name": "VeeHive AI Tech",
+    "file": "veehive.png",
+    "surface": "unreleased",
+    "scale": 0.504,
+    "size": {
+      "width": 513,
+      "height": 92
     }
   },
   {
@@ -2326,6 +3096,17 @@
     }
   },
   {
+    "slug": "white-label-ecommerce",
+    "name": "white label eCommerce (AXS)",
+    "file": "white-label-ecommerce.png",
+    "surface": "unreleased",
+    "scale": 0.571,
+    "size": {
+      "width": 5678,
+      "height": 1344
+    }
+  },
+  {
     "slug": "wiener-osiguranje",
     "name": "Wiener osiguranje Vienna Insurance Group",
     "file": "wiener-osiguranje.svg",
@@ -2359,6 +3140,17 @@
     }
   },
   {
+    "slug": "wolken-software",
+    "name": "Wolken Software",
+    "file": "wolken-software.png",
+    "surface": "unreleased",
+    "scale": 0.836,
+    "size": {
+      "width": 500,
+      "height": 208
+    }
+  },
+  {
     "slug": "wonderful",
     "name": "Wonderful",
     "file": "wonderful.svg",
@@ -2370,6 +3162,17 @@
     }
   },
   {
+    "slug": "workday",
+    "name": "Workday",
+    "file": "workday.webp",
+    "surface": "unreleased",
+    "scale": 0.866,
+    "size": {
+      "width": 400,
+      "height": 190
+    }
+  },
+  {
     "slug": "wps",
     "name": "WPS",
     "file": "wps.svg",
@@ -2378,6 +3181,17 @@
     "size": {
       "width": 290,
       "height": 84
+    }
+  },
+  {
+    "slug": "zalando",
+    "name": "Zalando",
+    "file": "zalando.svg",
+    "surface": "unreleased",
+    "scale": 0.444,
+    "size": {
+      "width": 2400,
+      "height": 455
     }
   },
   {
@@ -2411,6 +3225,17 @@
     "size": {
       "width": 653,
       "height": 467
+    }
+  },
+  {
+    "slug": "zooplus",
+    "name": "zooplus",
+    "file": "zooplus.png",
+    "surface": "unreleased",
+    "scale": 0.561,
+    "size": {
+      "width": 848,
+      "height": 271
     }
   }
 ]
