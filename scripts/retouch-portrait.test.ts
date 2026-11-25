@@ -4,12 +4,66 @@ import { rejection } from "@hackersandwizards/scaffolding/rejection";
 import sharp from "sharp";
 import { neutralGains, noiseSigma, toneCurve } from "./portrait-math.ts";
 import { parseRetouchArgs } from "./retouch-args.ts";
-import { denoise, retouchPortrait } from "./retouch-portrait.ts";
+import { denoise, masterFrame, retouchPortrait } from "./retouch-portrait.ts";
 
 const solid = (rgb: [number, number, number], pixels: number) =>
   Uint8Array.from({ length: pixels * 3 }, (_, i) => rgb[i % 3]);
 const ffmpegError = spawnSync("ffmpeg", ["-version"]).error;
 const ffmpegMissing = ffmpegError && "code" in ffmpegError && ffmpegError.code === "ENOENT";
+
+describe("master frame", () => {
+  test.each([
+    {
+      name: "centres the square of a landscape source",
+      source: { width: 61, height: 24 },
+      options: {},
+      expected: { crop: { left: 18, top: 0, size: 24 }, size: 24 },
+    },
+    {
+      name: "centres the square of a tall source",
+      source: { width: 24, height: 61 },
+      options: {},
+      expected: { crop: { left: 0, top: 18, size: 24 }, size: 24 },
+    },
+    {
+      name: "uses the requested crop and size",
+      source: { width: 60, height: 24 },
+      options: { crop: { left: 2, top: 3, size: 20 }, size: 10 },
+      expected: { crop: { left: 2, top: 3, size: 20 }, size: 10 },
+    },
+    {
+      name: "caps the default master at 1760 px",
+      source: { width: 2400, height: 1900 },
+      options: {},
+      expected: { crop: { left: 250, top: 0, size: 1900 }, size: 1760 },
+    },
+  ])("$name", ({ source, options, expected }) => {
+    expect(masterFrame(source, options)).toEqual(expected);
+  });
+
+  test.each([
+    {
+      name: "rejects a crop that reaches past the source",
+      source: { width: 24, height: 60 },
+      options: { crop: { left: 1, top: 18, size: 24 } },
+      error: "--crop 1,18,24 reaches past the 24×60 source",
+    },
+    {
+      name: "rejects a size above the crop’s limit",
+      source: { width: 24, height: 60 },
+      options: { crop: { left: 0, top: 18, size: 20 }, size: 21 },
+      error: "--size 21 is above the 20 px limit of this crop",
+    },
+    {
+      name: "rejects a master above the 1760 px cap",
+      source: { width: 2400, height: 1900 },
+      options: { size: 1761 },
+      error: "--size 1761 is above the 1760 px limit of this crop",
+    },
+  ])("$name", ({ source, options, error }) => {
+    expect(() => masterFrame(source, options)).toThrow(new Error(error));
+  });
+});
 
 describe("retouch-portrait", () => {
   test("the portrait tone curve preserves its shadow, midtone and highlight values", () => {
@@ -22,10 +76,9 @@ describe("retouch-portrait", () => {
   test("the portrait tone curve stays in byte range without reversing adjacent levels", () => {
     const tone = toneCurve();
     expect(tone).toHaveLength(256);
-    for (const [input, level] of tone.entries()) {
-      expect(level, `input ${input}`).toBeGreaterThanOrEqual(tone[input - 1] ?? 0);
-      expect(level, `input ${input}`).toBeLessThanOrEqual(255);
-    }
+    expect(tone).toEqual(tone.toSorted((a, b) => a - b));
+    expect(Math.min(...tone)).toBeGreaterThanOrEqual(0);
+    expect(Math.max(...tone)).toBeLessThanOrEqual(255);
   });
 
   test("the portrait tone curve rises more slowly in the highlights than in the midtones", () => {
@@ -71,7 +124,7 @@ describe("retouch-portrait", () => {
     expect(() => denoise(ramp, 0, 4)).toThrow("ffmpeg hqdn3d failed");
   });
 
-  test("crops to a square master and caps it at 1760 px", async () => {
+  test("encodes a 1760 px square WebP master", async () => {
     const source = await sharp({
       create: { width: 2400, height: 1900, channels: 3, background: "#888" },
     })
@@ -80,7 +133,6 @@ describe("retouch-portrait", () => {
     const { webp, size } = await retouchPortrait(source, { sharpen: true });
     const meta = await sharp(webp).metadata();
     expect([size, meta.width, meta.height, meta.format]).toEqual([1760, 1760, 1760, "webp"]);
-    expect(await rejection(retouchPortrait(source, { size: 1761 }))).toContain("limit");
   });
 
   test("crops a photo stored with an EXIF rotation from its upright size", async () => {
@@ -113,9 +165,6 @@ describe("retouch-portrait", () => {
     expect(Math.min(...rgb)).toBeGreaterThan(124);
     expect(Math.max(...rgb)).toBeLessThan(133);
     expect(Math.max(...rgb) - Math.min(...rgb)).toBeLessThanOrEqual(2);
-    expect(
-      await rejection(retouchPortrait(source, { crop: { left: 1, top: 18, size: 24 } })),
-    ).toContain("reaches past the 24×60 source");
   });
 
   test("the CLI can omit both crop and output size", () => {

@@ -4,6 +4,7 @@ import { parseRetouchArgs } from "./retouch-args.ts";
 
 const coordinate = fc.integer({ min: 0, max: Number.MAX_SAFE_INTEGER });
 const positive = fc.integer({ min: 1, max: Number.MAX_SAFE_INTEGER });
+const cropArbitrary = fc.record({ left: coordinate, top: coordinate, size: positive });
 const pixelCount = (text: string, allowZero: boolean) => {
   if (
     text.length === 0 ||
@@ -15,18 +16,18 @@ const pixelCount = (text: string, allowZero: boolean) => {
   return value <= BigInt(Number.MAX_SAFE_INTEGER) ? Number(value) : undefined;
 };
 
-test.prop([coordinate, coordinate, positive, positive, fc.integer({ min: 0, max: 8 })], {
-  examples: [[0, Number.MAX_SAFE_INTEGER, 1, Number.MAX_SAFE_INTEGER, 3]],
+test.prop([cropArbitrary, positive, fc.integer({ min: 0, max: 8 })], {
+  examples: [[{ left: 0, top: Number.MAX_SAFE_INTEGER, size: 1 }, Number.MAX_SAFE_INTEGER, 3]],
 })(
   "losslessly reads decimal pixel counts and allows leading zeros on coordinates",
-  (x, y, side, size, padding) => {
-    const crop = [
-      String(x).padStart(padding, "0"),
-      String(y).padStart(padding, "0"),
-      String(side),
+  (crop, size, padding) => {
+    const input = [
+      String(crop.left).padStart(padding, "0"),
+      String(crop.top).padStart(padding, "0"),
+      String(crop.size),
     ].join(",");
-    expect(parseRetouchArgs({ crop, size: String(size) })).toEqual({
-      crop: { left: x, top: y, size: side },
+    expect(parseRetouchArgs({ crop: input, size: String(size) })).toEqual({
+      crop,
       size,
     });
   },
@@ -80,12 +81,12 @@ test.prop([fc.oneof(unicodeString, positive.map(String)), coordinate], {
   },
 );
 
-test.prop([coordinate, coordinate, positive, fc.constantFrom(",", "/", ";", "，", " ")], {
+test.prop([cropArbitrary, fc.constantFrom(",", "/", ";", "，", " ")], {
   examples: [
-    [0, 0, 1, ","],
-    [0, 0, 1, "，"],
+    [{ left: 0, top: 0, size: 1 }, ","],
+    [{ left: 0, top: 0, size: 1 }, "，"],
   ],
-})("requires exactly three comma-separated crop fields", (left, top, size, separator) => {
+})("requires exactly three comma-separated crop fields", ({ left, top, size }, separator) => {
   for (const crop of [`${left},${top}`, `${left},${top},${size},${size}`, `${left},,${size}`]) {
     expect(() => parseRetouchArgs({ crop })).toThrow("--crop");
   }

@@ -50,10 +50,12 @@ export interface RetouchOptions {
   sharpen?: boolean;
 }
 
-export async function retouchPortrait(source: string | Buffer, options: RetouchOptions = {}) {
-  const image = sharp(source).autoOrient();
-  // metadata() reads the stored size; autoOrient holds it after the EXIF rotation.
-  const { width, height } = (await image.metadata()).autoOrient;
+type RequestedFrame = Pick<RetouchOptions, "crop" | "size">;
+
+export function masterFrame(
+  { width, height }: { width: number; height: number },
+  options: RequestedFrame,
+) {
   const side = Math.min(width, height);
   const crop = options.crop ?? {
     left: Math.floor((width - side) / 2),
@@ -67,6 +69,13 @@ export async function retouchPortrait(source: string | Buffer, options: RetouchO
   const limit = Math.min(crop.size, MAX_SIZE);
   const size = options.size ?? limit;
   if (size > limit) throw new Error(`--size ${size} is above the ${limit} px limit of this crop`);
+  return { crop, size };
+}
+
+export async function retouchPortrait(source: string | Buffer, options: RetouchOptions = {}) {
+  const image = sharp(source).autoOrient();
+  // metadata() reads the stored size; autoOrient holds it after the EXIF rotation.
+  const { crop, size } = masterFrame((await image.metadata()).autoOrient, options);
   const { data: pixels, info } = await image
     .extract({ left: crop.left, top: crop.top, width: crop.size, height: crop.size })
     .resize({ width: size, height: size, kernel: "lanczos3" })
@@ -104,7 +113,7 @@ if (import.meta.main) {
     );
     process.exit(2);
   }
-  let args: Pick<RetouchOptions, "crop" | "size">;
+  let args: RequestedFrame;
   try {
     args = parseRetouchArgs(values);
   } catch (error) {

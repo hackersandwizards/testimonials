@@ -18,17 +18,27 @@ describe("marks", () => {
     expect(marks.filter((mark) => !slug.test(mark.slug))).toEqual([]);
   });
 
-  test("each entry names a file, a name and a known surface", () => {
-    for (const mark of marks) {
-      expect(mark.name.trim()).not.toBe("");
-      expect(surfaces).toContain(mark.surface);
-      expect(existsSync(`${root}marks/${mark.file}`)).toBe(true);
-      expect(mark.scale).toBeGreaterThan(0);
-      expect(mark.scale).toBeLessThanOrEqual(1);
-      expect([undefined, false]).toContain(mark.onepager);
-      expect([undefined, false]).toContain(mark.strip);
-      expect([undefined, true]).toContain(mark.ownTile);
-    }
+  test("each mark has a name, a known surface and a file in marks/", () => {
+    expect(marks.filter((mark) => mark.name.trim() === "")).toEqual([]);
+    expect(marks.filter((mark) => !surfaces.includes(mark.surface))).toEqual([]);
+    expect(marks.filter((mark) => !existsSync(`${root}marks/${mark.file}`))).toEqual([]);
+  });
+
+  test("each mark scale is above zero and at most one", () => {
+    expect(marks.filter((mark) => !Number.isFinite(mark.scale))).toEqual([]);
+    expect(marks.filter((mark) => mark.scale <= 0)).toEqual([]);
+    expect(marks.filter((mark) => mark.scale > 1)).toEqual([]);
+  });
+
+  test("each optional mark flag only stores its non-default value", () => {
+    expect(marks.filter((mark) => ![undefined, false].includes(mark.onepager))).toEqual([]);
+    expect(marks.filter((mark) => ![undefined, false].includes(mark.strip))).toEqual([]);
+    expect(marks.filter((mark) => ![undefined, true].includes(mark.ownTile))).toEqual([]);
+  });
+
+  test("marks with their own tile stay unreleased", () => {
+    const ownTiles = marks.filter((mark) => mark.ownTile);
+    expect(ownTiles.filter((mark) => mark.surface !== "unreleased")).toEqual([]);
   });
 
   test("every file in marks/ belongs to an entry", () => {
@@ -57,22 +67,31 @@ describe("marks", () => {
 });
 
 describe("testimonials", () => {
-  test("each id once", () => {
+  test("testimonial IDs are unique and IDs and company slugs use the slug form", () => {
     expect(duplicates(testimonials.map((t) => t.id))).toEqual([]);
-    expect(testimonials.filter((t) => !slug.test(t.id) || !slug.test(t.company.slug))).toEqual([]);
+    expect(testimonials.filter((t) => !slug.test(t.id))).toEqual([]);
+    expect(testimonials.filter((t) => !slug.test(t.company.slug))).toEqual([]);
   });
 
-  test("each quote in both languages, with person, role and portrait", () => {
-    for (const t of testimonials) {
-      expect(t.quote.en.trim()).not.toBe("");
-      expect(t.quote.de.trim()).not.toBe("");
-      expect(t.person.name.trim()).not.toBe("");
-      expect(t.person.role.trim()).not.toBe("");
-      expect(t.person.url).toMatch(/^https:\/\//);
-      expect(existsSync(`${root}portraits/${t.person.portrait}`)).toBe(true);
-      expect(["testimonial", "feedback-mail"]).toContain(t.source);
-      expect([undefined, "en", "de"]).toContain(t.original);
-    }
+  test("each quote is present in both languages", () => {
+    expect(testimonials.filter((t) => t.quote.en.trim() === "")).toEqual([]);
+    expect(testimonials.filter((t) => t.quote.de.trim() === "")).toEqual([]);
+  });
+
+  test("each quoted person has a name, a role, an HTTPS URL and a portrait file", () => {
+    expect(testimonials.filter((t) => t.person.name.trim() === "")).toEqual([]);
+    expect(testimonials.filter((t) => t.person.role.trim() === "")).toEqual([]);
+    expect(testimonials.filter((t) => !t.person.url.startsWith("https://"))).toEqual([]);
+    expect(
+      testimonials.filter((t) => !existsSync(`${root}portraits/${t.person.portrait}`)),
+    ).toEqual([]);
+  });
+
+  test("each testimonial has a known source and any original language is known", () => {
+    expect(
+      testimonials.filter((t) => !["testimonial", "feedback-mail"].includes(t.source)),
+    ).toEqual([]);
+    expect(testimonials.filter((t) => ![undefined, "en", "de"].includes(t.original))).toEqual([]);
   });
 
   test("at least one testimonial has a date and all dates use YYYY-MM or YYYY-MM-DD", () => {
@@ -85,12 +104,18 @@ describe("testimonials", () => {
     const read = await Promise.all(
       testimonials.map(async ({ person: { portrait } }) => {
         const { format, width, height } = await sharp(`${root}portraits/${portrait}`).metadata();
-        return { portrait, format, square: width === height };
+        const extension = portrait.match(/\.[^./]*$/)?.[0];
+        return { portrait, format, extension, square: width === height };
       }),
     );
-    expect(
-      read.filter((p) => p.format !== "webp" || !p.portrait.endsWith(".webp") || !p.square),
-    ).toEqual([]);
+    expect(read).toEqual(
+      testimonials.map(({ person: { portrait } }) => ({
+        portrait,
+        format: "webp",
+        extension: ".webp",
+        square: true,
+      })),
+    );
   });
 
   test("every file in portraits/ belongs to a testimonial", () => {

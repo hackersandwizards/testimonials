@@ -33,17 +33,23 @@ function frame({ data, info: { width, height, channels } }: Pixels, svg: boolean
   };
 }
 
-test("every mark is tight on a transparent ground, and its size and scale are current", async () => {
-  for (const { file, surface, ownTile, size, scale: stored } of marks) {
+test("marks are tight and current, and exactly the own tiles have opaque ground", async () => {
+  expect(marks).not.toHaveLength(0);
+  const grounds: { file: string; transparent: boolean }[] = [];
+  for (const { file, size, scale: stored } of marks) {
     const mark = await render(file);
     const { tight, ground } = frame(mark, file.endsWith(".svg"));
-    expect({ size, tight, transparent: ground >= GROUND }, file).toEqual({
+    expect({ size, tight }, file).toEqual({
       size: mark.size,
       tight: true,
-      transparent: !(ownTile && surface === "unreleased"),
     });
     expect(stored, file).toBeCloseTo(await scale(mark), 2);
+    grounds.push({ file, transparent: ground >= GROUND });
   }
+  const ownTileFiles = marks.filter(({ ownTile }) => ownTile).map(({ file }) => file);
+  expect(grounds.filter(({ transparent }) => !transparent).map(({ file }) => file)).toEqual(
+    ownTileFiles,
+  );
 }, 30_000);
 
 test("an opaque tile with one cut corner does not count as a transparent ground", () => {
