@@ -26,13 +26,21 @@ const { title, description, current } = Astro.props;
     <link rel="icon" href={faviconSvg} type="image/svg+xml" />
     {/* Applied before first paint, or the wrong theme flashes. */}
     <script is:inline>
-      let theme;
-      // Storage can be blocked (site data off); the system preference still holds.
-      try {
-        theme = localStorage.getItem("theme");
-      } catch {}
-      theme ||= window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      document.documentElement.setAttribute("data-theme", theme);
+      {
+        const readStoredTheme = () => {
+          try {
+            return localStorage.getItem("theme");
+          } catch (error) {
+            // The browser can block storage when site data is disabled.
+            if (error?.name !== "SecurityError") throw error;
+            return null;
+          }
+        };
+        const theme =
+          readStoredTheme() ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      }
     </script>
   </head>
   <body>

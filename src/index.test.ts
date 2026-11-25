@@ -72,8 +72,13 @@ describe("testimonials", () => {
       expect(existsSync(`${root}portraits/${t.person.portrait}`)).toBe(true);
       expect(["testimonial", "feedback-mail"]).toContain(t.source);
       expect([undefined, "en", "de"]).toContain(t.original);
-      if (t.date !== undefined) expect(t.date).toMatch(/^\d{4}-\d{2}(-\d{2})?$/);
     }
+  });
+
+  test("at least one testimonial has a date and all dates use YYYY-MM or YYYY-MM-DD", () => {
+    const dates = testimonials.map((t) => t.date).filter((date) => date !== undefined);
+    expect(dates.length).toBeGreaterThan(0);
+    expect(dates.filter((date) => !/^\d{4}-\d{2}(-\d{2})?$/.test(date))).toEqual([]);
   });
 
   test("each portrait is a square WebP", async () => {
