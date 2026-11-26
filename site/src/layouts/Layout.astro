@@ -3,6 +3,7 @@ import AppHeader from "@hackersandwizards/brand/expert/components/AppHeader.astr
 import ThemeToggle from "@hackersandwizards/brand/expert/components/ThemeToggle.astro";
 import faviconIco from "@hackersandwizards/brand/logos/favicon.ico?url";
 import faviconSvg from "@hackersandwizards/brand/logos/favicon.svg?url";
+import themeRead from "@hackersandwizards/brand/theme-read.js?raw";
 import { links } from "../lib/links";
 import "../styles/global.css";
 
@@ -24,24 +25,7 @@ const { title, description, current } = Astro.props;
     <title>{title} | hackers&wizards</title>
     <link rel="icon" href={faviconIco} sizes="32x32" />
     <link rel="icon" href={faviconSvg} type="image/svg+xml" />
-    {/* Applied before first paint, or the wrong theme flashes. */}
-    <script is:inline>
-      {
-        const readStoredTheme = () => {
-          try {
-            return localStorage.getItem("theme");
-          } catch (error) {
-            // The browser can block storage when site data is disabled.
-            if (error?.name !== "SecurityError") throw error;
-            return null;
-          }
-        };
-        const theme =
-          readStoredTheme() ||
-          (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-        document.documentElement.setAttribute("data-theme", theme);
-      }
-    </script>
+    <script is:inline set:html={themeRead} />
   </head>
   <body>
     <AppHeader product="Testimonials">
