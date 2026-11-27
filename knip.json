@@ -1,0 +1,10 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": [
+    "scripts/marks.ts!",
+    "scripts/retouch-portrait.ts!",
+    "site/src/pages/**/*.astro!",
+    "site/catalog/{Head,Home}.astro!",
+    "site/catalog/stories/**/*.stories.ts!"
+  ]
+}
