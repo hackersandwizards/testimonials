@@ -13,8 +13,6 @@ import { neutralGains, noiseSigma, toneCurve } from "./portrait-math.ts";
 import { parseRetouchArgs } from "./retouch-args.ts";
 
 const MAX_SIZE = 1760;
-// Immerkær sigma on 8-bit luminance at master size above which hqdn3d runs; the 14 portraits
-// here measured 0.26 to 2.09 on 2026-11-08.
 const NOISE_LIMIT = 2.5;
 
 /** ffmpeg's hqdn3d, raw RGB through stdin and stdout, filtered as full-range YUV, since ffmpeg's

@@ -69,7 +69,6 @@ export const markOf = (t: Testimonial) => marks.find((m) => m.slug === t.company
 export const quotesOf = (m: Mark) => testimonials.filter((t) => t.company.slug === m.slug);
 export const sharing = (m: Mark) => marks.filter((o) => o.file === m.file && o.slug !== m.slug);
 
-/** Drops the values no row holds, then each facet left with one value, which splits nothing. */
 export const splitting = <F extends { param: string; options: { value: string }[] }>(
   facets: F[],
   items: { facets: Record<string, string[]> }[],

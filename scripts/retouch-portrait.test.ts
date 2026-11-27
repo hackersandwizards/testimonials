@@ -133,6 +133,9 @@ describe("retouch-portrait", () => {
     const { webp, size } = await retouchPortrait(source, { sharpen: true });
     const meta = await sharp(webp).metadata();
     expect([size, meta.width, meta.height, meta.format]).toEqual([1760, 1760, 1760, "webp"]);
+    expect(await rejection(retouchPortrait(source, { size: 1761 }))).toContain(
+      "--size 1761 is above the 1760 px limit of this crop",
+    );
   });
 
   test("crops a photo stored with an EXIF rotation from its upright size", async () => {
