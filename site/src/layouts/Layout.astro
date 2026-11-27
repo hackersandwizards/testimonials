@@ -49,7 +49,8 @@ const { title, description, current } = Astro.props;
 </html>
 
 <style>
-  /* Hide the developer-only catalog here because header.css defines the link outside the cascade layer used by utilities. */
+  /* On a phone the bar drops the catalog, which is for whoever builds the site, here because
+     header.css draws its links outside a cascade layer, where a utility cannot hide one. */
   @media (width < 40rem) {
     .hw-header-link.wide {
       display: none;

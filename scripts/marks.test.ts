@@ -73,6 +73,12 @@ const unsafe = (svg: string) =>
   loads.test(svg) || [...svg.matchAll(/<([\w.:-]+)/g)].some(([, n]) => !ELEMENTS.has(n));
 const read = (file: string) => readFileSync(join(import.meta.dir, "../marks", file), "utf8");
 
+test("SVG marks use literal values in place of CSS var() references", () => {
+  const svgs = marks.map(({ file }) => file).filter((file) => file.endsWith(".svg"));
+  const references = svgs.filter((file) => /\bvar\(/i.test(read(file)));
+  expect(references, `Replace CSS var() references in ${references.join(", ")}`).toEqual([]);
+});
+
 test("no SVG mark carries active content or loads anything", () => {
   const svgs = marks.map((mark) => mark.file).filter((file) => file.endsWith(".svg"));
   expect(svgs.filter((file) => unsafe(read(file)))).toEqual([]);

@@ -1150,7 +1150,7 @@
     "name": "DKB Code Factory",
     "file": "dkb-code-factory.svg",
     "surface": "unreleased",
-    "scale": 0.286,
+    "scale": 0.297,
     "size": {
       "width": 2380,
       "height": 144
@@ -2239,7 +2239,7 @@
     "name": "Next Kraftwerke",
     "file": "next-kraftwerke.svg",
     "surface": "unreleased",
-    "scale": 0.597,
+    "scale": 0.645,
     "size": {
       "width": 2400,
       "height": 759
